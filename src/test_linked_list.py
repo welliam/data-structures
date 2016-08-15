@@ -22,4 +22,13 @@ def test_pop_error():
     with pytest.raises(IndexError) as e_info:
         lst = LinkedList()
         lst.pop()
+
+
+def test_size():
+    from linked_list import LinkedList
+    lst = LinkedList()
+    lst.push(1)
+    lst.push(2)
+    lst.push(3)
+    assert lst.size() == 3
     
