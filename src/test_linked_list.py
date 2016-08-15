@@ -60,6 +60,12 @@ def test_search(val, result):
     assert val == lst.search(5).value
 
 
+def test_search_not_found():
+    from linked_list import LinkedList
+    lst = LinkedList()
+    assert lst.search(0) is None
+
+
 def test_remove():
     from linked_list import LinkedList
     lst = LinkedList()
