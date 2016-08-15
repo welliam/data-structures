@@ -20,7 +20,7 @@ class LinkedList(object):
         """Initialize LinkedList."""
         self.head = None
         self.count = 0
-        if iterable != None:
+        if iterable is not None:
             for value in iterable:
                 self.push(value)
 
