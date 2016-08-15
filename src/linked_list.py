@@ -59,5 +59,3 @@ class LinkedList(object):
                 result += u', {}'.format(current_node.value)
                 current_node = current_node.next_node
             return result + u')'
-
-
