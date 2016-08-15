@@ -14,3 +14,11 @@ class LinkedList(object):
 
     def push(self, val):
         self.head = Node(val, self.head)
+
+
+    def pop(self):
+        if not self.head:
+            raise IndexError('Linked list is empty.')
+        popped = self.head.value
+        self.head = self.head.next_node
+        return popped
