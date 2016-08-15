@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+
 """Implement linked list abstract data type."""
 
 
@@ -15,12 +16,13 @@ class Node(object):
 class LinkedList(object):
     """Create a linked list object."""
 
-    def __init__(self, iterable=[]):
+    def __init__(self, iterable=None):
         """Initialize LinkedList."""
         self.head = None
         self.count = 0
-        for value in iterable:
-            self.push(value)
+        if iterable != None:
+            for value in iterable:
+                self.push(value)
 
     def push(self, val):
         """Push val onto the linked list."""
