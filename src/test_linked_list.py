@@ -28,6 +28,14 @@ def test_pop():
     assert lst.pop() == 0
 
 
+def test_constructor():
+    from linked_list import LinkedList
+    lst = LinkedList([1, 2, 3])
+    assert lst.pop() == 3
+    assert lst.pop() == 2
+    assert lst.pop() == 1
+
+
 def test_pop_error():
     from linked_list import LinkedList
     with pytest.raises(IndexError):

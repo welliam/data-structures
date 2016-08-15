@@ -8,9 +8,11 @@ class Node(object):
 
 
 class LinkedList(object):
-    def __init__(self):
+    def __init__(self, iterable=[]):
         self.head = None
         self.count = 0
+        for value in iterable:
+            self.push(value)
 
     def push(self, val):
         self.head = Node(val, self.head)
