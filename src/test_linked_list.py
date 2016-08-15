@@ -3,6 +3,17 @@
 import pytest
 
 
+SEARCH_TABLE = [
+    (5, 5)
+]
+
+DISPLAY_TABLE = [
+    ([5, 4, 3], u'(3, 4, 5)'),
+    ([5], u'(5)'),
+    ([], u'()')
+]
+
+
 def test_push():
     from linked_list import LinkedList
     lst = LinkedList()
@@ -19,7 +30,7 @@ def test_pop():
 
 def test_pop_error():
     from linked_list import LinkedList
-    with pytest.raises(IndexError) as e_info:
+    with pytest.raises(IndexError):
         lst = LinkedList()
         lst.pop()
 
@@ -31,4 +42,28 @@ def test_size():
     lst.push(2)
     lst.push(3)
     assert lst.size() == 3
-    
+
+
+@pytest.mark.parametrize('val, result', SEARCH_TABLE)
+def test_search(val, result):
+    from linked_list import LinkedList
+    lst = LinkedList()
+    lst.push(val)
+    assert val == lst.search(5).value
+
+
+def test_remove():
+    from linked_list import LinkedList
+    lst = LinkedList()
+    lst.push(5)
+    lst.remove(lst.search(5))
+    assert lst.search(5) is None
+
+
+@pytest.mark.parametrize('values, result', DISPLAY_TABLE)
+def test_display(values, result):
+    from linked_list import LinkedList
+    lst = LinkedList()
+    for val in values:
+        lst.push(val)
+    assert lst.display() == result
