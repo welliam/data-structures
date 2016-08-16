@@ -6,7 +6,8 @@ import pytest
 
 
 SEARCH_TABLE = [
-    (5, 5)
+    (5, [5], 5),
+    (5, [5, 4, 3, 2, 1], 5)
 ]
 
 DISPLAY_TABLE = [
@@ -59,13 +60,14 @@ def test_size():
     assert lst.size() == 3
 
 
-@pytest.mark.parametrize('val, result', SEARCH_TABLE)
-def test_search(val, result):
+@pytest.mark.parametrize('looking, values, result', SEARCH_TABLE)
+def test_search(looking, values, result):
     """Test search method."""
     from linked_list import LinkedList
     lst = LinkedList()
-    lst.push(val)
-    assert val == lst.search(5).value
+    for val in values:
+        lst.push(val)
+    assert looking == lst.search(looking).value
 
 
 def test_search_not_found():
