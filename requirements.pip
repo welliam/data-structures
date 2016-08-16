@@ -1,0 +1,13 @@
+argh==0.26.2
+colorama==0.3.7
+-e git+https://github.com/welliam/data-structures@a62a62a621ad76529bb998e820a7d85d94a96068#egg=data_structures
+docopt==0.6.2
+pathtools==0.1.2
+pluggy==0.3.1
+py==1.4.31
+pytest==2.9.2
+pytest-watch==4.1.0
+PyYAML==3.11
+tox==2.3.1
+virtualenv==15.0.3
+watchdog==0.8.3
