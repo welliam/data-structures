@@ -79,11 +79,19 @@ def test_search_not_found():
     assert lst.search(0) is None
 
 
-def test_remove():
+def test_remove_1():
     """Test remove method."""
     from linked_list import LinkedList
     lst = LinkedList()
     lst.push(5)
+    lst.remove(lst.search(5))
+    assert lst.search(5) is None
+
+
+def test_remove_2():
+    """Test remove method."""
+    from linked_list import LinkedList
+    lst = LinkedList([5, 1, 2, 3, 4])
     lst.remove(lst.search(5))
     assert lst.search(5) is None
 
