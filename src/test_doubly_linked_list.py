@@ -2,6 +2,11 @@
 
 """Test doubly_linked_list.py."""
 
+import pytest
+
+
+REMOVE_ERROR_NUMBERS = [[1, 2, 3], [1], []]
+
 
 def test_push():
     """Test push method."""
@@ -39,6 +44,14 @@ def test_pop():
     assert lst.count == 0
 
 
+def test_pop_error():
+    """Test pop throws IndexError."""
+    from doubly_linked_list import DoublyLinkedList
+    lst = DoublyLinkedList()
+    with pytest.raises(IndexError):
+        lst.pop()
+
+
 def test_shift():
     """Test shift method."""
     from doubly_linked_list import DoublyLinkedList
@@ -49,6 +62,14 @@ def test_shift():
     assert lst.shift() == 2
     assert lst.shift() == 1
     assert lst.count == 0
+
+
+def test_shift_error():
+    """Test shift throws IndexError."""
+    from doubly_linked_list import DoublyLinkedList
+    lst = DoublyLinkedList()
+    with pytest.raises(IndexError):
+        lst.shift()
 
 
 def test_remove():
@@ -66,3 +87,12 @@ def test_remove():
     lst.remove(3)
     assert lst.head is None
     assert lst.tail is None
+
+
+@pytest.mark.parametrize('values', REMOVE_ERROR_NUMBERS)
+def test_remove_error(values):
+    """Test remove throws IndexError."""
+    from doubly_linked_list import DoublyLinkedList
+    lst = DoublyLinkedList(values)
+    with pytest.raises(IndexError):
+        lst.remove(False)
