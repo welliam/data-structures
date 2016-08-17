@@ -2,6 +2,7 @@
 
 """Test doubly_linked_list.py."""
 
+
 def test_push():
     """Test push method."""
     from doubly_linked_list import DoublyLinkedList
@@ -13,6 +14,7 @@ def test_push():
     assert lst.head.value == 1
     assert lst.tail.value == 0
 
+
 def test_append():
     """Test append method."""
     from doubly_linked_list import DoublyLinkedList
@@ -23,3 +25,15 @@ def test_append():
     lst.append(1)
     assert lst.tail.value == 1
     assert lst.head.value == 0
+
+
+def test_pop():
+    """Test pop method."""
+    from doubly_linked_list import DoublyLinkedList
+    lst = DoublyLinkedList()
+    lst.push(1)
+    lst.push(2)
+    assert lst.count == 2
+    assert lst.pop() == 2
+    assert lst.pop() == 1
+    assert lst.count == 0
