@@ -2,7 +2,7 @@
 
 """Implement stack abstract data type."""
 
-import linked_list
+from linked_list import LinkedList
 
 
 class Stack(object):
@@ -12,7 +12,7 @@ class Stack(object):
         """Initialize the stack.
 
         Fills it with values from iterable if provided."""
-        self.linked_list = linked_list.LinkedList(iterable)
+        self.linked_list = LinkedList(iterable)
 
     def __len__(self):
         return self.linked_list.count
