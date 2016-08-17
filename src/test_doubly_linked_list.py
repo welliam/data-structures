@@ -12,3 +12,14 @@ def test_push():
     lst.push(1)
     assert lst.head.value == 1
     assert lst.tail.value == 0
+
+def test_append():
+    """Test append method."""
+    from doubly_linked_list import DoublyLinkedList
+    lst = DoublyLinkedList()
+    lst.append(0)
+    assert lst.tail.value == 0
+    assert lst.head.value == 0
+    lst.append(1)
+    assert lst.tail.value == 1
+    assert lst.head.value == 0
