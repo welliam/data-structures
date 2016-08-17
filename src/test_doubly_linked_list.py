@@ -37,3 +37,32 @@ def test_pop():
     assert lst.pop() == 2
     assert lst.pop() == 1
     assert lst.count == 0
+
+
+def test_shift():
+    """Test shift method."""
+    from doubly_linked_list import DoublyLinkedList
+    lst = DoublyLinkedList()
+    lst.append(1)
+    lst.append(2)
+    assert lst.count == 2
+    assert lst.shift() == 2
+    assert lst.shift() == 1
+    assert lst.count == 0
+
+
+def test_remove():
+    """Test remove method."""
+    from doubly_linked_list import DoublyLinkedList
+    lst = DoublyLinkedList()
+    lst.push(3)
+    lst.push(2)
+    lst.push(1)
+    lst.remove(2)
+    assert lst.head.next_node.value == 3
+    assert lst.tail.previous_node.value == 1
+    lst.remove(1)
+    assert lst.head.value == 3
+    lst.remove(3)
+    assert lst.head is None
+    assert lst.tail is None
