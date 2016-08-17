@@ -21,3 +21,10 @@ class Stack(object):
     def pop(self):
         """Pop value from stack."""
         return self.linked_list.pop()
+
+    def peek(self):
+        """Return top of stack without popping the value."""
+        try:
+            return self.linked_list.head.value
+        except AttributeError:
+            raise IndexError('Cannot peek on empty stack.')
