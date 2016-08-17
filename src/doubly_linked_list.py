@@ -16,11 +16,23 @@ class DoublyLinkedList(LinkedList):
         self.tail = None
 
     def push(self, value):
+        self.count += 1
         self.head = Node(None, value, self.head)
         if self.tail is None:
             self.tail = self.head
 
     def append(self, value):
+        self.count += 1
         self.tail = Node(self.tail, value, None)
         if self.head is None:
             self.head = self.tail
+
+    def pop(self):
+        if not self.head:
+            raise IndexError('Doubly linked list is empty.')
+        self.count -= 1
+        value = self.head.value
+        if self.tail == self.head:
+            self.tail = None
+        self.head = self.head.next_node
+        return value
