@@ -19,3 +19,8 @@ class DoublyLinkedList(LinkedList):
         self.head = Node(None, value, self.head)
         if self.tail is None:
             self.tail = self.head
+
+    def append(self, value):
+        self.tail = Node(self.tail, value, None)
+        if self.head is None:
+            self.head = self.tail
