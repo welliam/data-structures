@@ -51,11 +51,13 @@ def test_pop_error():
 
 @pytest.mark.parametrize('values, result', STACK_TABLE)
 def test_peek(values, result):
+    """Test peek returns topmost value of stack."""
     from stack import Stack
     assert Stack(values).peek() == result
 
 
 def test_peek_error():
+    """Test peek throws IndexError."""
     from stack import Stack
     with pytest.raises(IndexError):
         Stack().peek()
@@ -63,5 +65,6 @@ def test_peek_error():
 
 @pytest.mark.parametrize('values', LEN_TABLE)
 def test_len(values):
+    """Test __len__ of stack."""
     from stack import Stack
     assert len(values) == len(Stack(values))
