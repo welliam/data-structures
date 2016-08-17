@@ -14,6 +14,9 @@ class Stack(object):
         Fills it with values from iterable if provided."""
         self.linked_list = linked_list.LinkedList(iterable)
 
+    def __len__(self):
+        return self.linked_list.count
+
     def push(self, val):
         """Push value onto the stack."""
         self.linked_list.push(val)
