@@ -5,14 +5,21 @@
 import pytest
 
 
-INIT_TABLE = [
+STACK_TABLE = [
     ([1, 2, 3], 3),
     ([2, 3], 3),
     ([3], 3)
 ]
 
+LEN_TABLE = [
+    [1, 2, 3],
+    [2, 3],
+    [3],
+    []
+]
 
-@pytest.mark.parametrize('values, result', INIT_TABLE)
+
+@pytest.mark.parametrize('values, result', STACK_TABLE)
 def test_init(values, result):
     """Test initialization of stack."""
     from stack import Stack
@@ -38,6 +45,23 @@ def test_pop_error():
     Ensure that pop raises an IndexError when called upon an empty
     stack."""
     from stack import Stack
-    stack = Stack()
     with pytest.raises(IndexError):
-        stack.pop()
+        Stack().pop()
+
+
+@pytest.mark.parametrize('values, result', STACK_TABLE)
+def test_peek(values, result):
+    from stack import Stack
+    assert Stack(values).peek() == result
+
+
+def test_peek_error():
+    from stack import Stack
+    with pytest.raises(IndexError):
+        Stack().peek()
+
+
+@pytest.mark.parametrize('values', LEN_TABLE)
+def test_len(values):
+    from stack import Stack
+    assert len(values) == len(Stack(values))
