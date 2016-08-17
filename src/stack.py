@@ -5,15 +5,14 @@
 import linked_list
 
 
-class Stack():
+class Stack(object):
     """Stack abstract data type."""
 
     def __init__(self, iterable=None):
         """Initialize the stack.
 
         Fills it with values from iterable if provided."""
-        self.linked_list = linked_list.LinkedList()
-        linked_list.LinkedList.__init__(self.linked_list, iterable)
+        self.linked_list = linked_list.LinkedList(iterable)
 
     def push(self, val):
         """Push value onto the stack."""
