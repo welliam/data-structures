@@ -16,6 +16,8 @@ DISPLAY_TABLE = [
     ([], u'()')
 ]
 
+REMOVE_TABLE = [[5, 4, 3], [1, 2, 3, 4, 5], [5]]
+
 
 def test_push():
     """Test push method."""
@@ -79,11 +81,11 @@ def test_search_not_found():
     assert lst.search(0) is None
 
 
-def test_remove_1():
+@pytest.mark.parametrize('values', REMOVE_TABLE)
+def test_remove(values):
     """Test remove method."""
     from linked_list import LinkedList
-    lst = LinkedList()
-    lst.push(5)
+    lst = LinkedList(values)
     lst.remove(lst.search(5))
     assert lst.search(5) is None
 
