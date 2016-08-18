@@ -72,8 +72,8 @@ class DoublyLinkedList(LinkedList):
         if previous_node is None:
             self.head = next_node
         else:
-            node.previous_node.next_node = next_node
+            previous_node.next_node = next_node
         if next_node is None:
             self.tail = previous_node
         else:
-            node.next_node.previous_node = previous_node
+            next_node.previous_node = previous_node
