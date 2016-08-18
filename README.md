@@ -23,3 +23,9 @@ either direction. For example, on a website with pages, the node for
 the current page would be held in memory, and when moving to the next
 or previous page those fields of the doubly linked list would be
 needed.
+
+## Queue
+
+The queue is used when a first in, first out data structure is
+needed. This is useful for a variety of algorithms; for example,
+the shunting yard algorithm requires a queue for its output.
