@@ -22,7 +22,7 @@ class Queue(object):
 
     def dequeue(self):
         """Pop a value off the tail of the queue."""
-        return self.shift()
+        return self.dll.shift()
 
     def peek(self):
         """Return the value at the tail of the queue without removing it."""
