@@ -24,3 +24,12 @@ def test_dequeue(values, result):
 def test_size(values):
     from queue import Queue
     assert Queue(values).size() == len(values)
+
+
+def test_enqueue():
+    from queue import Queue
+    q = Queue()
+    q.enqueue(1)
+    q.enqueue(2)
+    q.enqueue(3)
+    assert q.size == 3
