@@ -65,15 +65,15 @@ class DoublyLinkedList(LinkedList):
         """Remove the first node with val as its value."""
         node = self.search(val)
         try:
-            prev_node, next_node = node.previous_node, node.next_node
+            previous_node, next_node = node.previous_node, node.next_node
         except AttributeError:
             raise IndexError('Remove() called for value not in list')
         self.count -= 1
-        if node.previous_node is None:
-            self.head = node.next_node
+        if previous_node is None:
+            self.head = next_node
         else:
-            node.previous_node.next_node = node.next_node
-        if node.next_node is None:
-            self.tail = node.previous_node
+            node.previous_node.next_node = next_node
+        if next_node is None:
+            self.tail = previous_node
         else:
-            node.next_node.previous_node = node.previous_node
+            node.next_node.previous_node = previous_node
