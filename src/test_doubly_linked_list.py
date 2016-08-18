@@ -96,3 +96,18 @@ def test_remove_error(values):
     lst = DoublyLinkedList(values)
     with pytest.raises(IndexError):
         lst.remove(False)
+
+
+def test_size():
+    """Test size.
+
+    Although size is inherited, its behavior relies upon methods
+    updating the size field."""
+    from doubly_linked_list import DoublyLinkedList
+    lst = DoublyLinkedList([1,2,3])
+    lst.push(4)
+    lst.remove(4)
+    lst.remove(2)
+    lst.shift()
+    lst.pop()
+    assert lst.size() == 0
