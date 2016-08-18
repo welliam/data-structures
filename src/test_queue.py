@@ -45,3 +45,9 @@ def test_peek():
     assert q.size() == 3
     q.dequeue()
     assert q.peek() == 2
+
+
+def test_peek_error():
+    from queue import Queue
+    with pytest.raises(IndexError):
+        Queue().peek()
