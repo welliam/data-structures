@@ -64,7 +64,6 @@ class LinkedList(object):
         elif self.count > 0:
             current_node = self.head
             while current_node.next_node:
-                print(current_node.value)
                 if current_node.next_node == node:
                     current_node.next_node = current_node.next_node.next_node
                     self.count -= 1
