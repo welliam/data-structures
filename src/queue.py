@@ -18,7 +18,7 @@ class Queue(object):
 
     def enqueue(self, val):
         """Enqueue a value on the head of the queue."""
-        self.push(val)
+        self.dll.push(val)
 
     def dequeue(self):
         """Pop a value off the tail of the queue."""

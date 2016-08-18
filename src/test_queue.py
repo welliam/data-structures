@@ -32,4 +32,4 @@ def test_enqueue():
     q.enqueue(1)
     q.enqueue(2)
     q.enqueue(3)
-    assert q.size == 3
+    assert q.size() == 3
