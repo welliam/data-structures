@@ -33,3 +33,15 @@ def test_enqueue():
     q.enqueue(2)
     q.enqueue(3)
     assert q.size() == 3
+
+
+def test_peek():
+    from queue import Queue
+    q = Queue()
+    q.enqueue(1)
+    q.enqueue(2)
+    q.enqueue(3)
+    assert q.peek() == 1
+    assert q.size() == 3
+    q.dequeue()
+    assert q.peek() == 2
