@@ -64,6 +64,7 @@ class DoublyLinkedList(LinkedList):
         node = self.search(val)
         if not node:
             raise IndexError('Remove() called for value not in list')
+        self.count -= 1
         if node.previous_node is None:
             self.head = node.next_node
         else:
