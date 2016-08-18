@@ -16,17 +16,20 @@ SIZE_TABLE = [[1, 2, 3], [1, 2], [1]]
 
 @pytest.mark.parametrize('values, result', DEQUEUE_TABLE)
 def test_dequeue(values, result):
+    """Test dequeue method of queue."""
     from queue import Queue
     assert Queue(values).dequeue() == result
 
 
 @pytest.mark.parametrize('values', SIZE_TABLE)
 def test_size(values):
+    """Test size method of queue."""
     from queue import Queue
     assert Queue(values).size() == len(values)
 
 
 def test_enqueue():
+    """Test enqueue method of queue."""
     from queue import Queue
     q = Queue()
     q.enqueue(1)
@@ -36,6 +39,7 @@ def test_enqueue():
 
 
 def test_peek():
+    """Test peek method of queue."""
     from queue import Queue
     q = Queue()
     q.enqueue(1)
@@ -48,6 +52,7 @@ def test_peek():
 
 
 def test_peek_error():
+    """Test that peek throws IndexError when queue is empty."""
     from queue import Queue
     with pytest.raises(IndexError):
         Queue().peek()
