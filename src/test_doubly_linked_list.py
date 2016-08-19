@@ -96,3 +96,25 @@ def test_remove_error(values):
     lst = DoublyLinkedList(values)
     with pytest.raises(IndexError):
         lst.remove(False)
+
+
+def test_append_and_pop():
+    """Test combination of append and pop operations."""
+    from doubly_linked_list import DoublyLinkedList
+    lst = DoublyLinkedList([3, 2, 1])
+    assert lst.pop() == 1
+    assert lst.pop() == 2
+    lst.append(4)
+    assert lst.pop() == 3
+    assert lst.pop() == 4
+
+
+def test_push_and_shift():
+    """Test combination of shift and push operations."""
+    from doubly_linked_list import DoublyLinkedList
+    lst = DoublyLinkedList([1, 2, 3])
+    assert lst.shift() == 1
+    assert lst.shift() == 2
+    lst.push(4)
+    assert lst.shift() == 3
+    assert lst.shift() == 4
