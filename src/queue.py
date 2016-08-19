@@ -12,6 +12,10 @@ class Queue(object):
         """Initialize the queue."""
         self.dll = DoublyLinkedList(iterable)
 
+    def __repr__(self):
+        """Return the size of the queue."""
+        return self.dll.display()
+
     def size(self):
         """Return the size of the queue."""
         return self.dll.count
@@ -22,11 +26,14 @@ class Queue(object):
 
     def dequeue(self):
         """Pop a value off the tail of the queue."""
-        return self.dll.shift()
+        try:
+            return self.dll.shift()
+        except IndexError:
+            raise IndexError("dequeue called on empty queue.")
 
     def peek(self):
         """Return the value at the tail of the queue without removing it."""
         try:
             return self.dll.tail.value
         except AttributeError:
-            raise IndexError("Peak called on empty stack.")
+            raise IndexError("peek called on empty queue.")

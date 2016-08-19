@@ -38,25 +38,31 @@ class DoublyLinkedList(LinkedList):
             self.tail.previous_node.next_node = self.tail
 
     def pop(self):
-        """Pop a value from the front of the list and return it."""
-        if not self.head:
+        try:
+            value = self.head.value
+        except AttributeError:
             raise IndexError('Doubly linked list is empty.')
-        self.count -= 1
-        value = self.head.value
-        if self.tail == self.head:
+        if self.head == self.tail:
+            self.head = None
             self.tail = None
-        self.head = self.head.next_node
+        else:
+            self.head = self.head.next_node
+            self.head.previous_node = None
+        self.count -= 1
         return value
 
     def shift(self):
-        """Shift a value off the end of the list and return it."""
-        if not self.tail:
+        try:
+            value = self.tail.value
+        except AttributeError:
             raise IndexError('Doubly linked list is empty.')
-        self.count -= 1
-        value = self.tail.value
         if self.head == self.tail:
             self.head = None
-        self.tail = self.tail.previous_node
+            self.tail = None
+        else:
+            self.tail = self.tail.previous_node
+            self.tail.next_node = None
+        self.count -= 1
         return value
 
     def remove(self, val):
@@ -72,3 +78,4 @@ class DoublyLinkedList(LinkedList):
             self.tail = node.previous_node
         else:
             node.next_node.previous_node = node.previous_node
+        self.count -= 1
