@@ -118,3 +118,15 @@ def test_push_and_shift():
     lst.push(4)
     assert lst.shift() == 3
     assert lst.shift() == 4
+
+
+def test_size_remove():
+    """Test combination of shift and push operations."""
+    from doubly_linked_list import DoublyLinkedList
+    lst = DoublyLinkedList([1, 2, 3])
+    lst.remove(2)
+    assert lst.size() == 2
+    lst.remove(3)
+    assert lst.size() == 1
+    lst.remove(1)
+    assert lst.size() == 0
