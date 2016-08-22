@@ -21,7 +21,7 @@ ITERABLES = [
 
 NONITERABLES = [
     1, True, False, 1.5, lambda x: x, type, Deque
-] 
+]
 
 
 @pytest.mark.parametrize('iterable', NONEMPTY_ITERABLES)
@@ -38,7 +38,7 @@ def test_size(iterable):
 def test_append_1(emptydeque, iterable):
     for item in iterable:
         emptydeque.append(item)
-    assert emptydeque.peek() == iterable[0]
+    assert emptydeque.peek() == iterable[-1]
 
 
 @pytest.mark.parametrize('iterable', NONEMPTY_ITERABLES)
@@ -46,22 +46,22 @@ def test_append_2(emptydeque, iterable):
     for item in iterable:
         emptydeque.append(item)
     emptydeque.pop()
-    assert emptydeque.peek() == iterable[1]
+    assert emptydeque.peek() == iterable[-2]
 
 
 @pytest.mark.parametrize('iterable', NONEMPTY_ITERABLES)
 def test_appendleft_1(emptydeque, iterable):
     for item in iterable:
         emptydeque.appendleft(item)
-    assert emptydeque.peekleft() == iterable[0]
+    assert emptydeque.peekleft() == iterable[-1]
 
 
 @pytest.mark.parametrize('iterable', NONEMPTY_ITERABLES)
 def test_appendleft_2(emptydeque, iterable):
     for item in iterable:
-        emptydeque.append(item)
+        emptydeque.appendleft(item)
     emptydeque.popleft()
-    assert emptydeque.peekleft() == iterable[1]
+    assert emptydeque.peekleft() == iterable[-2]
 
 
 def test_operations_1(emptydeque):
@@ -90,3 +90,41 @@ def test_empty_popleft(emptydeque):
 def test_init_noniterable(noniterable):
     with pytest.raises(TypeError):
         Deque(noniterable)
+
+
+def test_stack(emptydeque):
+    """Test deque operations which treat it like a stack.
+
+    (append and pop)."""
+    emptydeque.append(1)
+    emptydeque.append(2)
+    assert emptydeque.pop() == 2
+
+
+def test_stack_2(emptydeque):
+    """Test deque operations which treat it like a stack.
+
+    (append and pop)."""
+    emptydeque.append(1)
+    emptydeque.append(2)
+    emptydeque.pop()
+    assert emptydeque.pop() == 1
+
+
+def test_stack_left(emptydeque):
+    """Test deque operations which treat it like a stack.
+
+    (appendleft and popleft)."""
+    emptydeque.appendleft(1)
+    emptydeque.appendleft(2)
+    assert emptydeque.popleft() == 2
+
+
+def test_stack_left_2(emptydeque):
+    """Test deque operations which treat it like a stack.
+
+    (appendleft and popleft)."""
+    emptydeque.appendleft(1)
+    emptydeque.appendleft(2)
+    emptydeque.popleft()
+    assert emptydeque.popleft() == 1

@@ -22,19 +22,19 @@ class Deque(object):
 
     def append(self, val):
         """Append a value on the head of the deque."""
-        self.dll.push(val)
+        self.dll.append(val)
 
     def appendleft(self, val):
         """Append a value on the tail of the deque."""
-        self.dll.append(val)
+        self.dll.push(val)
 
     def pop(self):
         """Pop a value off the tail of the deque."""
-        return self.dll.pop()
+        return self.dll.shift()
 
     def popleft(self):
         """Pop a value off the head of the deque."""
-        return self.dll.shift()
+        return self.dll.pop()
 
     def peek(self):
         """Return self.tail."""
