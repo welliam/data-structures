@@ -1,0 +1,2 @@
+class Deque():
+    pass
