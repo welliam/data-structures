@@ -20,7 +20,7 @@ ITERABLES = [
 ]
 
 NONITERABLES = [
-    1, None, True, False, 1.5, lambda x: x, type, Deque
+    1, True, False, 1.5, lambda x: x, type, Deque
 ] 
 
 
