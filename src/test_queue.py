@@ -63,8 +63,7 @@ def test_peek():
 def test_peek_error():
     """Test that peek throws IndexError when queue is empty."""
     from queue import Queue
-    with pytest.raises(IndexError):
-        Queue().peek()
+    assert Queue().peek() == None
 
 
 def test_dequeue_error():
