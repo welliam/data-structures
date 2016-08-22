@@ -26,16 +26,19 @@ NONITERABLES = [
 
 @pytest.mark.parametrize('iterable', NONEMPTY_ITERABLES)
 def test_init(iterable):
+    """Test initialization method."""
     assert Deque(iterable).peek() == iterable[0]
 
 
 @pytest.mark.parametrize('iterable', ITERABLES)
 def test_size(iterable):
+    """Test size method."""
     assert Deque(iterable).size() == len(iterable)
 
 
 @pytest.mark.parametrize('iterable', NONEMPTY_ITERABLES)
 def test_append_1(emptydeque, iterable):
+    """Test append method."""
     for item in iterable:
         emptydeque.append(item)
     assert emptydeque.peek() == iterable[-1]
@@ -43,6 +46,7 @@ def test_append_1(emptydeque, iterable):
 
 @pytest.mark.parametrize('iterable', NONEMPTY_ITERABLES)
 def test_append_2(emptydeque, iterable):
+    """Test append method."""
     for item in iterable:
         emptydeque.append(item)
     emptydeque.pop()
@@ -51,6 +55,7 @@ def test_append_2(emptydeque, iterable):
 
 @pytest.mark.parametrize('iterable', NONEMPTY_ITERABLES)
 def test_appendleft_1(emptydeque, iterable):
+    """Test appendleft method."""
     for item in iterable:
         emptydeque.appendleft(item)
     assert emptydeque.peekleft() == iterable[-1]
@@ -58,6 +63,7 @@ def test_appendleft_1(emptydeque, iterable):
 
 @pytest.mark.parametrize('iterable', NONEMPTY_ITERABLES)
 def test_appendleft_2(emptydeque, iterable):
+    """Test appendleft method."""
     for item in iterable:
         emptydeque.appendleft(item)
     emptydeque.popleft()
@@ -65,29 +71,34 @@ def test_appendleft_2(emptydeque, iterable):
 
 
 def test_operations_1(emptydeque):
+    """Test combination of append and appendleft."""
     emptydeque.append(1)
     emptydeque.appendleft(0)
     assert emptydeque.pop() == 1
 
 
 def test_operations_2(emptydeque):
+    """Test combination of append and appendleft."""
     emptydeque.append(1)
     emptydeque.appendleft(0)
     assert emptydeque.popleft() == 0
 
 
 def test_empty_pop(emptydeque):
+    """Test pop raises IndexError on empty deque."""
     with pytest.raises(IndexError):
         emptydeque.pop()
 
 
 def test_empty_popleft(emptydeque):
+    """Test pop raises IndexError on empty deque."""
     with pytest.raises(IndexError):
         emptydeque.popleft()
 
 
 @pytest.mark.parametrize('noniterable', NONITERABLES)
 def test_init_noniterable(noniterable):
+    """Test pop raises TypeError on empty deque."""
     with pytest.raises(TypeError):
         Deque(noniterable)
 
