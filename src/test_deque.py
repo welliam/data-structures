@@ -90,8 +90,23 @@ def test_empty_pop(emptydeque):
         emptydeque.pop()
 
 
-def test_empty_popleft(emptydeque):
+def test_empty_pop_2(emptydeque):
     """Test pop raises IndexError on empty deque."""
+    emptydeque.append(1)
+    emptydeque.pop()
+    with pytest.raises(IndexError):
+        emptydeque.pop()
+
+def test_empty_popleft_1(emptydeque):
+    """Test pop raises IndexError on empty deque."""
+    with pytest.raises(IndexError):
+        emptydeque.popleft()
+
+
+def test_empty_popleft_2(emptydeque):
+    """Test pop raises IndexError on empty deque."""
+    emptydeque.append(1)
+    emptydeque.pop()
     with pytest.raises(IndexError):
         emptydeque.popleft()
 
