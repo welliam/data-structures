@@ -36,4 +36,4 @@ class Queue(object):
         try:
             return self.dll.tail.value
         except AttributeError:
-            raise IndexError("peek called on empty queue.")
+            return None
