@@ -29,3 +29,12 @@ needed.
 The queue is used when a first in, first out data structure is
 needed. This is useful for a variety of algorithms; for example,
 the shunting yard algorithm requires a queue for its output.
+
+## Deque
+
+The deque is like a queue but allows for operations on either side of
+the queue. The deque supports append, pop, and peek (which together
+act like a stack), and appendleft, popleft, and peekleft (which
+together also act like a stack, operating on the other side of the
+queue). Additionally, it supports a size operation. The deque is used
+in algorithms for job scheduling.
