@@ -27,6 +27,13 @@ def test_init(iterable):
 
 
 @pytest.mark.parametrize('iterable', ITERABLES)
+def test_max_init(iterable):
+    """Test initialization method."""
+    h = BinaryHeap(iterable, compare=lambda x, y: x > y)
+    assert h.pop() == max(iterable)
+
+
+@pytest.mark.parametrize('iterable', ITERABLES)
 def test_minimum(iterable):
     """Test that sequential pops return larger values."""
     h = BinaryHeap(iterable)
@@ -49,3 +56,14 @@ def test_binheap(iterable):
         results.append(h.pop())
     except IndexError:
         assert sorted(results) == results
+
+
+@pytest.mark.parametrize('iterable', ITERABLES)
+def test_max_binheap(iterable):
+    """Test that pop values from max heap are sorted."""
+    h = BinaryHeap(iterable, compare=lambda x, y: x > y)
+    results = []
+    try:
+        results.append(h.pop())
+    except IndexError:
+        assert sorted(results, reverse=True) == results
