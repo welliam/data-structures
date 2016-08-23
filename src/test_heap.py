@@ -3,8 +3,9 @@ from binary_heap import BinaryHeap
 
 ITERABLES = [
     "hello",
-    [1, 2, 3, 4, 5],
-    range(10)
+    [5, 1, 2, 7, 3, 4, -592034, 5],
+    range(10),
+    range(10, 0, -1)
 ]
 
 
@@ -29,3 +30,13 @@ def test_minimum(iterable):
 def test_empty_pop(emptyheap):
     with pytest.raises(IndexError):
         emptyheap.pop()
+
+
+@pytest.mark.parametrize('iterable', ITERABLES)
+def test_binheap(iterable):
+    h = BinaryHeap(iterable)
+    results = []
+    try:
+        results.append(h.pop())
+    except IndexError:
+        assert sorted(results) == results
