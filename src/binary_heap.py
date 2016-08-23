@@ -1,8 +1,8 @@
-def children(i):
+def _children(i):
     return 2*i+1, 2*i+2
 
 
-def parent(i):
+def _parent(i):
     return (i-1) // 2
 
 
@@ -24,16 +24,16 @@ class BinaryHeap(object):
         heap = self.heap
         heap.append(x)
         i = len(heap) - 1
-        while(i > 0 and heap[i] < heap[parent(i)]):
-            self.swap(i, parent(i))
-            i = parent(i)
+        while(i > 0 and heap[i] < heap[_parent(i)]):
+            self.swap(i, _parent(i))
+            i = _parent(i)
 
     def is_sorted(self, i):
         """Returns whether the value at heap[i] is sorted.
 
         i.e. in the proper position for pop"""
         heap = self.heap
-        left, right = children(i)
+        left, right = _children(i)
         if right >= len(heap):
             return True
         left_sorted = left >= len(heap) or heap[i] < heap[left] 
@@ -49,7 +49,7 @@ class BinaryHeap(object):
             return value
         i = 0
         while(i < (len(heap)) and not self.is_sorted(i)):
-            left, right = children(i)
+            left, right = _children(i)
             to_swap = left if heap[left] < heap[right] else right
             self.swap(i, to_swap)
             i = to_swap
