@@ -1,3 +1,7 @@
+# -*- coding: utf-8 -*-
+
+"""Test heap functionality."""
+
 import pytest
 from binary_heap import BinaryHeap
 
@@ -10,30 +14,35 @@ ITERABLES = [
 
 
 def test_basic_pushpop(emptyheap):
+    """Test basic push and pop."""
     emptyheap.push(0)
     assert emptyheap.pop() == 0
 
 
 @pytest.mark.parametrize('iterable', ITERABLES)
 def test_init(iterable):
+    """Test initialization method."""
     h = BinaryHeap(iterable)
     assert h.pop() == min(iterable)
 
 
 @pytest.mark.parametrize('iterable', ITERABLES)
 def test_minimum(iterable):
+    """Test that sequential pops return larger values."""
     h = BinaryHeap(iterable)
     minimum = h.pop()
     assert minimum < h.pop()
 
 
 def test_empty_pop(emptyheap):
+    """Test that pop on an empty heap raises an IndexError."""
     with pytest.raises(IndexError):
         emptyheap.pop()
 
 
 @pytest.mark.parametrize('iterable', ITERABLES)
 def test_binheap(iterable):
+    """Test that pop values from heap are sorted."""
     h = BinaryHeap(iterable)
     results = []
     try:
