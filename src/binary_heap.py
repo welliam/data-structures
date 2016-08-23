@@ -24,21 +24,28 @@ class BinaryHeap(object):
         heap = self.heap
         heap.append(x)
         i = len(heap) - 1
-        while(i > 0 and heap[i] < heap[_parent(i)]):
-            self.swap(i, _parent(i))
-            i = _parent(i)
+        while i > 0:
+            parent = _parent(i)
+            if heap[i] > heap[parent]:
+                return
+            self.swap(i, parent)
+            i = parent
+
+    def branch_sorted(self, i, branch):
+        """Return whether branch of index i is sorted.
+
+        i.e. in the proper position for pop"""
+        return branch >= len(self.heap) or self.heap[i] < self.heap[branch]
 
     def is_sorted(self, i):
-        """Returns whether the value at heap[i] is sorted.
+        """Return whether the value at heap[i] is sorted.
 
         i.e. in the proper position for pop"""
         heap = self.heap
         left, right = _children(i)
         if right >= len(heap):
             return True
-        left_sorted = left >= len(heap) or heap[i] < heap[left] 
-        right_sorted = right >= len(heap) or heap[i] < heap[right]
-        return left_sorted and right_sorted
+        return self.branch_sorted(i, left) and self.branch_sorted(i, right)
 
     def pop(self):
         heap = self.heap
