@@ -42,11 +42,11 @@ class BinaryHeap(object):
 
     def pop(self):
         heap = self.heap
-        if len(heap) == 1:
-            return heap.pop()
-
         value = heap[0]
-        heap[0] = heap.pop()
+        try:
+            heap[0] = heap.pop()
+        except IndexError:
+            return value
         i = 0
         while(i < (len(heap)) and not self.is_sorted(i)):
             left, right = children(i)
