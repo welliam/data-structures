@@ -38,3 +38,7 @@ act like a stack), and appendleft, popleft, and peekleft (which
 together also act like a stack, operating on the other side of the
 queue). Additionally, it supports a size operation. The deque is used
 in algorithms for job scheduling.
+
+## Binary Heap
+
+The binary heap is a tree that always pops the smallest or largest value. We chose to implement a min heap, so ours will return the smallest. When a new value is pushed on, it will check to make sure that the new child is greater than its parents, and if not swap the two, and repeat this until it finds a parent that is less than the child. It is useful for a priority queue, ensuring you will always get the smallest number when you pop off the heap.
