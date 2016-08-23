@@ -38,12 +38,13 @@ class DoublyLinkedList(LinkedList):
             self.tail.previous_node.next_node = self.tail
 
     def pop(self):
+        """Pop a value from the front of the list and return it."""
         try:
             value = self.head.value
         except AttributeError:
             raise IndexError('Doubly linked list is empty.')
-        if self.head == self.tail:
-            self.head = None
+        self.count -= 1
+        if self.tail == self.head:
             self.tail = None
         else:
             self.head = self.head.next_node
@@ -52,10 +53,12 @@ class DoublyLinkedList(LinkedList):
         return value
 
     def shift(self):
+        """Shift a value off the end of the list and return it."""
         try:
             value = self.tail.value
         except AttributeError:
             raise IndexError('Doubly linked list is empty.')
+        self.count -= 1
         if self.head == self.tail:
             self.head = None
             self.tail = None
@@ -68,14 +71,17 @@ class DoublyLinkedList(LinkedList):
     def remove(self, val):
         """Remove the first node with val as its value."""
         node = self.search(val)
-        if not node:
+        try:
+            previous_node, next_node = node.previous_node, node.next_node
+        except AttributeError:
             raise IndexError('Remove() called for value not in list')
-        if node.previous_node is None:
-            self.head = node.next_node
+        self.count -= 1
+        if previous_node is None:
+            self.head = next_node
         else:
-            node.previous_node.next_node = node.next_node
-        if node.next_node is None:
-            self.tail = node.previous_node
+            previous_node.next_node = next_node
+        if next_node is None:
+            self.tail = previous_node
         else:
             node.next_node.previous_node = node.previous_node
         self.count -= 1

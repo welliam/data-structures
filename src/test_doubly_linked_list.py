@@ -129,4 +129,18 @@ def test_size_remove():
     lst.remove(3)
     assert lst.size() == 1
     lst.remove(1)
+
+
+def test_size():
+    """Test size.
+
+    Although size is inherited, its behavior relies upon methods
+    updating the size field."""
+    from doubly_linked_list import DoublyLinkedList
+    lst = DoublyLinkedList([1, 2, 3])
+    lst.push(4)
+    lst.remove(4)
+    lst.remove(2)
+    lst.shift()
+    lst.pop()
     assert lst.size() == 0
