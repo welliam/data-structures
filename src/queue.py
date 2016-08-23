@@ -13,7 +13,7 @@ class Queue(object):
         self.dll = DoublyLinkedList(iterable)
 
     def __repr__(self):
-        """Return the size of the queue."""
+        """Return string representation of Queue."""
         return self.dll.display()
 
     def size(self):
