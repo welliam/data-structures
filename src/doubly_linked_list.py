@@ -46,7 +46,10 @@ class DoublyLinkedList(LinkedList):
         self.count -= 1
         if self.tail == self.head:
             self.tail = None
-        self.head = self.head.next_node
+        else:
+            self.head = self.head.next_node
+            self.head.previous_node = None
+        self.count -= 1
         return value
 
     def shift(self):
@@ -58,7 +61,11 @@ class DoublyLinkedList(LinkedList):
         self.count -= 1
         if self.head == self.tail:
             self.head = None
-        self.tail = self.tail.previous_node
+            self.tail = None
+        else:
+            self.tail = self.tail.previous_node
+            self.tail.next_node = None
+        self.count -= 1
         return value
 
     def remove(self, val):
@@ -76,4 +83,5 @@ class DoublyLinkedList(LinkedList):
         if next_node is None:
             self.tail = previous_node
         else:
-            next_node.previous_node = previous_node
+            node.next_node.previous_node = node.previous_node
+        self.count -= 1

@@ -98,13 +98,46 @@ def test_remove_error(values):
         lst.remove(False)
 
 
+def test_append_and_pop():
+    """Test combination of append and pop operations."""
+    from doubly_linked_list import DoublyLinkedList
+    lst = DoublyLinkedList([3, 2, 1])
+    assert lst.pop() == 1
+    assert lst.pop() == 2
+    lst.append(4)
+    assert lst.pop() == 3
+    assert lst.pop() == 4
+
+
+def test_push_and_shift():
+    """Test combination of shift and push operations."""
+    from doubly_linked_list import DoublyLinkedList
+    lst = DoublyLinkedList([1, 2, 3])
+    assert lst.shift() == 1
+    assert lst.shift() == 2
+    lst.push(4)
+    assert lst.shift() == 3
+    assert lst.shift() == 4
+
+
+def test_size_remove():
+    """Test combination of shift and push operations."""
+    from doubly_linked_list import DoublyLinkedList
+    lst = DoublyLinkedList([1, 2, 3])
+    lst.remove(2)
+    assert lst.size() == 2
+    lst.remove(3)
+    assert lst.size() == 1
+    lst.remove(1)
+
+
 def test_size():
     """Test size.
 
     Although size is inherited, its behavior relies upon methods
     updating the size field."""
     from doubly_linked_list import DoublyLinkedList
-    lst = DoublyLinkedList([1,2,3])
+    lst = DoublyLinkedList([1, 2, 3])
     lst.push(4)
     lst.remove(4)
     lst.remove(2)
