@@ -4,12 +4,14 @@
 
 import pytest
 from binary_heap import BinaryHeap
+from random import sample
 
 ITERABLES = [
     "hello",
     [5, 1, 2, 7, 3, 4, -592034, 5],
     range(10),
-    range(10, 0, -1)
+    range(10, 0, -1),
+    sample(list(range(10000)), 10000)
 ]
 
 
