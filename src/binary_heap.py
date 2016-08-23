@@ -14,11 +14,18 @@ def _parent(i):
 
 
 class BinaryHeap(object):
-    """Implement a binary heap."""
+    """Implement a binary heap.
 
-    def __init__(self, iterable=None):
+    Optionally takes an iterable which is used to fill the heap.
+    compare can be used to change how the heap is sorted. It should
+    return True when the first value is sorted in comparison to the
+    second value. By default this works like less than (i.e., this is
+    a min heap by default).
+    """
+    def __init__(self, iterable=None, compare=lambda x, y: x < y):
         """Initiate the heap."""
         self.heap = []
+        self.compare = compare
         if iterable:
             for value in iterable:
                 self.push(value)
@@ -39,7 +46,7 @@ class BinaryHeap(object):
         i = len(heap) - 1
         while i > 0:
             parent = _parent(i)
-            if heap[i] > heap[parent]:
+            if not self.compare(heap[i], heap[parent]):
                 return
             self.swap(i, parent)
             i = parent
@@ -49,7 +56,10 @@ class BinaryHeap(object):
 
         i.e. in the proper position for pop.
         """
-        return branch >= len(self.heap) or self.heap[i] < self.heap[branch]
+        try:
+            return self.compare(self.heap[i], self.heap[branch])
+        except IndexError:
+            return False
 
     def is_sorted(self, i):
         """Return whether the value at heap[i] is sorted.
@@ -73,7 +83,7 @@ class BinaryHeap(object):
         i = 0
         while(i < (len(heap)) and not self.is_sorted(i)):
             left, right = _children(i)
-            to_swap = left if heap[left] < heap[right] else right
+            to_swap = left if self.compare(heap[left], heap[right]) else right
             self.swap(i, to_swap)
             i = to_swap
         return value
