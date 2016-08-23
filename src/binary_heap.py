@@ -6,10 +6,6 @@ def parent(i):
     return (i-1) // 2
 
 
-def swap(t, i1, i2):
-    t[i1], t[i2] = t[i2], t[i1]
-
-
 class BinaryHeap(object):
     def __init__(self, iterable=None):
         self.heap = []
@@ -20,12 +16,16 @@ class BinaryHeap(object):
     def __repr__(self):
         return str(self.heap)
 
+    def swap(self, i1, i2):
+        heap = self.heap
+        heap[i1], heap[i2] = heap[i2], heap[i1]
+
     def push(self, x):
         heap = self.heap
         heap.append(x)
         i = len(heap) - 1
         while(i > 0 and heap[i] < heap[parent(i)]):
-            swap(heap, i, parent(i))
+            self.swap(i, parent(i))
             i = parent(i)
 
     def is_sorted(self, i):
@@ -51,6 +51,6 @@ class BinaryHeap(object):
         while(i < (len(heap)) and not self.is_sorted(i)):
             left, right = children(i)
             to_swap = left if heap[left] < heap[right] else right
-            swap(heap, i, to_swap)
+            self.swap(i, to_swap)
             i = to_swap
         return value
