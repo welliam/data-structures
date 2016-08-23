@@ -6,7 +6,7 @@ from doubly_linked_list import DoublyLinkedList
 
 
 class Deque(object):
-    """."""
+    """Implement a Deque"""
 
     def __init__(self, iterable=None):
         """Initialize the deque."""
