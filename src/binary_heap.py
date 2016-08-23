@@ -1,0 +1,2 @@
+class BinaryHeap(object):
+    pass
