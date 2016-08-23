@@ -84,4 +84,3 @@ class DoublyLinkedList(LinkedList):
             self.tail = previous_node
         else:
             node.next_node.previous_node = node.previous_node
-        self.count -= 1
