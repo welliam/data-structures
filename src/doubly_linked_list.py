@@ -43,7 +43,6 @@ class DoublyLinkedList(LinkedList):
             value = self.head.value
         except AttributeError:
             raise IndexError('Doubly linked list is empty.')
-        self.count -= 1
         if self.tail == self.head:
             self.tail = None
         else:
@@ -58,7 +57,6 @@ class DoublyLinkedList(LinkedList):
             value = self.tail.value
         except AttributeError:
             raise IndexError('Doubly linked list is empty.')
-        self.count -= 1
         if self.head == self.tail:
             self.head = None
             self.tail = None
@@ -75,7 +73,6 @@ class DoublyLinkedList(LinkedList):
             previous_node, next_node = node.previous_node, node.next_node
         except AttributeError:
             raise IndexError('Remove() called for value not in list')
-        self.count -= 1
         if previous_node is None:
             self.head = next_node
         else:
@@ -84,3 +81,4 @@ class DoublyLinkedList(LinkedList):
             self.tail = previous_node
         else:
             node.next_node.previous_node = node.previous_node
+        self.count -= 1
