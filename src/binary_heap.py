@@ -49,7 +49,7 @@ class BinaryHeap(object):
         i = len(heap) - 1
         while i > 0:
             parent = _parent(i)
-            if not self.compare(heap[i], heap[parent]):
+            if self.compare(heap[parent], heap[i]):
                 return
             self.swap(i, parent)
             i = parent
@@ -83,7 +83,7 @@ class BinaryHeap(object):
         except IndexError:
             return value
         i = 0
-        while i < (len(heap)) and not self.is_sorted(i):
+        while i < len(heap) and not self.is_sorted(i):
             left, right = _children(i)
             to_swap = left if self.compare(heap[left], heap[right]) else right
             self.swap(i, to_swap)
