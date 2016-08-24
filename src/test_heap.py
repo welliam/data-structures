@@ -75,6 +75,8 @@ def test_max_binheap(iterable):
 def test_valid_binheap(iterable):
     """Test that pop values from max heap are sorted."""
     h = BinaryHeap(iterable)
+    for i in range(len(iterable)//2):
+        h.pop()
     assert h.valid()
 
 
@@ -82,6 +84,6 @@ def test_valid_binheap(iterable):
 def test_valid_max_binheap(iterable):
     """Test that pop values from max heap are sorted."""
     h = BinaryHeap(iterable, compare=lambda x, y: x > y)
-    for i in range(randint(0, len(iterable))):
+    for i in range(len(iterable)//2):
         h.pop()
     assert h.valid()
