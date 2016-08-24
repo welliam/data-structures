@@ -16,6 +16,8 @@ ITERABLES = [
     sample(list(range(1000)), 1000)
 ]
 
+NONITERABLES = [lambda x: x, 1, True]
+
 
 def test_basic_pushpop(emptyheap):
     """Test basic push and pop."""
@@ -28,6 +30,16 @@ def test_init(iterable):
     """Test initialization method."""
     h = BinaryHeap(iterable)
     assert h.pop() == min(iterable)
+
+
+@pytest.mark.parametrize('noniterable', NONITERABLES)
+def test_init_error(noniterable):
+    """Test initialization method throws TypeError
+
+    When passed a non-iterable.
+    """
+    with pytest.raises(TypeError):
+        BinaryHeap(noniterable)
 
 
 @pytest.mark.parametrize('iterable', ITERABLES)
