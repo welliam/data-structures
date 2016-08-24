@@ -81,8 +81,10 @@ class BinaryHeap(object):
         except IndexError:
             return value
         i = 0
-        while(i < (len(heap)) and not self.is_sorted(i)):
+        while True:
             left, right = _children(i)
+            if right >= len(heap):
+                break
             to_swap = left if self.compare(heap[left], heap[right]) else right
             self.swap(i, to_swap)
             i = to_swap
@@ -96,7 +98,5 @@ class BinaryHeap(object):
         leftvalid = not self.compare(heap[left], heap[i])
         rightvalid = not self.compare(heap[right], heap[i])
         if not (leftvalid and rightvalid):
-            print(heap[i])
-            print(heap[left])
-            print(heap[right])
-        return leftvalid and rightvalid and self.valid(left) and self.valid(right)
+            return False
+        return self.valid(left) and self.valid(right)
