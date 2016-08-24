@@ -88,6 +88,9 @@ class BinaryHeap(object):
         return value
 
     def valid(self, i=0):
+        """Verify whether the current heap is valid.
+
+        (According to the heap property.)"""
         heap = self.heap
         left, right = _children(i)
         if right >= len(heap):
