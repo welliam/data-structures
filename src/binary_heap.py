@@ -103,3 +103,9 @@ class BinaryHeap(object):
         if not (leftvalid and rightvalid):
             return False
         return self.valid(left) and self.valid(right)
+
+    def peek(self):
+        try:
+            return self.heap[0]
+        except IndexError:
+            raise IndexError('peek called on empty heap')
