@@ -27,8 +27,11 @@ class BinaryHeap(object):
         self.heap = []
         self.compare = compare
         if iterable:
-            for value in iterable:
-                self.push(value)
+            try:
+                for value in iterable:
+                    self.push(value)
+            except TypeError:
+                raise TypeError("Object passed to BinaryHeap not iterable.")
 
     def __repr__(self):
         """Return string representation of binary heap."""
