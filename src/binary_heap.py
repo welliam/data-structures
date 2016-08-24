@@ -66,9 +66,8 @@ class BinaryHeap(object):
 
         i.e. in the proper position for pop.
         """
-        heap = self.heap
         left, right = _children(i)
-        if right >= len(heap):
+        if right >= len(self.heap):
             return True
         return self.branch_sorted(i, left) and self.branch_sorted(i, right)
 
@@ -81,10 +80,8 @@ class BinaryHeap(object):
         except IndexError:
             return value
         i = 0
-        while True:
+        while i < (len(heap)) and not self.is_sorted(i):
             left, right = _children(i)
-            if right >= len(heap):
-                break
             to_swap = left if self.compare(heap[left], heap[right]) else right
             self.swap(i, to_swap)
             i = to_swap
