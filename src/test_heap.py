@@ -4,14 +4,16 @@
 
 import pytest
 from binary_heap import BinaryHeap
-from random import sample, randint
+from random import sample
 
 ITERABLES = [
     "hello",
     [5, 1, 2, 7, 3, 4, -592034, 5],
     range(10),
     range(10, 0, -1),
-    sample(list(range(10000)), 10000)
+    sample(list(range(20)), 20),
+    sample(list(range(300)), 300),
+    sample(list(range(1000)), 1000)
 ]
 
 
@@ -51,13 +53,28 @@ def test_empty_pop(emptyheap):
 
 @pytest.mark.parametrize('iterable', ITERABLES)
 def test_binheap(iterable):
-    """Test that pop values from heap are sorted."""
+    """Test that pop values from max heap are sorted."""
     h = BinaryHeap(iterable)
     results = []
     try:
-        results.append(h.pop())
+        for _ in iterable:
+            results.append(h.pop())
     except IndexError:
         assert sorted(results) == results
+
+
+@pytest.mark.parametrize('iterable', ITERABLES)
+def test_binheap_2(iterable):
+    """Test that pop values from heap are sorted."""
+    h = BinaryHeap(iterable)
+    results = []
+    for _ in range(len(iterable)//2):
+        h.pop()
+    for x in iterable:
+        h.push(x)
+    for _ in iterable:
+        results.append(h.pop())
+    assert sorted(results) == results
 
 
 @pytest.mark.parametrize('iterable', ITERABLES)
@@ -66,7 +83,19 @@ def test_max_binheap(iterable):
     h = BinaryHeap(iterable, compare=lambda x, y: x > y)
     results = []
     try:
-        results.append(h.pop())
+        for _ in iterable:
+            results.append(h.pop())
+    except IndexError:
+        assert sorted(results, reverse=True) == results
+
+@pytest.mark.parametrize('iterable', ITERABLES)
+def test_max_binheap(iterable):
+    """Test that pop values from max heap are sorted."""
+    h = BinaryHeap(iterable, compare=lambda x, y: x > y)
+    results = []
+    try:
+        for _ in iterable:
+            results.append(h.pop())
     except IndexError:
         assert sorted(results, reverse=True) == results
 
