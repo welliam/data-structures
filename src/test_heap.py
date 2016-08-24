@@ -120,3 +120,34 @@ def test_valid_max_binheap(iterable):
     for i in range(len(iterable)//2):
         h.pop()
     assert h.valid()
+
+
+@pytest.mark.parametrize('iterable', ITERABLES)
+def test_heap_peek(iterable):
+    h = BinaryHeap(iterable)
+    assert h.peek() == min(iterable)
+
+
+@pytest.mark.parametrize('iterable', ITERABLES)
+def test_max_heap_peek(iterable):
+    h = BinaryHeap(iterable, compare=lambda x, y: x > y)
+    assert h.peek() == max(iterable)
+
+
+@pytest.mark.parametrize('iterable', ITERABLES)
+def test_peek_pop_equivalent_1(iterable):
+    h = BinaryHeap(iterable, compare=lambda x, y: x > y)
+    assert h.peek() == h.pop()
+
+
+@pytest.mark.parametrize('iterable', ITERABLES)
+def test_peek_pop_equivalent_2(iterable):
+    h = BinaryHeap(iterable, compare=lambda x, y: x > y)
+    for _ in range(len(iterable) // 2):
+        h.pop()
+    assert h.peek() == h.pop()
+
+
+def test_peek_failure(emptyheap):
+    with pytest.raises(IndexError):
+        emptyheap.peek()
