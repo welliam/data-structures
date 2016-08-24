@@ -87,3 +87,16 @@ class BinaryHeap(object):
             self.swap(i, to_swap)
             i = to_swap
         return value
+
+    def valid(self, i=0):
+        heap = self.heap
+        left, right = _children(i)
+        if right >= len(heap):
+            return True
+        leftvalid = not self.compare(heap[left], heap[i])
+        rightvalid = not self.compare(heap[right], heap[i])
+        if not (leftvalid and rightvalid):
+            print(heap[i])
+            print(heap[left])
+            print(heap[right])
+        return leftvalid and rightvalid and self.valid(left) and self.valid(right)

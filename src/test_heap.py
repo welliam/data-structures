@@ -4,7 +4,7 @@
 
 import pytest
 from binary_heap import BinaryHeap
-from random import sample
+from random import sample, randint
 
 ITERABLES = [
     "hello",
@@ -69,3 +69,19 @@ def test_max_binheap(iterable):
         results.append(h.pop())
     except IndexError:
         assert sorted(results, reverse=True) == results
+
+
+@pytest.mark.parametrize('iterable', ITERABLES)
+def test_valid_binheap(iterable):
+    """Test that pop values from max heap are sorted."""
+    h = BinaryHeap(iterable)
+    assert h.valid()
+
+
+@pytest.mark.parametrize('iterable', ITERABLES)
+def test_valid_max_binheap(iterable):
+    """Test that pop values from max heap are sorted."""
+    h = BinaryHeap(iterable, compare=lambda x, y: x > y)
+    for i in range(randint(0, len(iterable))):
+        h.pop()
+    assert h.valid()
