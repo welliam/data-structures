@@ -91,7 +91,7 @@ def test_max_binheap(iterable):
 
 @pytest.mark.parametrize('iterable', ITERABLES)
 def test_valid_binheap(iterable):
-    """Test that pop values from max heap are sorted."""
+    """Test that h.valid() returns true after some pops."""
     h = BinaryHeap(iterable)
     for i in range(len(iterable)//2):
         h.pop()
@@ -100,7 +100,10 @@ def test_valid_binheap(iterable):
 
 @pytest.mark.parametrize('iterable', ITERABLES)
 def test_valid_max_binheap(iterable):
-    """Test that pop values from max heap are sorted."""
+    """Test that h.valid() returns true after some pops.
+
+    (When compare is provided.)
+    """
     h = BinaryHeap(iterable, compare=lambda x, y: x > y)
     for i in range(len(iterable)//2):
         h.pop()
