@@ -88,17 +88,6 @@ def test_max_binheap(iterable):
     except IndexError:
         assert sorted(results, reverse=True) == results
 
-@pytest.mark.parametrize('iterable', ITERABLES)
-def test_max_binheap(iterable):
-    """Test that pop values from max heap are sorted."""
-    h = BinaryHeap(iterable, compare=lambda x, y: x > y)
-    results = []
-    try:
-        for _ in iterable:
-            results.append(h.pop())
-    except IndexError:
-        assert sorted(results, reverse=True) == results
-
 
 @pytest.mark.parametrize('iterable', ITERABLES)
 def test_valid_binheap(iterable):
