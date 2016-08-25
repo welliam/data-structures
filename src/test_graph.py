@@ -124,3 +124,24 @@ def test_neighbors_4(samplegraph):
 
 def test_neighbors_5(samplegraph):
     assert ('d', 'b') not in samplegraph.neighbors('b')
+
+
+def test_adjacent_1(samplegraph):
+    assert samplegraph.adjacent('a', 'b')
+
+
+def test_adjacent_2(samplegraph):
+    assert samplegraph.adjacent('b', 'd')
+
+
+def test_adjacent_3(samplegraph):
+    assert samplegraph.adjacent('d', 'a')
+
+
+def test_not_adjacent(samplegraph):
+    assert not samplegraph.adjacent('a', 'd')
+
+
+def test_adjacent_error(emptygraph):
+    with pytest.raises(ValueError):
+        emptygraph.adjacent('a', 'b')
