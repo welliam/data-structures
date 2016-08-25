@@ -21,6 +21,11 @@ def test_add_node(emptygraph, labels):
         emptygraph.add_node(label)
     assert all(map(lambda n: n in emptygraph.nodes(), labels))
 
+def test_remove_edge_add(samplegraph):
+    samplegraph.del_node('b')
+    samplegraph.add_edge('a', 'b')
+    assert samplegraph.adjacent('a', 'b')
+
 
 def test_add_edges(emptygraph):
     emptygraph.add_node('a')
