@@ -21,7 +21,7 @@ class Graph(object):
     def del_node(self, n):
         try:
             self._nodes.remove(n)
-            self._edges = filter(lambda p: n not in p, self._edges)
+            self._edges = set(filter(lambda p: n not in p, self._edges))
         except KeyError:
             raise ValueError('Node not in graph')
 
