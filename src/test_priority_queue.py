@@ -3,13 +3,20 @@
 "Test priority queue functionality."""
 
 import pytest
-from priority_queue import PriorityQueue
+from priority_queue import _Prioritized, PriorityQueue
 
 ITERABLES = [
     [1, 2, 3, 4, 5],
     [],
     [9, 9, 9, 9, 9]
 ]
+
+def test_prioritized_comparison():
+    assert not (_Prioritized(2, 1, 0) < _Prioritized(1, 0, 1))
+
+
+def test_prioritized_order():
+    assert _Prioritized(2, 0, 0) < _Prioritized(1, 0, 1)
 
 
 def test_basic_pushpop(emptypqueue):
