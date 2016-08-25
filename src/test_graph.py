@@ -80,6 +80,18 @@ def test_delete_node_edge(emptygraph):
     emptygraph.del_node('b')
     assert ('a', 'b') not in emptygraph.edges()
 
+
 def test_delete_nonexistent_node(emptygraph):
     with pytest.raises(ValueError):
         emptygraph.del_node('a')
+
+
+def test_delete_edge(emptygraph):
+    emptygraph.add_edge('a', 'b')
+    emptygraph.del_edge('a', 'b')
+    assert ('a', 'b') not in emptygraph.edges()
+
+
+def test_delete_nonexistent_edge(emptygraph):
+    with pytest.raises(ValueError):
+        emptygraph.del_edge('a', 'b')
