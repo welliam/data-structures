@@ -4,7 +4,8 @@ class Graph(object):
         self._edges = []
 
     def add_node(self, n):
-        self._nodes.append(n)
+        if n not in self._nodes:
+            self._nodes.append(n)
 
     def nodes(self):
         return self._nodes
@@ -13,4 +14,6 @@ class Graph(object):
         return self._edges
 
     def add_edge(self, a, b):
+        self.add_node(a)
+        self.add_node(a)
         self._edges.append((a, b))
