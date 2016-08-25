@@ -3,7 +3,7 @@ from deque import Deque
 from binary_heap import BinaryHeap
 from priority_queue import PriorityQueue
 from graph import Graph
-from graf import Graf
+from adjacency_list import AdjacencyList
 
 
 @pytest.fixture
@@ -41,13 +41,13 @@ def samplegraph():
 
 
 @pytest.fixture
-def emptygraf():
-    return Graf()
+def empty_adjacency_list():
+    return AdjacencyList()
 
 
 @pytest.fixture
-def samplegraf():
-    g = Graf()
+def sample_adjacency_list():
+    g = AdjacencyList()
     # c < - a - > b
     #       ^     |
     #       |     |

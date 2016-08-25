@@ -1,7 +1,7 @@
 from functools import reduce
 
 
-class Graf(object):
+class AdjacencyList(object):
     def __init__(self):
         self._nodes = {}
 
