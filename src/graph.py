@@ -11,3 +11,6 @@ class Graph(object):
 
     def edges(self):
         return self._edges
+
+    def add_edge(self, a, b):
+        self._edges.append((a, b))
