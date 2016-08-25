@@ -35,5 +35,4 @@ class Graph(object):
         return n in self._nodes
 
     def neighbors(self, n):
-        print(self._edges)
         return filter(lambda p: p[0] == n, self._edges)
