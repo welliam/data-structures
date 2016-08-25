@@ -15,5 +15,5 @@ class Graph(object):
 
     def add_edge(self, a, b):
         self.add_node(a)
-        self.add_node(a)
+        self.add_node(b)
         self._edges.append((a, b))
