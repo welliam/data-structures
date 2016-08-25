@@ -24,3 +24,9 @@ class Graph(object):
             self._edges = filter(lambda p: n not in p, self._edges)
         except ValueError:
             raise ValueError('Node not in graph')
+
+    def del_edge(self, a, b):
+        try:
+            self._edges.remove((a, b))
+        except ValueError:
+            raise ValueError('Node not in graph')
