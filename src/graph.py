@@ -30,3 +30,10 @@ class Graph(object):
             self._edges.remove((a, b))
         except ValueError:
             raise ValueError('Node not in graph')
+
+    def has_node(self, n):
+        return n in self._nodes
+
+    def neighbors(self, n):
+        print(self._edges)
+        return filter(lambda p: p[0] == n, self._edges)
