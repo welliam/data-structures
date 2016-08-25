@@ -95,3 +95,32 @@ def test_delete_edge(emptygraph):
 def test_delete_nonexistent_edge(emptygraph):
     with pytest.raises(ValueError):
         emptygraph.del_edge('a', 'b')
+
+
+def test_has_node(emptygraph):
+    emptygraph.add_node('a')
+    assert emptygraph.has_node('a')
+
+
+def test_hasnt_node(emptygraph):
+    assert not emptygraph.has_node('a')
+
+
+def test_neighbors_1(samplegraph):
+    assert ('a', 'b') in samplegraph.neighbors('a')
+
+
+def test_neighbors_2(samplegraph):
+    assert ('b', 'd') in samplegraph.neighbors('b')
+
+
+def test_neighbors_3(samplegraph):
+    assert ('a', 'c') in samplegraph.neighbors('a')
+
+
+def test_neighbors_4(samplegraph):
+    assert ('a', 'd') not in samplegraph.neighbors('a')
+
+
+def test_neighbors_5(samplegraph):
+    assert ('d', 'b') not in samplegraph.neighbors('b')

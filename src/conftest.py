@@ -23,3 +23,17 @@ def emptypqueue():
 @pytest.fixture
 def emptygraph():
     return Graph()
+
+
+@pytest.fixture
+def samplegraph():
+    g = Graph()
+    # c < - a - > b
+    #       ^     |
+    #       |     |
+    #       d < - /
+    g.add_edge('a', 'b')
+    g.add_edge('a', 'c')
+    g.add_edge('b', 'd')
+    g.add_edge('d', 'a')
+    return g
