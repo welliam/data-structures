@@ -52,3 +52,13 @@ def test_add_edges_directed(emptygraph):
     emptygraph.add_node('b')
     emptygraph.add_edge('a', 'b')
     assert ('b', 'a') not in emptygraph.edges()
+
+
+def test_add_edges_nonexistent_node(emptygraph):
+    emptygraph.add_edge('a', 'b')
+    assert 'a' in emptygraph.nodes()
+
+
+def test_add_edges_nonexistent_edge(emptygraph):
+    emptygraph.add_edge('a', 'b')
+    assert ('a', 'b') in emptygraph.edges()
