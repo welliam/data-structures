@@ -66,3 +66,37 @@ def test_priority_pops(emptypqueue):
     except IndexError:
         assert results == sorted(results)
 
+
+def test_queue_1(emptypqueue):
+    emptypqueue.insert(1, 0)
+    emptypqueue.insert(2, 0)
+    emptypqueue.insert(3, 0)
+    assert emptypqueue.pop() == 1
+
+
+def test_queue_2(emptypqueue):
+    emptypqueue.insert(1, 0)
+    emptypqueue.insert(2, 0)
+    emptypqueue.insert(3, 0)
+    emptypqueue.pop()
+    assert emptypqueue.pop() == 2
+
+
+def test_queue_3(emptypqueue):
+    emptypqueue.insert(1, 0)
+    emptypqueue.insert(2, 0)
+    emptypqueue.insert(3, 0)
+    emptypqueue.pop()
+    emptypqueue.pop()
+    assert emptypqueue.pop() == 3
+
+
+def test_queue_4(emptypqueue):
+    emptypqueue.insert(1, 0)
+    emptypqueue.insert(2, 0)
+    emptypqueue.insert(3, 0)
+    for _ in range(20):
+        emptypqueue.insert(False, 1)
+    emptypqueue.pop()
+    emptypqueue.pop()
+    assert emptypqueue.pop() == 3
