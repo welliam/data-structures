@@ -24,6 +24,35 @@ def test_basic_pushpop(emptyheap):
     emptyheap.push(0)
     assert emptyheap.pop() == 0
 
+    
+def test_heap_1(emptyheap):
+    emptyheap.push(1)
+    emptyheap.push(2)
+    emptyheap.push(3)
+    assert emptyheap.pop() == 1
+
+
+def test_heap_2(emptyheap):
+    emptyheap.push(1)
+    emptyheap.push(2)
+    emptyheap.push(3)
+    emptyheap.pop()
+    assert emptyheap.pop() == 2
+
+
+def test_heap_3(emptyheap):
+    emptyheap.push(1)
+    emptyheap.push(2)
+    emptyheap.push(3)
+    print('vvv')
+    print(emptyheap)
+    emptyheap.pop()
+    print(emptyheap)
+    emptyheap.pop()
+    print(emptyheap)
+    print('^^^')
+    assert emptyheap.pop() == 3
+
 
 @pytest.mark.parametrize('iterable', ITERABLES)
 def test_init(iterable):

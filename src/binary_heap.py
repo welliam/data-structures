@@ -54,6 +54,9 @@ class BinaryHeap(object):
             self.swap(i, parent)
             i = parent
 
+    def in_range(self, i):
+        return i < len(self.heap)
+
     def branch_sorted(self, i, branch):
         """Return whether branch of index i is sorted.
 
@@ -62,7 +65,7 @@ class BinaryHeap(object):
         try:
             return self.compare(self.heap[i], self.heap[branch])
         except IndexError:
-            return False
+            return True
 
     def is_sorted(self, i):
         """Return whether the value at heap[i] is sorted.
@@ -70,8 +73,6 @@ class BinaryHeap(object):
         i.e. in the proper position for pop.
         """
         left, right = _children(i)
-        if right >= len(self.heap):
-            return True
         return self.branch_sorted(i, left) and self.branch_sorted(i, right)
 
     def pop(self):
@@ -83,9 +84,13 @@ class BinaryHeap(object):
         except IndexError:
             return value
         i = 0
-        while i < len(heap) and not self.is_sorted(i):
+        while self.in_range(i) and not self.is_sorted(i):
             left, right = _children(i)
-            to_swap = left if self.compare(heap[left], heap[right]) else right
+            r_invalid = not self.in_range(right)
+            if r_invalid or self.compare(heap[left], heap[right]):
+                to_swap = left
+            else:
+                to_swap = right
             self.swap(i, to_swap)
             i = to_swap
         return value
