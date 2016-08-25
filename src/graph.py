@@ -36,3 +36,8 @@ class Graph(object):
 
     def neighbors(self, n):
         return filter(lambda p: p[0] == n, self._edges)
+
+    def adjacent(self, n1, n2):
+        if not (self.has_node(n1) or self.has_node(n2)):
+            raise ValueError('Node not in graph')
+        return (n1, n2) in self._edges
