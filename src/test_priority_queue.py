@@ -3,7 +3,7 @@
 "Test priority queue functionality."""
 
 import pytest
-from priority_queue import _Prioritized, PriorityQueue
+from .priority_queue import _Prioritized, PriorityQueue
 
 ITERABLES = [
     [1, 2, 3, 4, 5],

@@ -1,5 +1,5 @@
 import pytest
-from deque import Deque
+from .deque import Deque
 
 NONEMPTY_ITERABLES = [
     [1, 2, 3],

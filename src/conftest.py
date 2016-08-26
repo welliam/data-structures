@@ -1,9 +1,9 @@
 import pytest
-from deque import Deque
-from binary_heap import BinaryHeap
-from priority_queue import PriorityQueue
-from graph import Graph
-from adjacency_list import AdjacencyList
+from .deque import Deque
+from .binary_heap import BinaryHeap
+from .priority_queue import PriorityQueue
+from .graph import Graph
+from .adjacency_list import AdjacencyList
 
 
 @pytest.fixture
