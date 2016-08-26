@@ -41,4 +41,22 @@ in algorithms for job scheduling.
 
 ## Binary Heap
 
-The binary heap is a tree that always pops the smallest or largest value. We chose to implement a min heap, so ours will return the smallest. When a new value is pushed on, it will check to make sure that the new child is greater than its parents, and if not swap the two, and repeat this until it finds a parent that is less than the child. It is useful for a priority queue, ensuring you will always get the smallest number when you pop off the heap.
+The binary heap is a tree that always pops the smallest or largest
+value. We chose to implement a min heap, so ours will return the
+smallest. When a new value is pushed on, it will check to make sure
+that the new child is greater than its parents, and if not swap the
+two, and repeat this until it finds a parent that is less than the
+child. It is useful for a priority queue, ensuring you will always get
+the smallest number when you pop off the heap.
+
+## Directed Graph
+
+The directed graph is a data structure that consists of nodes and
+edges which connect them in zero, one, or both ways. The graph can be
+queried for whether a particular node is a neighbor of another, and
+nodes and edges can be deleted; if a node is deleted, all of the edges
+involving that node are deleted as well. The graph can be used as a
+model for networking applications.
+
+I read about graph implementations [on
+Wikipedia](https://en.wikipedia.org/wiki/Graph_(abstract_data_type)).
