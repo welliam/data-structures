@@ -66,5 +66,6 @@ def test_depth_traversal_simple(self_looped):
 
 
 def test_depth_traversal_empty(self_looped):
-    """Test that depth first traversal is [] when on an absent node."""
-    assert self_looped.depth_first_traversal('b') == []
+    """Test that depth first traversal throws error on an absent node."""
+    with pytest.raises(KeyError):
+        self_looped.depth_first_traversal('b')
