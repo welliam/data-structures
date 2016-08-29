@@ -80,3 +80,14 @@ class AdjacencyList(object):
             return n2 in self._nodes[n1]
         except KeyError:
             raise ValueError('Node not in graph')
+
+    def _depth_first_traversal_rec(self, start, res):
+        if start in res:
+            return res
+        res.append(start)
+        for node in self.neighbors(start):
+            res = self._depth_first_traversal_rec(node, res)
+        return res
+
+    def depth_first_traversal(self, start):
+        return self._depth_first_traversal_rec(start, [])
