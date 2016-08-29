@@ -1,6 +1,5 @@
 argh==0.26.2
 colorama==0.3.7
--e git+https://github.com/welliam/data-structures@a62a62a621ad76529bb998e820a7d85d94a96068#egg=data_structures
 docopt==0.6.2
 pathtools==0.1.2
 pluggy==0.3.1
