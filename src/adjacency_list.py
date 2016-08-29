@@ -2,6 +2,7 @@
 
 """Implement directed graph abstract data type."""
 
+from __future__ import print_function
 from functools import reduce
 from .stack import Stack
 from .queue import Queue
@@ -83,12 +84,13 @@ class AdjacencyList(object):
         except KeyError:
             raise ValueError('Node not in graph')
 
-    def _search(self, start, nonempty, add, remove):
-        """Search iteratively.
+    def _traverse(self, start, nonempty, add, remove):
+        """Traverse iteratively.
 
         Uses given functions (nonempty, add, remove) to store
         nodes. Depending on the behavior of these functions, this
-        search may be performed differently."""
+        traversal may be performed differently.
+        """
         add(start)
         result = []
         while nonempty():
@@ -102,12 +104,12 @@ class AdjacencyList(object):
     def depth_first_traversal(self, start):
         """Return a list of nodes as found in depth-first order."""
         stack = Stack()
-        return self._search(start, stack.size, stack.push, stack.pop)
+        return self._traverse(start, stack.size, stack.push, stack.pop)
 
     def breadth_first_traversal(self, start):
         """Return a list of nodes as found in breadth-first order."""
         queue = Queue()
-        return self._search(start, queue.size, queue.enqueue, queue.dequeue)
+        return self._traverse(start, queue.size, queue.enqueue, queue.dequeue)
 
 
 if __name__ == '__main__':
@@ -118,11 +120,11 @@ if __name__ == '__main__':
     g.add_edge('1-0', '2-1')
     g.add_edge('1-1', '2-2')
     g.add_edge('1-1', '2-3')
-    print(r'''
+    print(r'''Graph:
          0-0
       /       \
    1-0         1-1
   /   \       /   \
 2-0   2-1   2-2   2-3''')
-    print('depth first:', g.depth_first_traversal('0-0'))
-    print('breadth first:', g.breadth_first_traversal('0-0'))
+    print('depth first   ', g.depth_first_traversal('0-0'))
+    print('breadth first ', g.breadth_first_traversal('0-0'))
