@@ -2,7 +2,7 @@
 
 """Implement the Priority Queue abstract data type."""
 
-from binary_heap import BinaryHeap
+from .binary_heap import BinaryHeap
 
 
 class _Prioritized(object):

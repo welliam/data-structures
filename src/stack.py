@@ -2,7 +2,7 @@
 
 """Implement stack abstract data type."""
 
-from linked_list import LinkedList
+from .linked_list import LinkedList
 
 
 class Stack(object):

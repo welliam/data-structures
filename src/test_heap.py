@@ -3,8 +3,8 @@
 """Test heap functionality."""
 
 import pytest
-from binary_heap import BinaryHeap
 from random import sample
+from .binary_heap import BinaryHeap
 
 ITERABLES = [
     "hello",

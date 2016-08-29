@@ -22,14 +22,14 @@ LEN_TABLE = [
 @pytest.mark.parametrize('values, result', STACK_TABLE)
 def test_init(values, result):
     """Test initialization of stack."""
-    from stack import Stack
+    from .stack import Stack
     stack = Stack(values)
     assert stack.pop() == result
 
 
 def test_stack():
     """Test stack operations."""
-    from stack import Stack
+    from .stack import Stack
     stack = Stack()
     stack.push(1)
     assert stack.pop() == 1
@@ -44,7 +44,7 @@ def test_pop_error():
 
     Ensure that pop raises an IndexError when called upon an empty
     stack."""
-    from stack import Stack
+    from .stack import Stack
     with pytest.raises(IndexError):
         Stack().pop()
 
@@ -52,13 +52,13 @@ def test_pop_error():
 @pytest.mark.parametrize('values, result', STACK_TABLE)
 def test_peek(values, result):
     """Test peek returns topmost value of stack."""
-    from stack import Stack
+    from .stack import Stack
     assert Stack(values).peek() == result
 
 
 def test_peek_error():
     """Test peek throws IndexError."""
-    from stack import Stack
+    from .stack import Stack
     with pytest.raises(IndexError):
         Stack().peek()
 
@@ -66,5 +66,5 @@ def test_peek_error():
 @pytest.mark.parametrize('values', LEN_TABLE)
 def test_len(values):
     """Test __len__ of stack."""
-    from stack import Stack
+    from .stack import Stack
     assert len(values) == len(Stack(values))
