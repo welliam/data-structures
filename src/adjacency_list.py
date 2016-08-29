@@ -3,6 +3,7 @@
 """Implement directed graph abstract data type."""
 
 from functools import reduce
+from .stack import Stack
 from .queue import Queue
 
 
@@ -93,7 +94,16 @@ class AdjacencyList(object):
 
     def depth_first_traversal(self, start):
         """Return a list of nodes as found in depth-first order."""
-        return self._depth_first_traversal_rec(start, [])
+        stack = Stack()
+        stack.push(start)
+        result = []
+        while stack.size():
+            root = stack.pop()
+            if root not in result:
+                result.append(root)
+                for node in self.neighbors(root):
+                    stack.push(node)
+        return result
 
     def breadth_first_traversal(self, start):
         """Return a list of nodes as found in breadth-first order."""

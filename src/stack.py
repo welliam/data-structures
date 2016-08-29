@@ -17,6 +17,9 @@ class Stack(object):
     def __len__(self):
         return self.linked_list.count
 
+    def size(self):
+        return self.linked_list.size()
+
     def push(self, val):
         """Push value onto the stack."""
         self.linked_list.push(val)
