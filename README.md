@@ -60,3 +60,7 @@ model for networking applications.
 
 I read about graph implementations [on
 Wikipedia](https://en.wikipedia.org/wiki/Graph_(abstract_data_type)).
+
+## Traversal
+
+I read about breadth first searching [on Wikipedia](https://en.wikipedia.org/wiki/Breadth-first_search)
