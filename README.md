@@ -61,6 +61,13 @@ model for networking applications.
 I read about graph implementations [on
 Wikipedia](https://en.wikipedia.org/wiki/Graph_(abstract_data_type)).
 
-## Traversal
+### Graph Traversal
 
-I read about breadth first searching [on Wikipedia](https://en.wikipedia.org/wiki/Breadth-first_search)
+Graph traversal is traversing the graph in a certain way. The
+adjacency_list.py file implements a graph with both depth-first and
+breadth-first traversal. Graph traversal is useful for a wide range of
+applications, and is commonly used wherever graphs are used (for
+modeling networks, as well as a wide range of algorithms in general).
+
+I read about breadth first searching [on
+Wikipedia](https://en.wikipedia.org/wiki/Breadth-first_search).
