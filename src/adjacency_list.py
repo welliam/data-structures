@@ -83,37 +83,23 @@ class AdjacencyList(object):
         except KeyError:
             raise ValueError('Node not in graph')
 
-    def _depth_first_traversal_rec(self, start, res):
-        """Recur through the depth first search."""
-        if start in res:
-            return res
-        res.append(start)
-        for node in self.neighbors(start):
-            res = self._depth_first_traversal_rec(node, res)
-        return res
+    def _search(self, start, nonempty, add, remove):
+        add(start)
+        result = []
+        while nonempty():
+            root = remove()
+            if root not in result:
+                result.append(root)
+                for node in self.neighbors(root):
+                    add(node)
+        return result
 
     def depth_first_traversal(self, start):
         """Return a list of nodes as found in depth-first order."""
         stack = Stack()
-        stack.push(start)
-        result = []
-        while stack.size():
-            root = stack.pop()
-            if root not in result:
-                result.append(root)
-                for node in self.neighbors(root):
-                    stack.push(node)
-        return result
+        return self._search(start, stack.size, stack.push, stack.pop)
 
     def breadth_first_traversal(self, start):
         """Return a list of nodes as found in breadth-first order."""
         queue = Queue()
-        queue.enqueue(start)
-        result = []
-        while queue.size():
-            root = queue.dequeue()
-            if root not in result:
-                result.append(root)
-                for node in self.neighbors(root):
-                    queue.enqueue(node)
-        return result
+        return self._search(start, queue.size, queue.enqueue, queue.dequeue)
