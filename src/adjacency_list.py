@@ -108,3 +108,21 @@ class AdjacencyList(object):
         """Return a list of nodes as found in breadth-first order."""
         queue = Queue()
         return self._search(start, queue.size, queue.enqueue, queue.dequeue)
+
+
+if __name__ == '__main__':
+    g = AdjacencyList()
+    g.add_edge('0-0', '1-0')
+    g.add_edge('0-0', '1-1')
+    g.add_edge('1-0', '2-0')
+    g.add_edge('1-0', '2-1')
+    g.add_edge('1-1', '2-2')
+    g.add_edge('1-1', '2-3')
+    print(r'''
+         0-0
+      /       \
+   1-0        1-1
+  /   \      /   \
+2-0   2-1  2-2   2-3''')
+    print('depth first:', g.depth_first_traversal('0-0'))
+    print('breadth first:', g.breadth_first_traversal('0-0'))
