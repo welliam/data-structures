@@ -121,8 +121,8 @@ if __name__ == '__main__':
     print(r'''
          0-0
       /       \
-   1-0        1-1
-  /   \      /   \
-2-0   2-1  2-2   2-3''')
+   1-0         1-1
+  /   \       /   \
+2-0   2-1   2-2   2-3''')
     print('depth first:', g.depth_first_traversal('0-0'))
     print('breadth first:', g.breadth_first_traversal('0-0'))
