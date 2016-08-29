@@ -84,6 +84,11 @@ class AdjacencyList(object):
             raise ValueError('Node not in graph')
 
     def _search(self, start, nonempty, add, remove):
+        """Search iteratively.
+
+        Uses given functions (nonempty, add, remove) to store
+        nodes. Depending on the behavior of these functions, this
+        search may be performed differently."""
         add(start)
         result = []
         while nonempty():
