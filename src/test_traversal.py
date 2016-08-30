@@ -7,7 +7,7 @@ from .adjacency_list import AdjacencyList
 @pytest.fixture
 def self_looped():
     g = AdjacencyList()
-    g.add_edge('a', 'a')
+    g.add_edge('a', 'a', 0)
     return g
 
 
@@ -30,9 +30,9 @@ def comesbefore(t, a, b):
 def simple():
     """A simple, non-looped graph."""
     g = AdjacencyList()
-    g.add_edge('a', 'b')
-    g.add_edge('b', 'c')
-    g.add_edge('b', 'd')
+    g.add_edge('a', 'b', 0)
+    g.add_edge('b', 'c', 0)
+    g.add_edge('b', 'd', 0)
     return g
 
 SIMPLE_DEPTH = [('a', 'b'), ('b', 'c'), ('b', 'd')]
@@ -43,10 +43,10 @@ SIMPLE_BREADTH = SIMPLE_DEPTH  # same in this case
 def complex():
     """A graph with a non-self referential loop."""
     g = AdjacencyList()
-    g.add_edge('a', 'b')
-    g.add_edge('b', 'c')
-    g.add_edge('c', 'a')
-    g.add_edge('a', 'dead end')
+    g.add_edge('a', 'b', 0)
+    g.add_edge('b', 'c', 0)
+    g.add_edge('c', 'a', 0)
+    g.add_edge('a', 'dead end', 0)
     return g
 
 COMPLEX_DEPTH = [('a', 'b'), ('b', 'c'), ('a', 'dead end')]
@@ -57,11 +57,11 @@ COMPLEX_BREADTH = [('a', 'b'), ('b', 'c'), ('dead end', 'c')]
 def complex_2():
     """A complex graph with multiple loops."""
     g = AdjacencyList()
-    g.add_edge('a', 'b')
-    g.add_edge('b', 'c')
-    g.add_edge('c', 'a')
-    g.add_edge('c', 'b')
-    g.add_edge('a', 'dead end')
+    g.add_edge('a', 'b', 0)
+    g.add_edge('b', 'c', 0)
+    g.add_edge('c', 'a', 0)
+    g.add_edge('c', 'b', 0)
+    g.add_edge('a', 'dead end', 0)
     return g
 
 # the same variables as for complex are relevant
@@ -71,12 +71,12 @@ def complex_2():
 def tree():
     """A graph which resembles a binary tree."""
     g = AdjacencyList()
-    g.add_edge('0-0', '1-0')
-    g.add_edge('0-0', '1-1')
-    g.add_edge('1-0', '2-0')
-    g.add_edge('1-0', '2-1')
-    g.add_edge('1-1', '2-2')
-    g.add_edge('1-1', '2-3')
+    g.add_edge('0-0', '1-0', 0)
+    g.add_edge('0-0', '1-1', 0)
+    g.add_edge('1-0', '2-0', 0)
+    g.add_edge('1-0', '2-1', 0)
+    g.add_edge('1-1', '2-2', 0)
+    g.add_edge('1-1', '2-3', 0)
     return g
 
 TREE_DEPTH = [
