@@ -182,3 +182,17 @@ def test_adjacent_error(empty_adjacency_list):
     """Test empty graph raises ValueError for adjacent."""
     with pytest.raises(ValueError):
         empty_adjacency_list.adjacent('a', 'b')
+
+
+SAMPLE_WEIGHTS = [
+    ('a', 'b', 3),
+    ('b', 'c', 5),
+    ('a', 'c', 10)
+]
+
+@pytest.mark.parametrize('n1, n2, w', SAMPLE_WEIGHTS)
+def test_weights_1(empty_adjacency_list, n1, n2, w):
+    """Test weights are being added to the edges."""
+    for args in SAMPLE_WEIGHTS:
+        empty_adjacency_list.add_edge(*args)
+    assert empty_adjacency_list._nodes[n1][n2] == w
