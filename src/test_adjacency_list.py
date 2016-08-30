@@ -28,7 +28,7 @@ def test_add_node(empty_adjacency_list, labels):
 def test_remove_edge_add(sample_adjacency_list):
     """Test deleting and readding an edge."""
     sample_adjacency_list.del_node('b')
-    sample_adjacency_list.add_edge('a', 'b')
+    sample_adjacency_list.add_edge('a', 'b', 0)
     assert sample_adjacency_list.adjacent('a', 'b')
 
 
@@ -36,7 +36,7 @@ def test_add_edges(empty_adjacency_list):
     """Test adding an edge adds it to the result of edges()."""
     empty_adjacency_list.add_node('a')
     empty_adjacency_list.add_node('b')
-    empty_adjacency_list.add_edge('a', 'b')
+    empty_adjacency_list.add_edge('a', 'b', 0)
     assert ('a', 'b') in empty_adjacency_list.edges()
 
 
@@ -45,8 +45,8 @@ def test_add_edges_2(empty_adjacency_list):
     empty_adjacency_list.add_node('a')
     empty_adjacency_list.add_node('b')
     empty_adjacency_list.add_node('c')
-    empty_adjacency_list.add_edge('a', 'b')
-    empty_adjacency_list.add_edge('a', 'c')
+    empty_adjacency_list.add_edge('a', 'b', 0)
+    empty_adjacency_list.add_edge('a', 'c', 0)
     assert ('a', 'c') in empty_adjacency_list.edges()
 
 
@@ -55,8 +55,8 @@ def test_add_edges_3(empty_adjacency_list):
     empty_adjacency_list.add_node('a')
     empty_adjacency_list.add_node('b')
     empty_adjacency_list.add_node('c')
-    empty_adjacency_list.add_edge('a', 'b')
-    empty_adjacency_list.add_edge('a', 'c')
+    empty_adjacency_list.add_edge('a', 'b', 0)
+    empty_adjacency_list.add_edge('a', 'c', 0)
     assert ('b', 'c') not in empty_adjacency_list.edges()
 
 
@@ -64,28 +64,28 @@ def test_add_edges_directed(empty_adjacency_list):
     """Test edges are added only in one direction."""
     empty_adjacency_list.add_node('a')
     empty_adjacency_list.add_node('b')
-    empty_adjacency_list.add_edge('a', 'b')
+    empty_adjacency_list.add_edge('a', 'b', 0)
     assert ('b', 'a') not in empty_adjacency_list.edges()
 
 
 def test_add_edges_nonexistent_node_1(empty_adjacency_list):
     """Test adding an edge without the given nodes adds the first."""
-    empty_adjacency_list.add_edge('a', 'b')
+    empty_adjacency_list.add_edge('a', 'b', 0)
     assert 'a' in empty_adjacency_list.nodes()
 
 
 def test_add_edges_nonexistent_node_2(empty_adjacency_list):
     """Test adding an edge with the given nodes adds the second."""
-    empty_adjacency_list.add_edge('a', 'b')
+    empty_adjacency_list.add_edge('a', 'b', 0)
     assert 'b' in empty_adjacency_list.nodes()
 
 
 def test_add_edges_nonexistent_edge(empty_adjacency_list):
-    """Test adding edges adds the edge. 
-    
+    """Test adding edges adds the edge.
+
     Even when those nodes are not already in the graph.
     """
-    empty_adjacency_list.add_edge('a', 'b')
+    empty_adjacency_list.add_edge('a', 'b', 0)
     assert ('a', 'b') in empty_adjacency_list.edges()
 
 
@@ -98,7 +98,7 @@ def test_delete_node(empty_adjacency_list):
 
 def test_delete_node_edge(empty_adjacency_list):
     """Test deleting a node deletes its associated edges."""
-    empty_adjacency_list.add_edge('a', 'b')
+    empty_adjacency_list.add_edge('a', 'b', 0)
     empty_adjacency_list.del_node('b')
     assert ('a', 'b') not in empty_adjacency_list.edges()
 
@@ -111,7 +111,7 @@ def test_delete_nonexistent_node(empty_adjacency_list):
 
 def test_delete_edge(empty_adjacency_list):
     """Test deleting a node removes it from the result of edges()."""
-    empty_adjacency_list.add_edge('a', 'b')
+    empty_adjacency_list.add_edge('a', 'b', 0)
     empty_adjacency_list.del_edge('a', 'b')
     assert ('a', 'b') not in empty_adjacency_list.edges()
 

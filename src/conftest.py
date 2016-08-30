@@ -52,8 +52,8 @@ def sample_adjacency_list():
     #       ^     |
     #       |     |
     #       d < - /
-    g.add_edge('a', 'b')
-    g.add_edge('a', 'c')
-    g.add_edge('b', 'd')
-    g.add_edge('d', 'a')
+    g.add_edge('a', 'b', 0)
+    g.add_edge('a', 'c', 0)
+    g.add_edge('b', 'd', 0)
+    g.add_edge('d', 'a', 0)
     return g

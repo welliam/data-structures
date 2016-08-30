@@ -23,14 +23,14 @@ def test_add_node(emptygraph, labels):
 
 def test_remove_edge_add(samplegraph):
     samplegraph.del_node('b')
-    samplegraph.add_edge('a', 'b')
+    samplegraph.add_edge('a', 'b', 0)
     assert samplegraph.adjacent('a', 'b')
 
 
 def test_add_edges(emptygraph):
     emptygraph.add_node('a')
     emptygraph.add_node('b')
-    emptygraph.add_edge('a', 'b')
+    emptygraph.add_edge('a', 'b', 0)
     assert ('a', 'b') in emptygraph.edges()
 
 
@@ -38,8 +38,8 @@ def test_add_edges_2(emptygraph):
     emptygraph.add_node('a')
     emptygraph.add_node('b')
     emptygraph.add_node('c')
-    emptygraph.add_edge('a', 'b')
-    emptygraph.add_edge('a', 'c')
+    emptygraph.add_edge('a', 'b', 0)
+    emptygraph.add_edge('a', 'c', 0)
     assert ('a', 'c') in emptygraph.edges()
 
 
@@ -47,30 +47,30 @@ def test_add_edges_3(emptygraph):
     emptygraph.add_node('a')
     emptygraph.add_node('b')
     emptygraph.add_node('c')
-    emptygraph.add_edge('a', 'b')
-    emptygraph.add_edge('a', 'c')
+    emptygraph.add_edge('a', 'b', 0)
+    emptygraph.add_edge('a', 'c', 0)
     assert ('b', 'c') not in emptygraph.edges()
 
 
 def test_add_edges_directed(emptygraph):
     emptygraph.add_node('a')
     emptygraph.add_node('b')
-    emptygraph.add_edge('a', 'b')
+    emptygraph.add_edge('a', 'b', 0)
     assert ('b', 'a') not in emptygraph.edges()
 
 
 def test_add_edges_nonexistent_node_1(emptygraph):
-    emptygraph.add_edge('a', 'b')
+    emptygraph.add_edge('a', 'b', 0)
     assert 'a' in emptygraph.nodes()
 
 
 def test_add_edges_nonexistent_node_2(emptygraph):
-    emptygraph.add_edge('a', 'b')
+    emptygraph.add_edge('a', 'b', 0)
     assert 'b' in emptygraph.nodes()
 
 
 def test_add_edges_nonexistent_edge(emptygraph):
-    emptygraph.add_edge('a', 'b')
+    emptygraph.add_edge('a', 'b', 0)
     assert ('a', 'b') in emptygraph.edges()
 
 
@@ -81,7 +81,7 @@ def test_delete_node(emptygraph):
 
 
 def test_delete_node_edge(emptygraph):
-    emptygraph.add_edge('a', 'b')
+    emptygraph.add_edge('a', 'b', 0)
     emptygraph.del_node('b')
     assert ('a', 'b') not in emptygraph.edges()
 
@@ -92,14 +92,14 @@ def test_delete_nonexistent_node(emptygraph):
 
 
 def test_delete_edge(emptygraph):
-    emptygraph.add_edge('a', 'b')
-    emptygraph.del_edge('a', 'b')
+    emptygraph.add_edge('a', 'b', 0)
+    emptygraph.del_edge('a', 'b', 0)
     assert ('a', 'b') not in emptygraph.edges()
 
 
 def test_delete_nonexistent_edge(emptygraph):
     with pytest.raises(ValueError):
-        emptygraph.del_edge('a', 'b')
+        emptygraph.del_edge('a', 'b', 0)
 
 
 def test_has_node(emptygraph):
