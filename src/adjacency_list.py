@@ -26,13 +26,18 @@ class AdjacencyList(object):
         """Return a list of all nodes."""
         return list(self._nodes)
 
+    def _edges(self):
+        """Return a generator of all edges (represented by tuples)."""
+        for node in self._nodes:
+            for neighbor in self._nodes[node]:
+                yield (node, neighbor, self._nodes[node][neighbor])
+
     def edges(self):
-        """Return a list of all edges (represented by tuples)."""
-        return reduce(
-            lambda res, n: res + [(n, k) for k in self._nodes[n]],
-            self._nodes,
-            []
-        )
+        """Return a list of all edges (represented by tuples).
+
+        The tuples are generated like (node1, node2, weight).
+        """
+        return list(self._edges())
 
     def add_edge(self, a, b, weight):
         """Add an edge between two nodes.

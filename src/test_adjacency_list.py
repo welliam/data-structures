@@ -37,7 +37,7 @@ def test_add_edges(empty_adjacency_list):
     empty_adjacency_list.add_node('a')
     empty_adjacency_list.add_node('b')
     empty_adjacency_list.add_edge('a', 'b', 0)
-    assert ('a', 'b') in empty_adjacency_list.edges()
+    assert ('a', 'b', 0) in empty_adjacency_list.edges()
 
 
 def test_add_edges_2(empty_adjacency_list):
@@ -47,7 +47,7 @@ def test_add_edges_2(empty_adjacency_list):
     empty_adjacency_list.add_node('c')
     empty_adjacency_list.add_edge('a', 'b', 0)
     empty_adjacency_list.add_edge('a', 'c', 0)
-    assert ('a', 'c') in empty_adjacency_list.edges()
+    assert ('a', 'c', 0) in empty_adjacency_list.edges()
 
 
 def test_add_edges_3(empty_adjacency_list):
@@ -57,7 +57,7 @@ def test_add_edges_3(empty_adjacency_list):
     empty_adjacency_list.add_node('c')
     empty_adjacency_list.add_edge('a', 'b', 0)
     empty_adjacency_list.add_edge('a', 'c', 0)
-    assert ('b', 'c') not in empty_adjacency_list.edges()
+    assert ('b', 'c', 0) not in empty_adjacency_list.edges()
 
 
 def test_add_edges_directed(empty_adjacency_list):
@@ -65,7 +65,7 @@ def test_add_edges_directed(empty_adjacency_list):
     empty_adjacency_list.add_node('a')
     empty_adjacency_list.add_node('b')
     empty_adjacency_list.add_edge('a', 'b', 0)
-    assert ('b', 'a') not in empty_adjacency_list.edges()
+    assert ('b', 'a', 0) not in empty_adjacency_list.edges()
 
 
 def test_add_edges_nonexistent_node_1(empty_adjacency_list):
@@ -86,7 +86,7 @@ def test_add_edges_nonexistent_edge(empty_adjacency_list):
     Even when those nodes are not already in the graph.
     """
     empty_adjacency_list.add_edge('a', 'b', 0)
-    assert ('a', 'b') in empty_adjacency_list.edges()
+    assert ('a', 'b', 0) in empty_adjacency_list.edges()
 
 
 def test_delete_node(empty_adjacency_list):
@@ -190,9 +190,14 @@ SAMPLE_WEIGHTS = [
     ('a', 'c', 10)
 ]
 
-@pytest.mark.parametrize('n1, n2, w', SAMPLE_WEIGHTS)
-def test_weights_1(empty_adjacency_list, n1, n2, w):
-    """Test weights are being added to the edges."""
+
+@pytest.fixture
+def weighted_adjacency_list(empty_adjacency_list):
     for args in SAMPLE_WEIGHTS:
         empty_adjacency_list.add_edge(*args)
-    assert empty_adjacency_list._nodes[n1][n2] == w
+    return empty_adjacency_list
+
+
+@pytest.mark.parametrize('n1, n2, w', SAMPLE_WEIGHTS)
+def test_weights(weighted_adjacency_list, n1, n2, w):
+    assert (n1, n2, w) in weighted_adjacency_list.edges()
