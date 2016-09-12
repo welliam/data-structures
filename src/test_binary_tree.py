@@ -23,6 +23,16 @@ SIZE_TABLE = [
 ]
 
 
+DEPTH_TABLE = [
+    ([], 0),
+    ([1], 1),
+    (range(10), 10),
+    (range(10, 0, -1), 10),
+    ([5, 3, 7, 1, 6, 9], 3),
+    ([0, 2, 4, 3, 6, 8], 5)
+]
+
+
 def test_node_value():
     """Test node stores value field."""
     from binary_tree import Node
@@ -94,3 +104,12 @@ def test_size(to_insert):
     for value in to_insert:
         t.insert(value)
     assert t.size() == len(to_insert)
+
+@pytest.mark.parametrize('to_insert, depth', DEPTH_TABLE)
+ def test_depth(to_insert, depth):
+    """Assert depth for tree."""
+    from binary_tree import BinaryTree
+    t = BinaryTree()
+    for val in to_insert:
+        t.insert(val)
+    assert t.depth() == depth

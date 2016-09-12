@@ -5,6 +5,7 @@
 
 class Node(object):
     """Node for binary tree."""
+
     def __init__(self, value, left=None, right=None):
         """Initialize node with given values."""
         self.left = left
@@ -13,6 +14,7 @@ class Node(object):
 
 
 class BinaryTree(object):
+
     """Binary tree."""
     def __init__(self):
         """Initialize binary tree."""
@@ -33,10 +35,11 @@ class BinaryTree(object):
 
     def insert(self, val):
         """Insert a new value into the tree."""
+        self._length += 1
         if self.root is None:
             self.root = Node(val)
+            return
         current = self.root
-        self._length += 1
         while True:
             if val < current.value:
                 if current.left is None:
@@ -54,3 +57,14 @@ class BinaryTree(object):
     def size(self):
         """Return the size of the BinaryTree."""
         return self._length
+
+    def _depth(self, node):
+         """Static method to recursively compute the depth of the node."""
+         if node is None:
+             return 0
+         else:
+             return (max(self._depth(node.left), self._depth(node.right)) + 1)
+ 
+     def depth(self):
+         """Return the depth of the tree."""
+         return self._depth(self.root)
