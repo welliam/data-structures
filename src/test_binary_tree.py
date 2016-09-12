@@ -2,6 +2,17 @@
 
 """Test binary_tree.py"""
 
+import pytest
+
+
+CONTAINS_TABLE = [
+    (range(10), 3),
+    ([4, 9, 7, 8, 1, 6, 0, 5, 2, 3], 5),
+    ([4, 9, 7, 8, 1, 6, 0, 5, 2, 3], -100),
+    ([4, 9, 7, 8, 1, 6, 0, 5, 2, 3], 100),
+    ([1, 6, 9, 0, -10, .000001], 3),
+]
+
 
 def test_node_value():
     from binary_tree import Node
@@ -33,7 +44,7 @@ def test_unary_node_right():
     assert Node(3).right is None
 
 
-def test_contains():
+def test_contains_basic():
     from binary_tree import BinaryTree
     t = BinaryTree()
     t.insert(1)
@@ -46,3 +57,12 @@ def test_contains_deep():
     t.insert(1)
     t.insert(2)
     assert t.contains(1)
+
+
+@pytest.mark.parametrize('to_insert, looking', CONTAINS_TABLE)
+def test_contains(to_insert, looking):
+    from binary_tree import BinaryTree
+    t = BinaryTree()
+    for value in to_insert:
+        t.insert(value)
+    assert t.contains(looking) == (looking in to_insert)

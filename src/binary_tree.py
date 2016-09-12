@@ -24,10 +24,10 @@ class BinaryTree(object):
         while current is not None:
             if current.value == val:
                 return True
-            if val < self.root.value:
-                current = self.root.left
+            if val < current.value:
+                current = current.left
             else:
-                current = self.root.right
+                current = current.right
         return False
 
     def insert(self, val):
