@@ -10,7 +10,16 @@ CONTAINS_TABLE = [
     ([4, 9, 7, 8, 1, 6, 0, 5, 2, 3], 5),
     ([4, 9, 7, 8, 1, 6, 0, 5, 2, 3], -100),
     ([4, 9, 7, 8, 1, 6, 0, 5, 2, 3], 100),
-    ([1, 6, 9, 0, -10, .000001], 3),
+    ([1, 6, 9, 0, -10, .000001], 3)
+]
+
+
+SIZE_TABLE = [
+    range(10),
+    [4, 9, 7, 8, 1, 6, 0, 5, 2, 3],
+    [4, 9, 7, 8, 1, 6, 0, 5, 2, 3],
+    [4, 9, 7, 8, 1, 6, 0, 5, 2, 3],
+    [1, 6, 9, 0, -10, .000001],
 ]
 
 
@@ -66,3 +75,12 @@ def test_contains(to_insert, looking):
     for value in to_insert:
         t.insert(value)
     assert t.contains(looking) == (looking in to_insert)
+
+
+@pytest.mark.parametrize('to_insert', SIZE_TABLE)
+def test_size(to_insert):
+    from binary_tree import BinaryTree
+    t = BinaryTree()
+    for value in to_insert:
+        t.insert(value)
+    assert t.size() == len(to_insert)
