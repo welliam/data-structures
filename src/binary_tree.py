@@ -68,3 +68,12 @@ class BinaryTree(object):
      def depth(self):
          """Return the depth of the tree."""
          return self._depth(self.root)
+
+    def balance(self):
+         """Return the balance of the tree.
+ 
+         1 is left deep, 0 is balanced, and -1 is right deep.
+         """
+         if self.root is None:
+             return 0
+         return (self._depth(self.root.left) - self._depth(self.root.right))
