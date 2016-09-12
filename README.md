@@ -74,3 +74,14 @@ modeling networks, as well as a wide range of algorithms in general).
 
 I read about breadth first searching [on
 Wikipedia](https://en.wikipedia.org/wiki/Breadth-first_search).
+
+ ### Binary Search Tree
+          
+ +The binary search tree (BST) is a data structure that consists of
+ +nodes, which may have up to two children (left and right). For each
+ +node in the BST, the node's left child must always be less than the
+ +node's value, and the node's right child must always be greater than
+ +the node's value. This allows for quick searching of inserted
+ +values. The binary search tree is used in sorting algorithms and other
+ +situations where storing values with quick searching is needed.
+ 
