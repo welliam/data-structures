@@ -17,6 +17,7 @@ class BinaryTree(object):
     def __init__(self):
         """Initialize binary tree."""
         self.root = None
+        self._length = 0
 
     def contains(self, val):
         """Check whether val is contained in the tree."""
@@ -35,6 +36,7 @@ class BinaryTree(object):
         if self.root is None:
             self.root = Node(val)
         current = self.root
+        self._length += 1
         while True:
             if val < current.value:
                 if current.left is None:
@@ -48,3 +50,7 @@ class BinaryTree(object):
                     return
                 else:
                     current = current.right
+
+    def size(self):
+        """Return the size of the BinaryTree."""
+        return self._length
