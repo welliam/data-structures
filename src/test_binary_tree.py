@@ -33,7 +33,7 @@ DEPTH_TABLE = [
 ]
 
 
-        BALANCE_TABLE = [
+BALANCE_TABLE = [
     ([], 0),
     ([1], 0),
     (range(10), -1),
@@ -117,7 +117,7 @@ def test_size(to_insert):
 
 
 @pytest.mark.parametrize('to_insert, depth', DEPTH_TABLE)
- def test_depth(to_insert, depth):
+def test_depth(to_insert, depth):
     """Assert depth for tree."""
     from binary_tree import BinaryTree
     t = BinaryTree()

@@ -14,8 +14,8 @@ class Node(object):
 
 
 class BinaryTree(object):
-
     """Binary tree."""
+
     def __init__(self):
         """Initialize binary tree."""
         self.root = None
