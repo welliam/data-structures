@@ -14,24 +14,37 @@ class Node(object):
 
 class BinaryTree(object):
     """Binary tree."""
-    pass
-#     def __init__(self):
-#         """Initialize binary tree."""
-#         self.root = None
-# 
-#     def contains(self, val):
-#         """Check whether val is contained in the tree."""
-#         return self.root.value == val
-# 
-#     def insert(self, val):
-#         """Insert a new value into the tree."""
-#         if self.root is None:
-#             self.root = Node(None, val, None)
-#         current = self.root
-#         while True:
-#             if val < current.value:
-#                 if current.left is None:
-#                     current.left = 
-#             else:
-#                 # right branch
-#                 pass
+    def __init__(self):
+        """Initialize binary tree."""
+        self.root = None
+
+    def contains(self, val):
+        """Check whether val is contained in the tree."""
+        current = self.root
+        while current is not None:
+            if current.value == val:
+                return True
+            if val < self.root.value:
+                current = self.root.left
+            else:
+                current = self.root.right
+        return False
+
+    def insert(self, val):
+        """Insert a new value into the tree."""
+        if self.root is None:
+            self.root = Node(val)
+        current = self.root
+        while True:
+            if val < current.value:
+                if current.left is None:
+                    current.left = Node(val)
+                    return
+                else:
+                    current = current.left
+            else:
+                if current.right is None:
+                    current.right = Node(val)
+                    return
+                else:
+                    current = current.right
