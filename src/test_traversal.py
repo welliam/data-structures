@@ -1,12 +1,12 @@
 '''Test traversal of adjacency_list.py.'''
 
 import pytest
-from .adjacency_list import AdjacencyList
+from .graph import Graph
 
 
 @pytest.fixture
 def self_looped():
-    g = AdjacencyList()
+    g = Graph()
     g.add_edge('a', 'a', 0)
     return g
 
@@ -29,7 +29,7 @@ def comesbefore(t, a, b):
 @pytest.fixture
 def simple():
     """A simple, non-looped graph."""
-    g = AdjacencyList()
+    g = Graph()
     g.add_edge('a', 'b', 0)
     g.add_edge('b', 'c', 0)
     g.add_edge('b', 'd', 0)
@@ -42,7 +42,7 @@ SIMPLE_BREADTH = SIMPLE_DEPTH  # same in this case
 @pytest.fixture
 def complex():
     """A graph with a non-self referential loop."""
-    g = AdjacencyList()
+    g = Graph()
     g.add_edge('a', 'b', 0)
     g.add_edge('b', 'c', 0)
     g.add_edge('c', 'a', 0)
@@ -56,7 +56,7 @@ COMPLEX_BREADTH = [('a', 'b'), ('b', 'c'), ('dead end', 'c')]
 @pytest.fixture
 def complex_2():
     """A complex graph with multiple loops."""
-    g = AdjacencyList()
+    g = Graph()
     g.add_edge('a', 'b', 0)
     g.add_edge('b', 'c', 0)
     g.add_edge('c', 'a', 0)
@@ -70,7 +70,7 @@ def complex_2():
 @pytest.fixture
 def tree():
     """A graph which resembles a binary tree."""
-    g = AdjacencyList()
+    g = Graph()
     g.add_edge('0-0', '1-0', 0)
     g.add_edge('0-0', '1-1', 0)
     g.add_edge('1-0', '2-0', 0)
