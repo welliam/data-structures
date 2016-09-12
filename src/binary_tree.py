@@ -59,21 +59,21 @@ class BinaryTree(object):
         return self._length
 
     def _depth(self, node):
-         """Static method to recursively compute the depth of the node."""
-         if node is None:
-             return 0
-         else:
-             return (max(self._depth(node.left), self._depth(node.right)) + 1)
- 
-     def depth(self):
-         """Return the depth of the tree."""
-         return self._depth(self.root)
+        """Static method to recursively compute the depth of the node."""
+        if node is None:
+            return 0
+        else:
+            return (max(self._depth(node.left), self._depth(node.right)) + 1)
+
+    def depth(self):
+        """Return the depth of the tree."""
+        return self._depth(self.root)
 
     def balance(self):
-         """Return the balance of the tree.
- 
-         1 is left deep, 0 is balanced, and -1 is right deep.
-         """
-         if self.root is None:
-             return 0
-         return (self._depth(self.root.left) - self._depth(self.root.right))
+        """Return the balance of the tree.
+
+        1 is left deep, 0 is balanced, and -1 is right deep.
+        """
+        if self.root is None:
+            return 0
+        return (self._depth(self.root.left) - self._depth(self.root.right))
