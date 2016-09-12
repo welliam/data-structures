@@ -20,28 +20,33 @@ class AdjacencyList(object):
 
         Do nothing if it's already in the graph.
         """
-        self._nodes.setdefault(n, set())
+        self._nodes.setdefault(n, {})
 
     def nodes(self):
         """Return a list of all nodes."""
         return list(self._nodes)
 
-    def edges(self):
-        """Return a list of all edges (represented by tuples)."""
-        return reduce(
-            lambda res, n: res + [(n, k) for k in self._nodes[n]],
-            self._nodes,
-            []
-        )
+    def _edges(self):
+        """Return a generator of all edges (represented by tuples)."""
+        for node in self._nodes:
+            for neighbor in self._nodes[node]:
+                yield (node, neighbor, self._nodes[node][neighbor])
 
-    def add_edge(self, a, b):
+    def edges(self):
+        """Return a list of all edges (represented by tuples).
+
+        The tuples are generated like (node1, node2, weight).
+        """
+        return list(self._edges())
+
+    def add_edge(self, a, b, weight):
         """Add an edge between two nodes.
 
         If those nodes don't exist yet in the graph, create them.
         """
         self.add_node(a)
         self.add_node(b)
-        self._nodes[a].add(b)
+        self._nodes[a][b] = weight
 
     def del_node(self, n):
         """Delete a node in the graph.
@@ -54,7 +59,10 @@ class AdjacencyList(object):
         except KeyError:
             raise ValueError('Node not in graph')
         for neighbors in self._nodes.values():
-            neighbors.discard(n)
+            try:
+                del neighbors[n]
+            except KeyError:
+                pass
 
     def del_edge(self, a, b):
         """Delete an edge in the graph.
@@ -62,7 +70,7 @@ class AdjacencyList(object):
         Raises ValueError if the edge isn't in the graph.
         """
         try:
-            self._nodes[a].discard(b)
+            del self._nodes[a][b]
         except KeyError:
             raise ValueError('Node not in graph')
 
@@ -114,12 +122,12 @@ class AdjacencyList(object):
 
 if __name__ == '__main__':
     g = AdjacencyList()
-    g.add_edge('0-0', '1-0')
-    g.add_edge('0-0', '1-1')
-    g.add_edge('1-0', '2-0')
-    g.add_edge('1-0', '2-1')
-    g.add_edge('1-1', '2-2')
-    g.add_edge('1-1', '2-3')
+    g.add_edge('0-0', '1-0', 0)
+    g.add_edge('0-0', '1-1', 0)
+    g.add_edge('1-0', '2-0', 0)
+    g.add_edge('1-0', '2-1', 0)
+    g.add_edge('1-1', '2-2', 0)
+    g.add_edge('1-1', '2-3', 0)
     print(r'''Graph:
          0-0
       /       \

@@ -58,6 +58,9 @@ nodes and edges can be deleted; if a node is deleted, all of the edges
 involving that node are deleted as well. The graph can be used as a
 model for networking applications.
 
+Edges in the graph are weighted, although nothing takes advantage of
+or uses the weights yet.
+
 I read about graph implementations [on
 Wikipedia](https://en.wikipedia.org/wiki/Graph_(abstract_data_type)).
 
