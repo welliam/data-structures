@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 """Implement a binary tree."""
+from queue import Queue
 
 
 class Node(object):
@@ -83,3 +84,17 @@ class BinaryTree(object):
         if self.root is None:
             return 0
         return self._depth(self.root.left) - self._depth(self.root.right)
+
+    def breadth_first(self):
+        """Return the list from a breadth-first traversal.
+
+        We start with the left branch of each node for each level.
+        """
+        to_process = Queue()
+        to_process.enqueue(self.root)
+        while to_process.size():
+            current = to_process.dequeue()
+            if current is not None:
+                yield current.value
+                to_process.enqueue(current.left)
+                to_process.enqueue(current.right)

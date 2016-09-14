@@ -14,6 +14,15 @@ CONTAINS_TABLE = [
 ]
 
 
+BREADTH_TABLE = [
+    ([], []),
+    ([1], [1]),
+    ([1, 2], [1, 2]),
+    ([1, 2, 3], [1, 2, 3]),
+    ([5, 2, 3, 1, 4, 8, 6, 7, 9, 0], [5, 2, 8, 1, 3, 6, 9, 0, 4, 7])
+]
+
+
 SIZE_TABLE = [
     range(10),
     [4, 9, 7, 8, 1, 6, 0, 5, 2, 3],
@@ -134,3 +143,13 @@ def test_balance(to_insert, balance):
     for val in to_insert:
         t.insert(val)
     assert t.balance() / (abs(t.balance()) or 1) == balance
+
+
+@pytest.mark.parametrize('to_insert, equals', BREADTH_TABLE)
+def test_breadth_first(to_insert, equals):
+    """Test contains method."""
+    from binary_tree import BinaryTree
+    t = BinaryTree()
+    for value in to_insert:
+        t.insert(value)
+    assert list(t.breadth_first()) == equals
