@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 
 """Implement a binary tree."""
-from queue import Queue
+from src.queue import Queue
+from src.stack import Stack
 
 
 class Node(object):
@@ -84,6 +85,20 @@ class BinaryTree(object):
         if self.root is None:
             return 0
         return self._depth(self.root.left) - self._depth(self.root.right)
+
+    def pre_order(self):
+        """Return the elements depth-first.
+
+        Uses order_function to determine which type of depth-first
+        traversal to take."""
+        to_process = Stack()
+        to_process.push(self.root)
+        while to_process.size():
+            current = to_process.pop()
+            if current is not None:
+                yield current.value
+                to_process.push(current.right)
+                to_process.push(current.left)
 
     def breadth_first(self):
         """Return the list from a breadth-first traversal.

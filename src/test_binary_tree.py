@@ -23,6 +23,15 @@ BREADTH_TABLE = [
 ]
 
 
+PRE_TABLE = [
+    ([], []),
+    ([1], [1]),
+    ([1, 2], [1, 2]),
+    ([1, 2, 3], [1, 2, 3]),
+    ([5, 2, 3, 1, 4, 8, 6, 7, 9, 0], [5, 2, 1, 0, 3, 4, 8, 6, 7, 9])
+]
+
+
 SIZE_TABLE = [
     range(10),
     [4, 9, 7, 8, 1, 6, 0, 5, 2, 3],
@@ -147,9 +156,19 @@ def test_balance(to_insert, balance):
 
 @pytest.mark.parametrize('to_insert, equals', BREADTH_TABLE)
 def test_breadth_first(to_insert, equals):
-    """Test contains method."""
+    """Test breadth first traversal."""
     from binary_tree import BinaryTree
     t = BinaryTree()
     for value in to_insert:
         t.insert(value)
     assert list(t.breadth_first()) == equals
+
+
+@pytest.mark.parametrize('to_insert, equals', PRE_TABLE)
+def test_pre_order(to_insert, equals):
+    """Test pre-order traversal."""
+    from binary_tree import BinaryTree
+    t = BinaryTree()
+    for value in to_insert:
+        t.insert(value)
+    assert list(t.pre_order()) == equals
