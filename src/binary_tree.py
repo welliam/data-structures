@@ -87,10 +87,7 @@ class BinaryTree(object):
         return self._depth(self.root.left) - self._depth(self.root.right)
 
     def pre_order(self):
-        """Return the elements depth-first.
-
-        Uses order_function to determine which type of depth-first
-        traversal to take."""
+        """Return the elements pre-order depth-first."""
         to_process = Stack()
         to_process.push(self.root)
         while to_process.size():
@@ -101,15 +98,12 @@ class BinaryTree(object):
                 to_process.push(current.left)
 
     def in_order(self):
-        """Return the elements depth-first.
-
-        Uses order_function to determine which type of depth-first
-        traversal to take."""
+        """Return the elements in-order depth-first."""
         to_process = Stack()
         current = self.root
         while True:
             if current:
-                to_process.append(current)
+                to_process.push(current)
                 current = current.left
             elif to_process.size():
                 popped = to_process.pop()
@@ -117,6 +111,27 @@ class BinaryTree(object):
                 current = popped.right
             else:
                 break
+
+    def post_order(self):
+        """Return the elements post-order depth-first."""
+        to_process = Stack()
+        current = self.root
+        traversed = set()
+        if self.root is not None:
+            while True:
+                if current.left and current.left not in traversed:
+                    to_process.push(current)
+                    current = current.left
+                elif current.right and current.right not in traversed:
+                    to_process.push(current)
+                    current = current.right
+                else:
+                    yield current.value
+                    traversed.add(current)
+                    if to_process.size():
+                        current = to_process.pop()
+                    else:
+                        break
 
     def breadth_first(self):
         """Return the list from a breadth-first traversal.
