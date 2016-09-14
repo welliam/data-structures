@@ -86,16 +86,39 @@ class BinaryTree(object):
             return 0
         return self._depth(self.root.left) - self._depth(self.root.right)
 
-    def pre_order(self):
-        """Return the elements pre-order depth-first."""
-        to_process = Stack()
-        to_process.push(self.root)
-        while to_process.size():
-            current = to_process.pop()
+    def _traverse(self, add, remove, nonempty):
+        """Traverse the graph depth of breadth first.
+
+        Depending on the behavior of add, remove and nonempty.
+        Depth-first traversal would be pre-order."""
+        while nonempty():
+            current = remove()
             if current is not None:
                 yield current.value
-                to_process.push(current.right)
-                to_process.push(current.left)
+                add(current.left, current.right)
+
+    def breadth_first(self):
+        """Return the list from a breadth-first traversal.
+
+        We start with the left branch of each node for each level.
+        """
+        queue = Queue()
+
+        def add(a, b):
+            queue.enqueue(a)
+            queue.enqueue(b)
+        queue.enqueue(self.root)
+        return self._traverse(add, queue.dequeue, queue.size)
+
+    def pre_order(self):
+        """Return the elements pre-order depth-first."""
+        stack = Stack()
+
+        def add(a, b):
+            stack.push(b)
+            stack.push(a)
+        stack.push(self.root)
+        return self._traverse(add, stack.pop, stack.size)
 
     def in_order(self):
         """Return the elements in-order depth-first."""
@@ -132,17 +155,3 @@ class BinaryTree(object):
                         current = to_process.pop()
                     else:
                         break
-
-    def breadth_first(self):
-        """Return the list from a breadth-first traversal.
-
-        We start with the left branch of each node for each level.
-        """
-        to_process = Queue()
-        to_process.enqueue(self.root)
-        while to_process.size():
-            current = to_process.dequeue()
-            if current is not None:
-                yield current.value
-                to_process.enqueue(current.left)
-                to_process.enqueue(current.right)
