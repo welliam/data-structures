@@ -32,6 +32,15 @@ PRE_TABLE = [
 ]
 
 
+IN_ORDER_TABLE = [
+    ([], []),
+    ([1], [1]),
+    ([1, 2], [1, 2]),
+    ([1, 2, 3], [1, 2, 3]),
+    ([5, 2, 3, 1, 4, 8, 6, 7, 9, 0], [0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
+]
+
+
 SIZE_TABLE = [
     range(10),
     [4, 9, 7, 8, 1, 6, 0, 5, 2, 3],
@@ -172,3 +181,13 @@ def test_pre_order(to_insert, equals):
     for value in to_insert:
         t.insert(value)
     assert list(t.pre_order()) == equals
+
+
+@pytest.mark.parametrize('to_insert, equals', IN_ORDER_TABLE)
+def test_in_order(to_insert, equals):
+    """Test in-order traversal."""
+    from binary_tree import BinaryTree
+    t = BinaryTree()
+    for value in to_insert:
+        t.insert(value)
+    assert list(t.in_order()) == equals

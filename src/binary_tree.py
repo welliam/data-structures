@@ -100,6 +100,24 @@ class BinaryTree(object):
                 to_process.push(current.right)
                 to_process.push(current.left)
 
+    def in_order(self):
+        """Return the elements depth-first.
+
+        Uses order_function to determine which type of depth-first
+        traversal to take."""
+        to_process = Stack()
+        current = self.root
+        while True:
+            if current:
+                to_process.append(current)
+                current = current.left
+            elif to_process.size():
+                popped = to_process.pop()
+                yield popped.value
+                current = popped.right
+            else:
+                break
+
     def breadth_first(self):
         """Return the list from a breadth-first traversal.
 
