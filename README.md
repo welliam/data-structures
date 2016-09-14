@@ -1,5 +1,6 @@
 # data-structures
 Data structure implementations for Code Fellows Python 401.
+[![Build Status](https://travis-ci.org/welliam/data-structures.svg?branch=bst-traversal)](https://travis-ci.org/welliam/data-structures)
 
 ## Singly linked list
 The singly linked list is appropriate when you only need traversal in
