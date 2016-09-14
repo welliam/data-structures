@@ -84,4 +84,14 @@ node's value, and the node's right child must always be greater than
 the node's value. This allows for quick searching of inserted
 values. The binary search tree is used in sorting algorithms and other
 situations where storing values with quick searching is needed.
- 
+
+
+### Binary Search Tree Traversal
+
+The BST implementation has four types of traversal methods:
+breadth_first, and three depth first traversal methods:
+- pre_order, which orders the top node's value before iterating first upon
+  the left and then upon the right branches,
+- post_order, which orders the left node's values before the right
+  node's values before finally the top node's value,
+- in_order, which returns the binary search tree's values sorted
