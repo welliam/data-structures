@@ -89,43 +89,43 @@ BALANCE_TABLE = [
 
 def test_node_value():
     """Test node stores value field."""
-    from binary_tree import Node
+    from .binary_tree import Node
     assert Node(3, None, None).value == 3
 
 
 def test_node_left():
     """Test node stores left branch field."""
-    from binary_tree import Node
+    from .binary_tree import Node
     assert Node(None, 3, None).left == 3
 
 
 def test_node_right():
     """Test node stores right branch field."""
-    from binary_tree import Node
+    from .binary_tree import Node
     assert Node(None, None, 3).right == 3
 
 
 def test_unary_node_value():
     """Test unary node constructor stores value."""
-    from binary_tree import Node
+    from .binary_tree import Node
     assert Node(3).value == 3
 
 
 def test_unary_node_left():
     """Test unary node constructor stores None as left branch."""
-    from binary_tree import Node
+    from .binary_tree import Node
     assert Node(3).left is None
 
 
 def test_unary_node_right():
     """Test unary node constructor stores None as right branch."""
-    from binary_tree import Node
+    from .binary_tree import Node
     assert Node(3).right is None
 
 
 def test_contains_basic():
     """Test contains single inserted value."""
-    from binary_tree import BinaryTree
+    from .binary_tree import BinaryTree
     t = BinaryTree()
     t.insert(1)
     assert t.contains(1)
@@ -133,7 +133,7 @@ def test_contains_basic():
 
 def test_contains_deep():
     """Test insert stores original value when inserting new one."""
-    from binary_tree import BinaryTree
+    from .binary_tree import BinaryTree
     t = BinaryTree()
     t.insert(1)
     t.insert(2)
@@ -143,7 +143,7 @@ def test_contains_deep():
 @pytest.mark.parametrize('to_insert, looking', CONTAINS_TABLE)
 def test_contains(to_insert, looking):
     """Test contains method."""
-    from binary_tree import BinaryTree
+    from .binary_tree import BinaryTree
     t = BinaryTree()
     for value in to_insert:
         t.insert(value)
@@ -153,7 +153,7 @@ def test_contains(to_insert, looking):
 @pytest.mark.parametrize('to_insert', SIZE_TABLE)
 def test_size(to_insert):
     """Test size method."""
-    from binary_tree import BinaryTree
+    from .binary_tree import BinaryTree
     t = BinaryTree()
     for value in to_insert:
         t.insert(value)
@@ -163,7 +163,7 @@ def test_size(to_insert):
 @pytest.mark.parametrize('to_insert, depth', DEPTH_TABLE)
 def test_depth(to_insert, depth):
     """Assert depth for tree."""
-    from binary_tree import BinaryTree
+    from .binary_tree import BinaryTree
     t = BinaryTree()
     for val in to_insert:
         t.insert(val)
@@ -173,7 +173,7 @@ def test_depth(to_insert, depth):
 @pytest.mark.parametrize('to_insert, balance', BALANCE_TABLE)
 def test_balance(to_insert, balance):
     """Assert balance for tree."""
-    from binary_tree import BinaryTree
+    from .binary_tree import BinaryTree
     t = BinaryTree()
     for val in to_insert:
         t.insert(val)
@@ -183,7 +183,7 @@ def test_balance(to_insert, balance):
 @pytest.mark.parametrize('to_insert, equals', BREADTH_TABLE)
 def test_breadth_first(to_insert, equals):
     """Test breadth first traversal."""
-    from binary_tree import BinaryTree
+    from .binary_tree import BinaryTree
     t = BinaryTree()
     for value in to_insert:
         t.insert(value)
@@ -193,7 +193,7 @@ def test_breadth_first(to_insert, equals):
 @pytest.mark.parametrize('to_insert, equals', PRE_TABLE)
 def test_pre_order(to_insert, equals):
     """Test pre-order traversal."""
-    from binary_tree import BinaryTree
+    from .binary_tree import BinaryTree
     t = BinaryTree()
     for value in to_insert:
         t.insert(value)
@@ -203,7 +203,7 @@ def test_pre_order(to_insert, equals):
 @pytest.mark.parametrize('to_insert, equals', IN_ORDER_TABLE)
 def test_in_order(to_insert, equals):
     """Test in-order traversal."""
-    from binary_tree import BinaryTree
+    from .binary_tree import BinaryTree
     t = BinaryTree()
     for value in to_insert:
         t.insert(value)
@@ -213,7 +213,7 @@ def test_in_order(to_insert, equals):
 @pytest.mark.parametrize('to_insert, equals', POST_ORDER_TABLE)
 def test_post_order(to_insert, equals):
     """Test post-order traversal."""
-    from binary_tree import BinaryTree
+    from .binary_tree import BinaryTree
     t = BinaryTree()
     for value in to_insert:
         t.insert(value)
