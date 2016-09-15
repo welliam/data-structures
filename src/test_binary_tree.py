@@ -13,6 +13,13 @@ CONTAINS_TABLE = [
     ([1, 6, 9, 0, -10, .000001], 3)
 ]
 
+DELETE_TABLE = [
+    ([1], 1),
+    #[1,2], 1),
+    ([1, 2], 2),
+    ([2, 1], 1)
+]
+
 
 BREADTH_TABLE = [
     ([], []),
@@ -218,3 +225,15 @@ def test_post_order(to_insert, equals):
     for value in to_insert:
         t.insert(value)
     assert list(t.post_order()) == equals
+
+
+@pytest.mark.parametrize('to_insert, to_delete', DELETE_TABLE)
+def test_post_order(to_insert, to_delete):
+    """Test deletion of a node."""
+    from .binary_tree import BinaryTree
+    t = BinaryTree()
+    for value in to_insert:
+        t.insert(value)
+    t.delete(to_delete)
+    assert not t.contains(to_delete)
+

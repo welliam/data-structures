@@ -65,6 +65,32 @@ class BinaryTree(object):
                 0 if not n.right else n.right.depth
             )
 
+    def delete(self, val):
+        """Delete a node from the tree while optimizing tree balance."""
+        if self.root is None:
+            raise KeyError('Value not found in tree.')
+        parent = self.root
+        if parent.value == val:
+            self.root = None
+            return
+        while True:
+            if val < parent.value:
+                if not parent.left:
+                    raise KeyError('Value not found in tree.')
+                if parent.left.value == val:
+                    parent.left = None
+                    break
+                parent = parent.left
+            else:
+                if not parent.right:
+                    raise KeyError('Value not found in tree.')
+                if parent.right.value == val:
+                    parent.right = None
+                    break
+                parent = parent.right
+
+
+
     def size(self):
         """Return the size of the BinaryTree."""
         return self._length
