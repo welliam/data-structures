@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-"""Test binary_tree.py"""
+"""Test binary_tree.py ."""
 
 import pytest
 
@@ -15,9 +15,11 @@ CONTAINS_TABLE = [
 
 DELETE_TABLE = [
     ([1], 1),
-    #[1,2], 1),
     ([1, 2], 2),
-    ([2, 1], 1)
+    ([2, 1], 1),
+    #([1, 2], 1),
+    #([2, 1], 2),
+
 ]
 
 
@@ -228,7 +230,7 @@ def test_post_order(to_insert, equals):
 
 
 @pytest.mark.parametrize('to_insert, to_delete', DELETE_TABLE)
-def test_post_order(to_insert, to_delete):
+def test_delete(to_insert, to_delete):
     """Test deletion of a node."""
     from .binary_tree import BinaryTree
     t = BinaryTree()

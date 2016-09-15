@@ -74,22 +74,14 @@ class BinaryTree(object):
             self.root = None
             return
         while True:
-            if val < parent.value:
-                if not parent.left:
-                    raise KeyError('Value not found in tree.')
-                if parent.left.value == val:
-                    parent.left = None
-                    break
-                parent = parent.left
-            else:
-                if not parent.right:
-                    raise KeyError('Value not found in tree.')
-                if parent.right.value == val:
-                    parent.right = None
-                    break
-                parent = parent.right
-
-
+            branch_name = 'left' if val < parent.value else 'right'
+            branch = getattr(parent, branch_name)
+            if not branch:
+                raise KeyError('Value not found in tree.')
+            if branch.value == val:
+                setattr(parent, branch_name, None)
+                break
+            parent = branch
 
     def size(self):
         """Return the size of the BinaryTree."""
