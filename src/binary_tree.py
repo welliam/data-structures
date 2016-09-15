@@ -79,7 +79,10 @@ class BinaryTree(object):
             if not branch:
                 raise KeyError('Value not found in tree.')
             if branch.value == val:
-                setattr(parent, branch_name, None)
+                if not branch.left:
+                    setattr(parent, branch_name, branch.right)
+                else:
+                    setattr(parent, branch_name, branch.left)
                 break
             parent = branch
 
