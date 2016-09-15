@@ -15,9 +15,9 @@ class Node(object):
         self.right = right
         self.depth = 0
 
-    def find_max(self):
+    def find_max_parent(self):
         """Find the largest node contained in this node's branches."""
-        while self.right:
+        while self.right.right:
             self = self.right
         return self
 

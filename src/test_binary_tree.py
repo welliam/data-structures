@@ -30,8 +30,8 @@ DELETE_INTEGRITY_TABLE = [
     ([1, 2, 3], 1, 3)
 ]
 
-FIND_MAX_TABLE = [
-    [1],
+FIND_MAX_PARENT_TABLE = [
+    [1, 2],
     [1, 2, 0],
     range(500),
     [5, 4, 8, 2, 0, 1]
@@ -265,11 +265,11 @@ def test_delete_integrity(insert, delete, contains):
     assert t.contains(contains)
 
 
-@pytest.mark.parametrize('insert', FIND_MAX_TABLE)
+@pytest.mark.parametrize('insert', FIND_MAX_PARENT_TABLE)
 def test_find_max(insert):
-    """Test find_maxing a node."""
+    """Test find_max_parenting a node."""
     from .binary_tree import BinaryTree
     t = BinaryTree()
     for value in insert:
         t.insert(value)
-    assert t.root.find_max().value == max(insert)
+    assert t.root.find_max_parent().right.value == max(insert)
