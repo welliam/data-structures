@@ -71,7 +71,10 @@ class BinaryTree(object):
             raise KeyError('Value not found in tree.')
         parent = self.root
         if parent.value == val:
-            self.root = None
+            if not parent.left:
+                self.root = parent.right
+            else:
+                self.root = self.root.left
             return
         while True:
             branch_name = 'left' if val < parent.value else 'right'

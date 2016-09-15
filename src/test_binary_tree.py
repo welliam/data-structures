@@ -18,8 +18,16 @@ DELETE_TABLE = [
     ([1, 2], 2),
     ([2, 1], 1),
     ([1, 2], 1),
-    ([2, 1], 2),
+    ([2, 1], 2)
+]
 
+DELETE_INTEGRITY_TABLE = [
+    ([1, 2], 2, 1),
+    ([1, 2, 0], 2, 0),
+    ([1, 2, 0], 2, 1),
+    ([1, 2], 1, 2),
+    ([1, 2, 3], 1, 2),
+    ([1, 2, 3], 1, 3)
 ]
 
 
@@ -239,3 +247,12 @@ def test_delete(to_insert, to_delete):
     t.delete(to_delete)
     assert not t.contains(to_delete)
 
+@pytest.mark.parametrize('insert, delete, contains', DELETE_INTEGRITY_TABLE)
+def test_delete_integrity(insert, delete, contains):
+    """Test deletion of a node."""
+    from .binary_tree import BinaryTree
+    t = BinaryTree()
+    for value in insert:
+        t.insert(value)
+    t.delete(delete)
+    assert t.contains(contains)
