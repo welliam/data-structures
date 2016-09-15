@@ -37,6 +37,13 @@ FIND_MAX_PARENT_TABLE = [
     [5, 4, 8, 2, 0, 1]
 ]
 
+FIND_MIN_TABLE = [
+    [1, 2],
+    [1, 2, 0],
+    range(500),
+    [5, 4, 8, 2, 0, 1]
+]
+
 BREADTH_TABLE = [
     ([], []),
     ([1], [1]),
@@ -273,3 +280,12 @@ def test_find_max(insert):
     for value in insert:
         t.insert(value)
     assert t.root.find_max_parent().right.value == max(insert)
+
+@pytest.mark.parametrize('insert', FIND_MIN_TABLE)
+def test_find_min(insert):
+    """Test find_mining a node."""
+    from .binary_tree import BinaryTree
+    t = BinaryTree()
+    for value in insert:
+        t.insert(value)
+    assert t.root.find_min().value == min(insert)

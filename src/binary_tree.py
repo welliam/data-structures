@@ -16,9 +16,15 @@ class Node(object):
         self.depth = 0
 
     def find_max_parent(self):
-        """Find the largest node contained in this node's branches."""
+        """Find the parent of the largest node in this node's branches."""
         while self.right.right:
             self = self.right
+        return self
+
+    def find_min(self):
+        """Find the smallest node in this node's branches."""
+        while self.left:
+            self = self.left
         return self
 
 
@@ -77,7 +83,17 @@ class BinaryTree(object):
             raise KeyError('Value not found in tree.')
         parent = self.root
         if parent.value == val:
-            self.root = parent.left if parent.left else parent.right
+            if parent.left and parent.right:
+                if parent.left.right:
+                    max_node_parent = parent.left.find_max_parent()
+                    max_node = max_node_parent.right
+                    left_branch = parent.left
+                    self.root = max_node
+                    self.left = left_branch
+                else:
+                    self.root = parent.left
+            else:
+                self.root = parent.left if parent.left else parent.right
             return
         while True:
             branch_name = 'left' if val < parent.value else 'right'
