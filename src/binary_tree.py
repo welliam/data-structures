@@ -15,6 +15,12 @@ class Node(object):
         self.right = right
         self.depth = 0
 
+    def find_max(self):
+        """Find the largest node contained in this node's branches."""
+        while self.right:
+            self = self.right
+        return self
+
 
 class BinaryTree(object):
     """Binary tree."""

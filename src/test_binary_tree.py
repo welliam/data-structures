@@ -30,6 +30,12 @@ DELETE_INTEGRITY_TABLE = [
     ([1, 2, 3], 1, 3)
 ]
 
+FIND_MAX_TABLE = [
+    [1],
+    [1, 2, 0],
+    range(500),
+    [5, 4, 8, 2, 0, 1]
+]
 
 BREADTH_TABLE = [
     ([], []),
@@ -247,12 +253,23 @@ def test_delete(to_insert, to_delete):
     t.delete(to_delete)
     assert not t.contains(to_delete)
 
+
 @pytest.mark.parametrize('insert, delete, contains', DELETE_INTEGRITY_TABLE)
 def test_delete_integrity(insert, delete, contains):
-    """Test deletion of a node."""
+    """Test deletion of a node doesn't remove other values."""
     from .binary_tree import BinaryTree
     t = BinaryTree()
     for value in insert:
         t.insert(value)
     t.delete(delete)
     assert t.contains(contains)
+
+
+@pytest.mark.parametrize('insert', FIND_MAX_TABLE)
+def test_find_max(insert):
+    """Test find_maxing a node."""
+    from .binary_tree import BinaryTree
+    t = BinaryTree()
+    for value in insert:
+        t.insert(value)
+    assert t.root.find_max().value == max(insert)
