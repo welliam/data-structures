@@ -21,11 +21,10 @@ class Node(object):
             self = self.right
         return self
 
-    def find_min(self):
-        """Find the smallest node in this node's branches."""
+    def swap_left(self):
         while self.left:
+            self.value, self.left.value = self.left.value, self.value
             self = self.left
-        return self
 
 
 class BinaryTree(object):
@@ -85,11 +84,7 @@ class BinaryTree(object):
         if parent.value == val:
             if parent.left and parent.right:
                 if parent.left.right:
-                    max_node_parent = parent.left.find_max_parent()
-                    max_node = max_node_parent.right
-                    left_branch = parent.left
-                    self.root = max_node
-                    self.left = left_branch
+                    pass
                 else:
                     self.root = parent.left
             else:
