@@ -18,7 +18,12 @@ DELETE_TABLE = [
     ([1, 2], 2),
     ([2, 1], 1),
     ([1, 2], 1),
-    ([2, 1], 2)
+    ([2, 1], 2),
+    ([5, 1, 7], 5),
+    ([5, 1, 7], 5),
+    ([5, 2, 7, 4], 5),
+
+    ([5, 7, 2, 4, 3, 2.5], 5),
 ]
 
 DELETE_INTEGRITY_TABLE = [
@@ -27,10 +32,23 @@ DELETE_INTEGRITY_TABLE = [
     ([1, 2, 0], 2, 1),
     ([1, 2], 1, 2),
     ([1, 2, 3], 1, 2),
-    ([1, 2, 3], 1, 3)
+    ([5, 1, 7], 5, 1),
+    ([5, 1, 7], 5, 7),
+
+    ([5, 2, 7, 4], 5, 2),
+    ([5, 2, 7, 4], 5, 7),
+    ([5, 2, 7, 4], 5, 4),
+
+    
+    ([5, 7, 2, 4, 3, 2.5], 5, 7),
+    ([5, 7, 2, 4, 3, 2.5], 5, 2),
+    ([5, 7, 2, 4, 3, 2.5], 5, 4),
+    ([5, 7, 2, 4, 3, 2.5], 5, 3),
+    ([5, 7, 2, 4, 3, 2.5], 5, 2.5)
+
 ]
 
-FIND_MAX_PARENT_TABLE = [
+FIND_MAX_TABLE = [
     [1, 2],
     [1, 2, 0],
     range(500),
@@ -265,21 +283,15 @@ def test_delete_integrity(insert, delete, contains):
     assert t.contains(contains)
 
 
-@pytest.mark.parametrize('insert', FIND_MAX_PARENT_TABLE)
+@pytest.mark.parametrize('insert', FIND_MAX_TABLE)
 def test_find_max(insert):
-    """Test find_max_parenting a node."""
+    """Test find_maxing node."""
     from .binary_tree import BinaryTree
     t = BinaryTree()
     for value in insert:
         t.insert(value)
-    assert t.root.find_max_parent().right.value == max(insert)
-
-
-def test_swap_left_nop():
-    from binary_tree import Node
-    node = Node(0)
-    node.swap_left()
-    assert node.value == 0
+    parent, max_node = t.root.find_max()
+    assert max_node.value == max(insert)
 
 
 def test_swap_left_top():
@@ -289,26 +301,8 @@ def test_swap_left_top():
     assert node.value == 1
 
 
-def test_swap_left_bottom():
-    from binary_tree import Node
-    node = Node(0, Node(1))
-    node.swap_left()
-    while node.left:
-        node = node.left
-    assert node.value == 0
-
-
 def test_swap_left_top_deep():
     from binary_tree import Node
     node = Node(0, Node(1, Node(2)))
     node.swap_left()
     assert node.value == 1
-
-
-def test_swap_left_bottom_deep():
-    from binary_tree import Node
-    node = Node(0, Node(1, Node(2)))
-    node.swap_left()
-    while node.left:
-        node = node.left
-    assert node.value == 0

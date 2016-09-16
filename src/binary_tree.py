@@ -15,16 +15,21 @@ class Node(object):
         self.right = right
         self.depth = 0
 
-    def find_max_parent(self):
+    def find_max(self):
         """Find the parent of the largest node in this node's branches."""
-        while self.right.right:
+        parent = None
+        while self.right:
+            parent = self
             self = self.right
-        return self
+        return parent, self
 
     def swap_left(self):
         while self.left:
             self.value, self.left.value = self.left.value, self.value
+            parent = self
             self = self.left
+        parent.left = None
+        return self
 
 
 class BinaryTree(object):
@@ -83,10 +88,17 @@ class BinaryTree(object):
         parent = self.root
         if parent.value == val:
             if parent.left and parent.right:
-                if parent.left.right:
-                    pass
-                else:
-                    self.root = parent.left
+                parent, max_node = parent.left.find_max()
+                if parent is None:           # case A
+                    self.root.value = max_node.value
+                    self.root.left = None
+                elif max_node.left is None:  # case B
+                    self.root.value = max_node.value
+                    parent.right = None
+                else:                        # case C
+                    self.root.value = max_node.value
+                    max_node.swap_left()
+
             else:
                 self.root = parent.left if parent.left else parent.right
             return
