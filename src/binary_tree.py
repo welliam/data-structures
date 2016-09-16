@@ -81,17 +81,15 @@ class BinaryTree(object):
                 0 if not n.right else n.right.depth
             )
 
-    def _remove_root(self, set_root, root):
+    def _remove_root(self, root):
         if root.left and root.right:
             parent, max_node = root.left.find_max()
-            if parent is None:           # case A
-                root.value = max_node.value
+            root.value = max_node.value
+            if parent is None:
                 root.left = None
-            elif max_node.left is None:  # case B
-                root.value = max_node.value
+            elif max_node.left is None:
                 parent.right = None
-            else:                        # case C
-                root.value = max_node.value
+            else:
                 max_node.swap_left()
         else:
             self.root = root.left if root.left else root.right
@@ -102,9 +100,7 @@ class BinaryTree(object):
             raise KeyError('Value not found in tree.')
         parent = self.root
         if parent.value == val:
-            def set_root(to):
-                self.root = to
-            return self._remove_root(set_root, self.root)
+            return self._remove_root(self.root)
         while True:
             branch_name = 'left' if val < parent.value else 'right'
             branch = getattr(parent, branch_name)
@@ -112,13 +108,10 @@ class BinaryTree(object):
                 raise KeyError('Value not found in tree.')
             if branch.value == val:
                 if branch.left and branch.right:
-                    def set_root(to):
-                        setattr(parent, branch_name, to)
-                    self._remove_root(set_root, branch)
-                elif not branch.left:
-                    setattr(parent, branch_name, branch.right)
+                    self._remove_root(branch)
                 else:
-                    setattr(parent, branch_name, branch.left)
+                    to_set = branch.left if branch.left else branch.right
+                    setattr(parent, branch_name, to_set)
                 break
             parent = branch
 
