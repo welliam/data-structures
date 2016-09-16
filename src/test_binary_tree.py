@@ -363,6 +363,7 @@ def test_find_max(insert):
 
 
 def test_swap_left_top():
+    """Test swapping swaps top value."""
     from .binary_tree import Node
     node = Node(0, Node(1))
     node.swap_left()
@@ -370,6 +371,7 @@ def test_swap_left_top():
 
 
 def test_swap_left_top_deep():
+    """Test swapping swaps top value in deep swap."""
     from .binary_tree import Node
     node = Node(0, Node(1, Node(2)))
     node.swap_left()
@@ -377,12 +379,14 @@ def test_swap_left_top_deep():
 
 
 def test_delete_nonexistent_node():
+    """Test deleting when tree has no root"""
     from .binary_tree import BinaryTree
     with pytest.raises(KeyError):
         BinaryTree().delete(0)
 
 
 def test_delete_nonexistent_node_deep():
+    """Test deleting when value not in tree."""
     from .binary_tree import BinaryTree
     t = BinaryTree()
     t.insert(0)
