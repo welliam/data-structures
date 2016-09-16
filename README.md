@@ -97,3 +97,13 @@ breadth_first, and three depth first traversal methods:
 - post_order, which orders the left node's values before the right
   node's values before finally the top node's value,
 - in_order, which returns the binary search tree's values sorted
+
+### Binary Search Tree Deletion
+
+We implement binary search tree removal. When deleting a node with
+zero or one branch, the algorithm simply replaces the branch
+containing the deleted node with either None or the single
+branch. Otherwise, the algorithm find the maximum node that is less
+than the node to be deleted and continually move that branch downwards
+to the left. Finally, the algorithm replace the node to be deleted
+with the max node, and remove the reference to that node.
