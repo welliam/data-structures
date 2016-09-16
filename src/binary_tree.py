@@ -81,8 +81,7 @@ class BinaryTree(object):
                 0 if not n.right else n.right.depth
             )
 
-    def _remove_root(self):
-        root = self.root
+    def _remove_root(self, set_root, root):
         if root.left and root.right:
             parent, max_node = root.left.find_max()
             if parent is None:           # case A
@@ -104,7 +103,9 @@ class BinaryTree(object):
             raise KeyError('Value not found in tree.')
         parent = self.root
         if parent.value == val:
-            return self._remove_root()
+            def set_root(to):
+                self.root = to
+            return self._remove_root(set_root, self.root)
         while True:
             branch_name = 'left' if val < parent.value else 'right'
             branch = getattr(parent, branch_name)
