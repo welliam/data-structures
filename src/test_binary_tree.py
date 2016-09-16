@@ -134,3 +134,12 @@ def test_balance(to_insert, balance):
     for val in to_insert:
         t.insert(val)
     assert t.balance() / (abs(t.balance()) or 1) == balance
+
+
+def test_insert_duplicate():
+    """Test inserting duplicates does nothing."""
+    from binary_tree import BinaryTree
+    t = BinaryTree()
+    t.insert(1)
+    t.insert(1)
+    assert t.size() == 1
