@@ -316,14 +316,14 @@ def test_find_max(insert):
 
 
 def test_swap_left_top():
-    from binary_tree import Node
+    from .binary_tree import Node
     node = Node(0, Node(1))
     node.swap_left()
     assert node.value == 1
 
 
 def test_swap_left_top_deep():
-    from binary_tree import Node
+    from .binary_tree import Node
     node = Node(0, Node(1, Node(2)))
     node.swap_left()
     assert node.value == 1
