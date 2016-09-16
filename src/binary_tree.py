@@ -82,6 +82,7 @@ class BinaryTree(object):
             )
 
     def _remove_root(self, root):
+        """Remove node at root."""
         if root.left and root.right:
             parent, max_node = root.left.find_max()
             root.value = max_node.value
