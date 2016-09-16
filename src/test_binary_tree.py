@@ -374,3 +374,17 @@ def test_swap_left_top_deep():
     node = Node(0, Node(1, Node(2)))
     node.swap_left()
     assert node.value == 1
+
+
+def test_delete_nonexistent_node():
+    from .binary_tree import BinaryTree
+    with pytest.raises(KeyError):
+        BinaryTree().delete(0)
+
+
+def test_delete_nonexistent_node_deep():
+    from .binary_tree import BinaryTree
+    t = BinaryTree()
+    t.insert(0)
+    with pytest.raises(KeyError):
+        t.delete(1)
