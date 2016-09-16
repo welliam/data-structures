@@ -95,7 +95,6 @@ class BinaryTree(object):
                 max_node.swap_left()
         else:
             self.root = root.left if root.left else root.right
-            return
 
     def delete(self, val):
         """Delete a node from the tree while optimizing tree balance."""
@@ -112,7 +111,11 @@ class BinaryTree(object):
             if not branch:
                 raise KeyError('Value not found in tree.')
             if branch.value == val:
-                if not branch.left:
+                if branch.left and branch.right:
+                    def set_root(to):
+                        setattr(parent, branch_name, to)
+                    self._remove_root(set_root, branch)
+                elif not branch.left:
                     setattr(parent, branch_name, branch.right)
                 else:
                     setattr(parent, branch_name, branch.left)
