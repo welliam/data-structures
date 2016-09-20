@@ -38,7 +38,7 @@ def insertion_sort(list_in):
 if __name__ == '__main__':
     if len(sys.argv) != 1:
         print('usage: python sorting.py')
-        sys.exit(0)
+        sys.exit(1)
     print('Let\'s sort some lists (10000 elements, 100 times each)...')
     x = build_lists()
     t = timeit.timeit(lambda: insertion_sort(x[0]), number=100)
@@ -54,4 +54,4 @@ if __name__ == '__main__':
         print('case:', t)
 
     print('program terminated.')
-    sys.exit(1)
+    sys.exit(0)
