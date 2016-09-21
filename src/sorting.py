@@ -26,7 +26,7 @@ def insertion_sort(list_in):
     Reference: Bentley, Jon (2000). Programming Pearls.
     ACM Press/Addison–Wesley.
     """
-    for i in range(2, len(list_in)):
+    for i in range(1, len(list_in)):
         v = list_in[i]
         j = i
         while list_in[j - 1] > v and j >= 1:
@@ -39,8 +39,10 @@ if __name__ == '__main__':
     if len(sys.argv) != 1:
         print('usage: python sorting.py')
         sys.exit(1)
+
     print('Let\'s sort some lists (10000 elements, 100 times each)...')
     x = build_lists()
+
     t = timeit.timeit(lambda: insertion_sort(x[0]), number=100)
     print('Best case: ', t)
 
@@ -48,7 +50,6 @@ if __name__ == '__main__':
     print('Worst case: ', t)
 
     print('5 random cases:')
-
     for i in range(2, len(x)):
         t = timeit.timeit(lambda: insertion_sort(x[i]), number=100)
         print('case:', t)
