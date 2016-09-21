@@ -13,6 +13,6 @@ LIST_TABLE = [
 
 @pytest.mark.parametrize('list_in, list_out', LIST_TABLE)
 def test_insertion_sort(list_in, list_out):
-    from sorting import insertion_sort
+    from .sorting import insertion_sort
     print(list_in)
     assert list_out == insertion_sort(list_in)
