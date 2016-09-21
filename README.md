@@ -74,3 +74,9 @@ modeling networks, as well as a wide range of algorithms in general).
 
 I read about breadth first searching [on
 Wikipedia](https://en.wikipedia.org/wiki/Breadth-first_search).
+
+### Sorting
+Insertion sort is a function which takes a list of numbers and sorts
+them in ascending order.  This implementation is a python port of the
+sorting algorithm created by Jon Bentley.
+
