@@ -498,3 +498,11 @@ def test_rot_integrity_size_l(tree, pivot):
 
     for i in tree:
         assert t.size() == len(tree)
+
+
+def test_duplicate_insert():
+    from .binary_tree import BinaryTree
+    t = BinaryTree()
+    t.insert(0)
+    t.insert(0)
+    assert t.size() == 1
