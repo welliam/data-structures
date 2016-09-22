@@ -1,4 +1,6 @@
 # data-structures
+[![Build Status](https://travis-ci.org/welliam/data-structures.svg?branch=bst-traversal)](https://travis-ci.org/welliam/data-structures)
+
 Data structure implementations for Code Fellows Python 401.
 
 ## Singly linked list
@@ -84,4 +86,24 @@ node's value, and the node's right child must always be greater than
 the node's value. This allows for quick searching of inserted
 values. The binary search tree is used in sorting algorithms and other
 situations where storing values with quick searching is needed.
- 
+
+
+### Binary Search Tree Traversal
+
+The BST implementation has four types of traversal methods:
+breadth_first, and three depth first traversal methods:
+- pre_order, which orders the top node's value before iterating first upon
+  the left and then upon the right branches,
+- post_order, which orders the left node's values before the right
+  node's values before finally the top node's value,
+- in_order, which returns the binary search tree's values sorted
+
+### Binary Search Tree Deletion
+
+We implement binary search tree removal. When deleting a node with
+zero or one branch, the algorithm simply replaces the branch
+containing the deleted node with either None or the single
+branch. Otherwise, the algorithm find the maximum node that is less
+than the node to be deleted and continually move that branch downwards
+to the left. Finally, the algorithm replace the node to be deleted
+with the max node, and remove the reference to that node.
