@@ -68,6 +68,15 @@ class BinaryTree(object):
                 current = current.right
         return False
 
+    @staticmethod
+    def _walk_path(path):
+        while path:
+            n = path.pop()
+            n.depth = 1 + max(
+                0 if not n.left else n.left.depth,
+                0 if not n.right else n.right.depth
+            )
+
     def insert(self, val):
         """Insert a new value into the tree."""
         self._length += 1
@@ -78,24 +87,15 @@ class BinaryTree(object):
         path = []
         while True:
             path.append(current)
-            if val < current.value:
-                if current.left is None:
-                    current.left = Node(val)
-                    break
-                else:
-                    current = current.left
+            if val == current.value:
+                return
+            branch = 'left' if val < current.value else 'right'
+            if getattr(current, branch) is None:
+                setattr(current, branch, Node(val))
+                break
             else:
-                if current.right is None:
-                    current.right = Node(val)
-                    break
-                else:
-                    current = current.right
-        while path:
-            n = path.pop()
-            n.depth = 1 + max(
-                0 if not n.left else n.left.depth,
-                0 if not n.right else n.right.depth
-            )
+                current = getattr(current, branch)
+        self._walk_path(path)
 
     def _remove_root(self, root):
         """Remove node at root."""
