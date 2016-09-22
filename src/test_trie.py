@@ -95,4 +95,4 @@ def test_trie_contains_dollar():
     from .trie import Trie
     t = Trie()
     t.insert('a')
-    t.contains('a$ uh oh!')
+    assert not t.contains('a$ uh oh!')
