@@ -6,7 +6,7 @@ class Trie(object):
         self.words = {}
 
     def contains(self, s):
-        """Test that string s is contained within the trie."""
+        """Return whether a string is contained within the trie."""
         words = self.words
         for c in s:
             if c not in words:
