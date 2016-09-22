@@ -609,10 +609,17 @@ def test_node_r_rot_complex_depth():
     t.root.left.r_rot(setchild)
     assert t.root.left.depth == 2
 
+REBALANCE_INSERT_TABLE = [
+    ([3, 2, 1], [2, 1, 3]),
+    ([1, 2, 3], [2, 1, 3]),
+    ([1, 3, 2], [2, 1, 3]),
+    ([3, 1, 2], [2, 1, 3]),
+]
 
-def test_rebalance_insert():
+@pytest.mark.parametrize('insert, breadth_first', REBALANCE_INSERT_TABLE)
+def test_rebalance_insert(insert, breadth_first):
     from .binary_tree import BinaryTree
     t = BinaryTree()
-    for i in [3, 2, 1]:
+    for i in insert:
         t.insert(i)
-    assert list(t.breadth_first()) == [2, 1, 3]
+    assert list(t.breadth_first()) == breadth_first

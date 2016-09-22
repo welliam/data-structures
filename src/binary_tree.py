@@ -102,14 +102,15 @@ class BinaryTree(object):
         elif step1 == 'left' and step2 == 'right':
             def set_subtree_child(to):
                 node.left = to
-                path[i+1].l_rot(set_subtree_child)
-                node.r_rot(setchild)
+            path[i+1].l_rot(set_subtree_child)
+            node.r_rot(setchild)
         elif step1 == 'right' and step2 == 'left':
             def set_subtree_child(to):
                 node.right = to
-                node.l_rot(setchild)
+            path[i+1].r_rot(set_subtree_child)
+            node.l_rot(setchild)
         else:  # right right
-            node.r_rot(setchild)
+            node.l_rot(setchild)
 
     def _walk_path(self, path):
         i = len(path)
