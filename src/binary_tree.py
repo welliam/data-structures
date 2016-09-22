@@ -79,23 +79,23 @@ class BinaryTree(object):
 
     def insert(self, val):
         """Insert a new value into the tree."""
-        self._length += 1
         if self.root is None:
             self.root = Node(val)
-            return
-        current = self.root
-        path = []
-        while True:
-            path.append(current)
-            if val == current.value:
-                return
-            branch = 'left' if val < current.value else 'right'
-            if getattr(current, branch) is None:
-                setattr(current, branch, Node(val))
-                break
-            else:
-                current = getattr(current, branch)
-        self._walk_path(path)
+        else:
+            current = self.root
+            path = []
+            while True:
+                path.append(current)
+                if val == current.value:
+                    return
+                branch = 'left' if val < current.value else 'right'
+                if getattr(current, branch) is None:
+                    setattr(current, branch, Node(val))
+                    break
+                else:
+                    current = getattr(current, branch)
+            self._walk_path(path)
+        self._length += 1
 
     def _remove_root(self, root):
         """Remove node at root."""
