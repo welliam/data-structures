@@ -203,8 +203,8 @@ R_ROT_TABLE = [
 
 L_ROT_TABLE = [
     ([2, 3], 3),
-    ([3, 3.5, 3.3], 3.5),
-    ([5, 1, 8, 7, 9, 6.5, 7.5], 8),
+    ([3, 3.5, 0, 3.3], 3.5),
+    ([5, 1, 8, 0, 2, 7, 9, 6.5, 7.5], 8),
 ]
 
 
@@ -584,3 +584,27 @@ def test_node_r_rot_pivot_depth():
         t.root = to
     t.root.r_rot(setchild)
     assert t.root.depth == 1
+
+
+def test_node_l_rot_complex_depth():
+    from .binary_tree import BinaryTree
+    t = BinaryTree()
+    for val in [5, 3, 7, 2, 4, 6, 8]:
+        t.insert(val)
+
+    def setchild(to):
+        t.root.right = to
+    t.root.right.l_rot(setchild)
+    assert t.root.right.depth == 2
+
+
+def test_node_r_rot_complex_depth():
+    from .binary_tree import BinaryTree
+    t = BinaryTree()
+    for val in [5, 3, 7, 2, 4, 6, 8]:
+        t.insert(val)
+
+    def setchild(to):
+        t.root.left = to
+    t.root.left.r_rot(setchild)
+    assert t.root.left.depth == 2
