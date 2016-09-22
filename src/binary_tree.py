@@ -47,6 +47,13 @@ class Node(object):
         self.right = pivot_l
         setchild(pivot)
 
+    def reset_depth(self):
+        """Reset depth of node according to its children."""
+        self.depth = 1 + max(
+            self.left.depth if self.left else 0,
+            self.right.depth if self.right else 0
+        )
+
 
 class BinaryTree(object):
     """Binary tree."""
@@ -71,11 +78,7 @@ class BinaryTree(object):
     @staticmethod
     def _walk_path(path):
         while path:
-            n = path.pop()
-            n.depth = 1 + max(
-                0 if not n.left else n.left.depth,
-                0 if not n.right else n.right.depth
-            )
+            path.pop().reset_depth()
 
     def insert(self, val):
         """Insert a new value into the tree."""
