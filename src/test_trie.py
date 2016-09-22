@@ -81,3 +81,9 @@ def test_trie_many_words():
         t.insert(word)
     for word in WORDS:
         assert t.contains(word)
+
+def test_trie_insert_dollar():
+    """Test trie will reject inserting a string containing $."""
+    from .trie import Trie
+    with pytest.raises(ValueError):
+        Trie().insert('$')

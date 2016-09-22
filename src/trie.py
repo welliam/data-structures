@@ -17,6 +17,8 @@ class Trie(object):
     def insert(self, s):
         """Insert string into trie."""
         words = self.words
+        if '$' in s:
+            raise ValueError('String inserted into trie must not contain $.')
         for c in s:
             words = words.setdefault(c, {})
         words['$'] = True
