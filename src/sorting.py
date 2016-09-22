@@ -20,19 +20,19 @@ def build_lists():
 
 
 def insertion_sort(list_in):
-    """Implementation of Jon Bentley's insertion sort algorithm.
+    """Python implementation of Jon Bentley's insertion sort algorithm.
 
     List_in is a list of numbers.
     Reference: Bentley, Jon (2000). Programming Pearls.
     ACM Press/Addison–Wesley.
     """
-    for i in range(1, len(list_in)):
-        v = list_in[i]
-        j = i
-        while list_in[j - 1] > v and j >= 1:
-            list_in[j] = list_in[j - 1]
-            j -= 1
-        list_in[j] = v
+    for inc in range(1, len(list_in)):
+        curr_value = list_in[inc]
+        tmp_inc = inc
+        while list_in[tmp_inc - 1] > curr_value and tmp_inc >= 1:
+            list_in[tmp_inc] = list_in[tmp_inc - 1]
+            tmp_inc -= 1
+        list_in[tmp_inc] = curr_value
     return list_in
 
 if __name__ == '__main__':
