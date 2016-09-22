@@ -31,6 +31,22 @@ class Node(object):
         parent.left = None
         return self
 
+    def r_rot(self, setchild):
+        pivot = self.left
+        pivot_r = pivot.right
+
+        pivot.right = self
+        self.left = pivot_r
+        setchild(pivot)
+
+    def l_rot(self, setchild):
+        pivot = self.right
+        pivot_l = pivot.left
+
+        pivot.left = self
+        self.right = pivot_l
+        setchild(pivot)
+
 
 class BinaryTree(object):
     """Binary tree."""

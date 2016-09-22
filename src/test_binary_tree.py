@@ -113,7 +113,7 @@ DELETE_INTEGRITY_TABLE = [
     ([0, 10, 15, 5, 2, 7, 4, 3, 2.5], 5, 4),
     ([0, 10, 15, 5, 2, 7, 4, 3, 2.5], 5, 3),
     ([0, 10, 15, 5, 2, 7, 4, 3, 2.5], 5, 2.5)
-    
+
 ]
 
 FIND_MAX_TABLE = [
@@ -192,7 +192,19 @@ BALANCE_TABLE = [
     (range(10), -1),
     (range(10, 0, -1), 1),
     ([5, 3, 7, 1, 6, 9], 0),
-    ([0, 2, 4, 3, 6, 8], -1)
+    ([0, 2, 4, 3, 6, 8], -1),
+]
+
+R_ROT_TABLE = [
+    ([2, 1], 1),
+    ([2, 1, 3], 1),
+    ([3, 2, 4, 1, 2.5, 3.5, 4.5], 2),
+]
+
+L_ROT_TABLE = [
+    ([2, 3], 3),
+    ([3, 3.5, 3.3], 3.5),
+    ([5, 1, 8, 7, 9, 6.5, 7.5], 8),
 ]
 
 
@@ -392,3 +404,97 @@ def test_delete_nonexistent_node_deep():
     t.insert(0)
     with pytest.raises(KeyError):
         t.delete(1)
+
+
+@pytest.mark.parametrize('tree, pivot', R_ROT_TABLE)
+def test_rot_right(tree, pivot):
+    from .binary_tree import BinaryTree
+
+    def set_child(to):
+        t.root = to
+
+    t = BinaryTree()
+    for i in tree:
+        t.insert(i)
+
+    t.root.r_rot(set_child)
+    assert t.root.value == pivot
+
+
+@pytest.mark.parametrize('tree, pivot', R_ROT_TABLE)
+def test_rot_integrity_contains(tree, pivot):
+    from .binary_tree import BinaryTree
+
+    def set_child(to):
+        t.root = to
+
+    t = BinaryTree()
+    for i in tree:
+        t.insert(i)
+    t.root.r_rot(set_child)
+
+    for i in tree:
+        assert t.contains(i)
+
+
+@pytest.mark.parametrize('tree, pivot', R_ROT_TABLE)
+def test_rot_integrity_size(tree, pivot):
+    from .binary_tree import BinaryTree
+
+    def set_child(to):
+        t.root = to
+
+    t = BinaryTree()
+    for i in tree:
+        t.insert(i)
+    t.root.r_rot(set_child)
+
+    for i in tree:
+        assert t.size() == len(tree)
+
+
+@pytest.mark.parametrize('tree, pivot', L_ROT_TABLE)
+def test_rot_right(tree, pivot):
+    from .binary_tree import BinaryTree
+
+    def set_child(to):
+        t.root = to
+
+    t = BinaryTree()
+    for i in tree:
+        t.insert(i)
+
+    t.root.l_rot(set_child)
+    assert t.root.value == pivot
+
+
+@pytest.mark.parametrize('tree, pivot', L_ROT_TABLE)
+def test_rot_integrity_contains(tree, pivot):
+    from .binary_tree import BinaryTree
+
+    def set_child(to):
+        t.root = to
+
+    t = BinaryTree()
+    for i in tree:
+        t.insert(i)
+    t.root.l_rot(set_child)
+
+    for i in tree:
+        assert t.contains(i)
+
+
+@pytest.mark.parametrize('tree, pivot', L_ROT_TABLE)
+def test_rot_integrity_size(tree, pivot):
+    from .binary_tree import BinaryTree
+
+    def set_child(to):
+        t.root = to
+
+    t = BinaryTree()
+    for i in tree:
+        t.insert(i)
+    t.root.l_rot(set_child)
+
+    for i in tree:
+        assert t.size() == len(tree)
