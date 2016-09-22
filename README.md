@@ -84,4 +84,13 @@ node's value, and the node's right child must always be greater than
 the node's value. This allows for quick searching of inserted
 values. The binary search tree is used in sorting algorithms and other
 situations where storing values with quick searching is needed.
- 
+
+## Trie
+
+The trie is a data structure for efficient storage and lookup of
+words. It is a tree data structure where each node contains a mapping
+of characters to other nodes. If the node contains a $ character, then
+the nodes from the top of the trie to that node is a word contained in
+the trie. Although they can be generalized for other data structures,
+tries generally are used for string related applications such as
+autocomplete.
