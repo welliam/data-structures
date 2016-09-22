@@ -31,12 +31,24 @@ class Node(object):
         parent.left = None
         return self
 
+    def reset_depth(self):
+        """Reset depth of node according to its children."""
+        if self.left or self.right:
+            self.depth = 1 + max(
+                self.left.depth if self.left else 0,
+                self.right.depth if self.right else 0
+            )
+        else:
+            self.depth = 0
+
     def r_rot(self, setchild):
         pivot = self.left
         pivot_r = pivot.right
 
         pivot.right = self
         self.left = pivot_r
+        self.reset_depth()
+        pivot.reset_depth()
         setchild(pivot)
 
     def l_rot(self, setchild):
@@ -45,15 +57,9 @@ class Node(object):
 
         pivot.left = self
         self.right = pivot_l
+        self.reset_depth()
+        pivot.reset_depth()
         setchild(pivot)
-
-    def reset_depth(self):
-        """Reset depth of node according to its children."""
-        if self.left or self.right:
-            self.depth = 1 + max(
-                self.left.depth if self.left else 0,
-                self.right.depth if self.right else 0
-            )
 
     def direction(self, node):
         return 'left' if self.value > node.value else 'right'

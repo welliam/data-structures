@@ -536,3 +536,51 @@ def test_node_path_ll():
 def test_node_path_lr():
     from .binary_tree import Node
     assert Node(0).path_direction(Node(-3), Node(-1)) == ('left', 'right')
+
+
+def test_node_l_rot_root_depth():
+    from .binary_tree import BinaryTree
+    t = BinaryTree()
+    t.insert(0)
+    t.insert(2)
+
+    def setchild(to):
+        t.root = to
+    t.root.l_rot(setchild)
+    assert t.root.left.depth == 0
+
+
+def test_node_l_rot_pivot_depth():
+    from .binary_tree import BinaryTree
+    t = BinaryTree()
+    t.insert(0)
+    t.insert(2)
+
+    def setchild(to):
+        t.root = to
+    t.root.l_rot(setchild)
+    assert t.root.depth == 1
+
+
+def test_node_r_rot_root_depth():
+    from .binary_tree import BinaryTree
+    t = BinaryTree()
+    t.insert(2)
+    t.insert(0)
+
+    def setchild(to):
+        t.root = to
+    t.root.r_rot(setchild)
+    assert t.root.right.depth == 0
+
+
+def test_node_r_rot_pivot_depth():
+    from .binary_tree import BinaryTree
+    t = BinaryTree()
+    t.insert(2)
+    t.insert(0)
+
+    def setchild(to):
+        t.root = to
+    t.root.r_rot(setchild)
+    assert t.root.depth == 1
