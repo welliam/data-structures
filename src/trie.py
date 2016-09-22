@@ -15,6 +15,7 @@ class Trie(object):
         return words.get('$', False)
 
     def insert(self, s):
+        """Insert string into trie."""
         words = self.words
         for c in s:
             words = words.setdefault(c, {})
