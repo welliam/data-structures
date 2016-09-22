@@ -88,6 +88,29 @@ class BinaryTree(object):
                 current = current.right
         return False
 
+    def _rebalance(self, path, node, i):
+        def setchild(to):
+            if not i:
+                self.root = to
+            elif path[i-1].direction(node) == 'left':
+                path[i-1].left = to
+            else:
+                path[i-1].right = to
+        step1, step2 = node.path_direction(path[i+1], path[i+2])
+        if step1 == 'left' and step2 == 'left':
+            node.r_rot(setchild)
+        elif step1 == 'left' and step2 == 'right':
+            def set_subtree_child(to):
+                node.left = to
+                path[i+1].l_rot(set_subtree_child)
+                node.r_rot(setchild)
+        elif step1 == 'right' and step2 == 'left':
+            def set_subtree_child(to):
+                node.right = to
+                node.l_rot(setchild)
+        else:  # right right
+            node.r_rot(setchild)
+
     def _walk_path(self, path):
         i = len(path)
         while i:
@@ -98,29 +121,7 @@ class BinaryTree(object):
                 left_depth = node.left.depth + 1 if node.left else 0
                 right_depth = node.right.depth + 1 if node.right else 0
                 if abs(left_depth - right_depth) > 1:
-                    def setchild(to):
-                        if not i:
-                            self.root = to
-                        elif path[i-1].direction(node) == 'left':
-                            path[i-1].left = to
-                        else:
-                            path[i-1].right = to
-
-                    step1, step2 = node.path_direction(path[i+1], path[i+2])
-
-                    if step1 == 'left' and step2 == 'left':
-                        node.r_rot(setchild)
-                    elif step1 == 'left' and step2 == 'right':
-                        def set_subtree_child(to):
-                            node.left = to
-                        path[i+1].l_rot(set_subtree_child)
-                        node.r_rot(setchild)
-                    elif step1 == 'right' and step2 == 'left':
-                        def set_subtree_child(to):
-                            node.right = to
-                        node.l_rot(setchild)
-                    else:  # right right
-                        node.r_rot(setchild)
+                    self._rebalance(path, node, i)
             except AttributeError:
                 pass
 
