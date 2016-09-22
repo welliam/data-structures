@@ -49,10 +49,11 @@ class Node(object):
 
     def reset_depth(self):
         """Reset depth of node according to its children."""
-        self.depth = 1 + max(
-            self.left.depth if self.left else 0,
-            self.right.depth if self.right else 0
-        )
+        if self.left or self.right:
+            self.depth = 1 + max(
+                self.left.depth if self.left else 0,
+                self.right.depth if self.right else 0
+            )
 
     def direction(self, node):
         return 'left' if self.value > node.value else 'right'
@@ -101,7 +102,9 @@ class BinaryTree(object):
                     return
                 branch = 'left' if val < current.value else 'right'
                 if getattr(current, branch) is None:
-                    setattr(current, branch, Node(val))
+                    n = Node(val)
+                    setattr(current, branch, n)
+                    path.append(n)
                     break
                 else:
                     current = getattr(current, branch)
