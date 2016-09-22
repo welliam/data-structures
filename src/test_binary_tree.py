@@ -248,7 +248,7 @@ def test_contains_basic():
     """Test contains single inserted value."""
     from .binary_tree import BinaryTree
     t = BinaryTree()
-    t.insert(1)
+    t.asymmetrical_insert(1)
     assert t.contains(1)
 
 
@@ -256,8 +256,8 @@ def test_contains_deep():
     """Test insert stores original value when inserting new one."""
     from .binary_tree import BinaryTree
     t = BinaryTree()
-    t.insert(1)
-    t.insert(2)
+    t.asymmetrical_insert(1)
+    t.asymmetrical_insert(2)
     assert t.contains(1)
 
 
@@ -267,7 +267,7 @@ def test_contains(to_insert, looking):
     from .binary_tree import BinaryTree
     t = BinaryTree()
     for value in to_insert:
-        t.insert(value)
+        t.asymmetrical_insert(value)
     assert t.contains(looking) == (looking in to_insert)
 
 
@@ -277,7 +277,7 @@ def test_size(to_insert):
     from .binary_tree import BinaryTree
     t = BinaryTree()
     for value in to_insert:
-        t.insert(value)
+        t.asymmetrical_insert(value)
     assert t.size() == len(to_insert)
 
 
@@ -287,7 +287,7 @@ def test_depth(to_insert, depth):
     from .binary_tree import BinaryTree
     t = BinaryTree()
     for val in to_insert:
-        t.insert(val)
+        t.asymmetrical_insert(val)
     assert t.depth() == depth
 
 
@@ -297,7 +297,7 @@ def test_balance(to_insert, balance):
     from .binary_tree import BinaryTree
     t = BinaryTree()
     for val in to_insert:
-        t.insert(val)
+        t.asymmetrical_insert(val)
     assert t.balance() / (abs(t.balance()) or 1) == balance
 
 
@@ -307,7 +307,7 @@ def test_breadth_first(to_insert, equals):
     from .binary_tree import BinaryTree
     t = BinaryTree()
     for value in to_insert:
-        t.insert(value)
+        t.asymmetrical_insert(value)
     assert list(t.breadth_first()) == equals
 
 
@@ -317,7 +317,7 @@ def test_pre_order(to_insert, equals):
     from .binary_tree import BinaryTree
     t = BinaryTree()
     for value in to_insert:
-        t.insert(value)
+        t.asymmetrical_insert(value)
     assert list(t.pre_order()) == equals
 
 
@@ -327,7 +327,7 @@ def test_in_order(to_insert, equals):
     from .binary_tree import BinaryTree
     t = BinaryTree()
     for value in to_insert:
-        t.insert(value)
+        t.asymmetrical_insert(value)
     assert list(t.in_order()) == equals
 
 
@@ -337,7 +337,7 @@ def test_post_order(to_insert, equals):
     from .binary_tree import BinaryTree
     t = BinaryTree()
     for value in to_insert:
-        t.insert(value)
+        t.asymmetrical_insert(value)
     assert list(t.post_order()) == equals
 
 
@@ -347,7 +347,7 @@ def test_delete(to_insert, to_delete):
     from .binary_tree import BinaryTree
     t = BinaryTree()
     for value in to_insert:
-        t.insert(value)
+        t.asymmetrical_insert(value)
     t.delete(to_delete)
     assert not t.contains(to_delete)
 
@@ -358,7 +358,7 @@ def test_delete_integrity(insert, delete, contains):
     from .binary_tree import BinaryTree
     t = BinaryTree()
     for value in insert:
-        t.insert(value)
+        t.asymmetrical_insert(value)
     t.delete(delete)
     assert t.contains(contains)
 
@@ -369,7 +369,7 @@ def test_find_max(insert):
     from .binary_tree import BinaryTree
     t = BinaryTree()
     for value in insert:
-        t.insert(value)
+        t.asymmetrical_insert(value)
     parent, max_node = t.root.find_max()
     assert max_node.value == max(insert)
 
@@ -401,7 +401,7 @@ def test_delete_nonexistent_node_deep():
     """Test deleting when value not in tree."""
     from .binary_tree import BinaryTree
     t = BinaryTree()
-    t.insert(0)
+    t.asymmetrical_insert(0)
     with pytest.raises(KeyError):
         t.delete(1)
 
@@ -608,3 +608,11 @@ def test_node_r_rot_complex_depth():
         t.root.left = to
     t.root.left.r_rot(setchild)
     assert t.root.left.depth == 2
+
+
+def test_rebalance_insert():
+    from .binary_tree import BinaryTree
+    t = BinaryTree()
+    for i in [3, 2, 1]:
+        t.insert(i)
+    assert list(t.breadth_first()) == [2, 1, 3]

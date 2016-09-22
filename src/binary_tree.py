@@ -88,12 +88,41 @@ class BinaryTree(object):
                 current = current.right
         return False
 
-    @staticmethod
-    def _walk_path(path):
+    def _walk_path(self, path):
         i = len(path)
         while i:
             i -= 1
-            path[i].reset_depth()
+            node = path[i]
+            node.reset_depth()
+            try:
+                left_depth = node.left.depth + 1 if node.left else 0
+                right_depth = node.right.depth + 1 if node.right else 0
+                if abs(left_depth - right_depth) > 1:
+                    def setchild(to):
+                        if not i:
+                            self.root = to
+                        elif path[i-1].direction(node) == 'left':
+                            path[i-1].left = to
+                        else:
+                            path[i-1].right = to
+
+                    step1, step2 = node.path_direction(path[i+1], path[i+2])
+
+                    if step1 == 'left' and step2 == 'left':
+                        node.r_rot(setchild)
+                    elif step1 == 'left' and step2 == 'right':
+                        def set_subtree_child(to):
+                            node.left = to
+                        path[i+1].l_rot(set_subtree_child)
+                        node.r_rot(setchild)
+                    elif step1 == 'right' and step2 == 'left':
+                        def set_subtree_child(to):
+                            node.right = to
+                        node.l_rot(setchild)
+                    else:  # right right
+                        node.r_rot(setchild)
+            except AttributeError:
+                pass
 
     def insert(self, val):
         """Insert a new value into the tree."""
@@ -115,6 +144,29 @@ class BinaryTree(object):
                 else:
                     current = getattr(current, branch)
             self._walk_path(path)
+        self._length += 1
+
+    def asymmetrical_insert(self, val):
+        """Insert a new value into the tree."""
+        if self.root is None:
+            self.root = Node(val)
+        else:
+            current = self.root
+            path = []
+            while True:
+                path.append(current)
+                if val == current.value:
+                    return
+                branch = 'left' if val < current.value else 'right'
+                if getattr(current, branch) is None:
+                    n = Node(val)
+                    setattr(current, branch, n)
+                    path.append(n)
+                    break
+                else:
+                    current = getattr(current, branch)
+            while path:
+                path.pop().reset_depth()
         self._length += 1
 
     def _remove_root(self, root):
