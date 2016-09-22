@@ -54,6 +54,12 @@ class Node(object):
             self.right.depth if self.right else 0
         )
 
+    def direction(self, node):
+        return 'left' if self.value > node.value else 'right'
+
+    def path_direction(self, node1, node2):
+        return self.direction(node1), node1.direction(node2)
+
 
 class BinaryTree(object):
     """Binary tree."""
@@ -77,8 +83,10 @@ class BinaryTree(object):
 
     @staticmethod
     def _walk_path(path):
-        while path:
-            path.pop().reset_depth()
+        i = len(path)
+        while i:
+            i -= 1
+            path[i].reset_depth()
 
     def insert(self, val):
         """Insert a new value into the tree."""

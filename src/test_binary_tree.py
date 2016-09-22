@@ -506,3 +506,33 @@ def test_duplicate_insert():
     t.insert(0)
     t.insert(0)
     assert t.size() == 1
+
+
+def test_node_direction_right():
+    from .binary_tree import Node
+    assert Node(0).direction(Node(3)) == 'right'
+
+
+def test_node_direction_left():
+    from .binary_tree import Node
+    assert Node(0).direction(Node(-3)) == 'left'
+
+
+def test_node_path_rr():
+    from .binary_tree import Node
+    assert Node(0).path_direction(Node(3), Node(5)) == ('right', 'right')
+
+
+def test_node_path_rl():
+    from .binary_tree import Node
+    assert Node(0).path_direction(Node(3), Node(1)) == ('right', 'left')
+
+
+def test_node_path_ll():
+    from .binary_tree import Node
+    assert Node(0).path_direction(Node(-3), Node(-5)) == ('left', 'left')
+
+
+def test_node_path_lr():
+    from .binary_tree import Node
+    assert Node(0).path_direction(Node(-3), Node(-1)) == ('left', 'right')
