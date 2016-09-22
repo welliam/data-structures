@@ -407,7 +407,7 @@ def test_delete_nonexistent_node_deep():
 
 
 @pytest.mark.parametrize('tree, pivot', R_ROT_TABLE)
-def test_rot_right(tree, pivot):
+def test_rot_right_r(tree, pivot):
     from .binary_tree import BinaryTree
 
     def set_child(to):
@@ -422,7 +422,7 @@ def test_rot_right(tree, pivot):
 
 
 @pytest.mark.parametrize('tree, pivot', R_ROT_TABLE)
-def test_rot_integrity_contains(tree, pivot):
+def test_rot_integrity_contains_r(tree, pivot):
     from .binary_tree import BinaryTree
 
     def set_child(to):
@@ -438,7 +438,7 @@ def test_rot_integrity_contains(tree, pivot):
 
 
 @pytest.mark.parametrize('tree, pivot', R_ROT_TABLE)
-def test_rot_integrity_size(tree, pivot):
+def test_rot_integrity_size_r(tree, pivot):
     from .binary_tree import BinaryTree
 
     def set_child(to):
@@ -454,7 +454,7 @@ def test_rot_integrity_size(tree, pivot):
 
 
 @pytest.mark.parametrize('tree, pivot', L_ROT_TABLE)
-def test_rot_right(tree, pivot):
+def test_rot_left(tree, pivot):
     from .binary_tree import BinaryTree
 
     def set_child(to):
@@ -469,7 +469,7 @@ def test_rot_right(tree, pivot):
 
 
 @pytest.mark.parametrize('tree, pivot', L_ROT_TABLE)
-def test_rot_integrity_contains(tree, pivot):
+def test_rot_integrity_contains_l(tree, pivot):
     from .binary_tree import BinaryTree
 
     def set_child(to):
@@ -485,7 +485,7 @@ def test_rot_integrity_contains(tree, pivot):
 
 
 @pytest.mark.parametrize('tree, pivot', L_ROT_TABLE)
-def test_rot_integrity_size(tree, pivot):
+def test_rot_integrity_size_l(tree, pivot):
     from .binary_tree import BinaryTree
 
     def set_child(to):
