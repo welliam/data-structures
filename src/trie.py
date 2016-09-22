@@ -9,9 +9,7 @@ class Trie(object):
         """Return whether a string is contained within the trie."""
         words = self.words
         for c in s:
-            if c == '$':
-                return False
-            if c not in words:
+            if c == '$' or c not in words:
                 return False
             words = words[c]
         return words.get('$', False)
