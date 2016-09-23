@@ -87,6 +87,11 @@ the node's value. This allows for quick searching of inserted
 values. The binary search tree is used in sorting algorithms and other
 situations where storing values with quick searching is needed.
 
+Our BST has two methods for insertion-- insert and
+asymmetrical_insert. after inserting a value, insert rebalances the
+tree like it's an AVL tree. asymmetrical_insert does no rebalancing;
+this can be useful when one requires specific results from the
+traversal methods.
 
 ### Binary Search Tree Traversal
 
