@@ -4,17 +4,15 @@ def merge_compare(t, start, middle, end):
     left_i = start
     right_i = middle
     while left_i < middle and right_i < end:
-        if t[left_i] < t[right_i]:
+        inc_left = False
+        if t[left_i] <= t[right_i]:
             result.append(t[left_i])
-            left_i += 1
-        elif t[left_i] > t[right_i]:
+            inc_left = True
+        if t[left_i] >= t[right_i]:
             result.append(t[right_i])
             right_i += 1
-        else:  # equal; ensures stability of mergesort
-            result.append(t[left_i])
-            result.append(t[right_i])
+        if inc_left:
             left_i += 1
-            right_i += 1
     return left_i if left_i < middle else right_i, result
 
 
