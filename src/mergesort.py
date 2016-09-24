@@ -1,5 +1,9 @@
 def merge_compare(t, start, middle, end):
-    """Merge parts of t at start and middle."""
+    """Do the first step of a merge.
+
+    i.e., compare values starting at start and middle until either
+    reaches middle or end, respectively. Return the index of the
+    remaining values and the result so far."""
     result = []
     left_i = start
     right_i = middle
@@ -17,6 +21,7 @@ def merge_compare(t, start, middle, end):
 
 
 def merge(t, start, middle, end):
+    """Merge parts of t at start and middle."""
     i, result = merge_compare(t, start, middle, end)
     while i < middle:
         result.append(t[i])
