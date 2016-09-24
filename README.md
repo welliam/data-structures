@@ -125,8 +125,8 @@ cause a stack overflow. The space usage is O(n), as an auxiliary array
 is required to build sorted portions. The program clearly reveals the
 time usage, O(nlog(n)); an outer loop, mergesort, iterates with a step
 that is multiplied by two every iteration (the O(log(n)) factor) and
-the inner loop iterates at most once for each value in the array it's
-sorting (the O(n) factor).
+an inner loop iterates a constant number of times for each value in
+the array it's sorting (the O(n) factor).
 
 [This Stack Overflow
 answer](http://stackoverflow.com/questions/2673651/inheritance-from-str-or-int)
