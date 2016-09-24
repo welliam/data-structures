@@ -1,12 +1,9 @@
 def merge(t, start, middle, end):
+    """Merge parts of t at start and middle."""
     result = []
     left_i = start
     right_i = middle
     while left_i < middle and right_i < end:
-        print('at left_i={}: {}'.format(left_i, t[left_i]))
-        print('at right_i={}: {}'.format(right_i, t[right_i]))
-        print('result', result)
-        print()
         if t[left_i] < t[right_i]:
             result.append(t[left_i])
             left_i += 1

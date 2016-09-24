@@ -14,6 +14,7 @@ MERGE_LIST_INDICES = [
 
 @pytest.mark.parametrize('t, start, middle, end', MERGE_LIST_INDICES)
 def test_merge(t, start, middle, end):
+    """Test merge."""
     from mergesort import merge
     merge(t, start, middle, end)
     part = t[start:end]
