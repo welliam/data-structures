@@ -96,6 +96,7 @@ def test_mergesort(t):
     mergesort(t)
     assert t == sorted(before)
 
+
 @pytest.mark.parametrize('lst', STABILITY_TEST_LISTS)
 def test_mergesort_stability(lst):
     """Test sorting lists."""
