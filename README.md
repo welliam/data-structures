@@ -116,4 +116,19 @@ with the max node, and remove the reference to that node.
 
 ## Mergesort
 
-[this Stack Overflow answer](http://stackoverflow.com/questions/2673651/inheritance-from-str-or-int) for how to created TaggedInt in the tests for this sort.
+Our merge algorithm implements mergesort, a divide and conquer sorting
+algorithm. It uses a _merge_ algorithm that combines two sorted chunks
+of an array. _merge_ is called on first every adjacent value, then on
+those sorted chunks, etc. until the list is sorted. This
+implementation is purely iterative, so arrays of any size will not
+cause a stack overflow. The space usage is O(n), as an auxiliary array
+is required to build sorted portions. The program clearly reveals the
+time usage, O(nlog(n)); an outer step, mergesort, iterates with a step
+that is multiplied by two every iteration (the O(log(n)) factor) and
+the inner loop iterates at most once for each value in the array it's
+sorting (the O(n) factor).
+
+[This Stack Overflow
+answer](http://stackoverflow.com/questions/2673651/inheritance-from-str-or-int)
+was referenced for the implementation of TaggedInt, a class used in
+the tests for stability.
