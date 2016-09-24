@@ -33,7 +33,6 @@ def insertion_sort(list_in):
             list_in[tmp_inc] = list_in[tmp_inc - 1]
             tmp_inc -= 1
         list_in[tmp_inc] = curr_value
-    return list_in
 
 if __name__ == '__main__':
     if len(sys.argv) != 1:
