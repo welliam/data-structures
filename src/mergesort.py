@@ -19,3 +19,10 @@ def merge(t, start, middle, end):
     for value in result:
         t[start] = value
         start += 1
+
+def run_merge(t, step):
+    """Run an iteration of mergesort."""
+    start = 0
+    while start + step < len(t):
+        merge(t, start, start + step, min(len(t), start + step*2))
+        start += step*2
