@@ -126,7 +126,9 @@ is required to build sorted portions. The program clearly reveals the
 time usage, O(nlog(n)); an outer loop, mergesort, iterates with a step
 that is multiplied by two every iteration (the O(log(n)) factor) and
 an inner loop iterates a constant number of times for each value in
-the array it's sorting (the O(n) factor).
+the array it's sorting (the O(n) factor). The mergesort function is
+in-place and does not return a list (instead mutating the list it
+takes). It is also stable.
 
 [This Stack Overflow
 answer](http://stackoverflow.com/questions/2673651/inheritance-from-str-or-int)
