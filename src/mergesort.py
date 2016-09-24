@@ -2,8 +2,9 @@ def merge_compare(t, start, middle, end):
     """Do the first step of a merge.
 
     i.e., compare values starting at start and middle until either
-    reaches middle or end, respectively. Return the index of the
-    remaining values and the result so far."""
+    reaches middle or end, respectively. The smaller value gets pushed
+    onto the result. Return the index of the remaining values and the
+    sorted result."""
     result = []
     left_i = start
     right_i = middle
