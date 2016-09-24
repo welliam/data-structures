@@ -116,9 +116,9 @@ with the max node, and remove the reference to that node.
 
 ## Mergesort
 
-Our merge algorithm implements mergesort, a divide and conquer sorting
-algorithm. It uses a _merge_ algorithm that combines two sorted chunks
-of an array. _merge_ is called on first every adjacent value, then on
+We implement mergesort, a divide and conquer sorting algorithm. It
+uses a _merge_ algorithm that combines two sorted chunks of an
+array. This function is called on first every adjacent value, then on
 those sorted chunks, etc. until the list is sorted. This
 implementation is purely iterative, so arrays of any size will not
 cause a stack overflow. The space usage is O(n), as an auxiliary array
