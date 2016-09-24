@@ -1,4 +1,4 @@
-def merge(t, start, middle, end):
+def merge_compare(t, start, middle, end):
     """Merge parts of t at start and middle."""
     result = []
     left_i = start
@@ -15,15 +15,18 @@ def merge(t, start, middle, end):
             result.append(t[right_i])
             left_i += 1
             right_i += 1
-    while left_i < middle:
-        result.append(t[left_i])
-        left_i += 1
-    while right_i < end:
-        result.append(t[right_i])
-        right_i += 1
+    return left_i if left_i < middle else right_i, result
+
+
+def merge(t, start, middle, end):
+    i, result = merge_compare(t, start, middle, end)
+    while i < middle:
+        result.append(t[i])
+        i += 1
     for value in result:
         t[start] = value
         start += 1
+
 
 def run_merge(t, step):
     """Run an iteration of mergesort."""
