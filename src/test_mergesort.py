@@ -49,7 +49,7 @@ def test_run_merge(t, step, expect):
 
 
 @pytest.mark.parametrize('t', MERGE_LISTS)
-def test_run_merge(t):
+def test_mergesort(t):
     """Test sorting lists."""
     from mergesort import mergesort
     before = t[:]
