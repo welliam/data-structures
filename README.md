@@ -112,3 +112,8 @@ branch. Otherwise, the algorithm find the maximum node that is less
 than the node to be deleted and continually move that branch downwards
 to the left. Finally, the algorithm replace the node to be deleted
 with the max node, and remove the reference to that node.
+
+
+## Mergesort
+
+[this Stack Overflow answer](http://stackoverflow.com/questions/2673651/inheritance-from-str-or-int) for how to created TaggedInt in the tests for this sort.

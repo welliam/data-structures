@@ -7,8 +7,13 @@ def merge(t, start, middle, end):
         if t[left_i] < t[right_i]:
             result.append(t[left_i])
             left_i += 1
-        else:
+        elif t[left_i] > t[right_i]:
             result.append(t[right_i])
+            right_i += 1
+        else:  # equal; ensures stability of mergesort
+            result.append(t[left_i])
+            result.append(t[right_i])
+            left_i += 1
             right_i += 1
     while left_i < middle:
         result.append(t[left_i])

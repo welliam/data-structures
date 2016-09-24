@@ -55,3 +55,32 @@ def test_mergesort(t):
     before = t[:]
     mergesort(t)
     assert t == sorted(before)
+
+
+class TaggedInt(int):
+    def __new__(cls, val, tag=''):
+        obj = int.__new__(cls, val)
+        obj.val = val
+        obj.tag = tag
+        return obj
+
+    def __repr__(self):
+        if self.tag:
+            return 'TaggedInt({}, {})'.format(self.val, self.tag)
+        else:
+            return 'TaggedInt({})'.format(self.val)
+
+
+def test_mergesort_stability():
+    """Test sorting lists."""
+    from .mergesort import mergesort
+    lst = [
+        TaggedInt(0),
+        TaggedInt(3, 'before'),
+        TaggedInt(3, 'after'),
+        TaggedInt(9),
+        TaggedInt(-5)
+    ]
+    mergesort(lst)
+    lst = [t.tag for t in lst]
+    assert 'after' in lst[lst.index('before'):]
