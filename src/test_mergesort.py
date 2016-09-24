@@ -11,7 +11,6 @@ MERGE_LIST_INDICES = [
     ([1, 3, 5, 2, 6, 8, -50], 2, 3, 4),
 ]
 
-
 RUN_MERGE_TABLE = [
     ([0, 1], 1, [0, 1]),
     ([1, 0], 1, [0, 1]),
@@ -21,6 +20,20 @@ RUN_MERGE_TABLE = [
 ]
 
 
+class TaggedInt(int):
+    def __new__(cls, val, tag=''):
+        obj = int.__new__(cls, val)
+        obj.val = val
+        obj.tag = tag
+        return obj
+
+    def __repr__(self):
+        if self.tag:
+            return 'TaggedInt({}, {})'.format(self.val, self.tag)
+        else:
+            return 'TaggedInt({})'.format(self.val)
+
+
 MERGE_LISTS = [
     [],
     [1],
@@ -28,6 +41,33 @@ MERGE_LISTS = [
     [2, 1],
     [3, 210, 29, 284, 823, 82, 89129, 102, 2193, 91239, 123],
     [-5, 1, 3, 0, 1, 1, 1],
+]
+
+STABILITY_TEST_LISTS = [
+    [
+        TaggedInt(0),
+        TaggedInt(3, 'before'),
+        TaggedInt(3, 'after'),
+        TaggedInt(9),
+        TaggedInt(-5)
+    ], [
+        TaggedInt(3, 'before'),
+        TaggedInt(3, 'after'),
+    ], [
+        TaggedInt(7),
+        TaggedInt(3, 'before'),
+        TaggedInt(5),
+        TaggedInt(9),
+        TaggedInt(3, 'after'),
+    ], [
+        TaggedInt(9),
+        TaggedInt(3, 'before'),
+        TaggedInt(3, 'after'),
+    ], [
+        TaggedInt(3, 'before'),
+        TaggedInt(3, 'after'),
+        TaggedInt(0)
+    ]
 ]
 
 
@@ -56,31 +96,10 @@ def test_mergesort(t):
     mergesort(t)
     assert t == sorted(before)
 
-
-class TaggedInt(int):
-    def __new__(cls, val, tag=''):
-        obj = int.__new__(cls, val)
-        obj.val = val
-        obj.tag = tag
-        return obj
-
-    def __repr__(self):
-        if self.tag:
-            return 'TaggedInt({}, {})'.format(self.val, self.tag)
-        else:
-            return 'TaggedInt({})'.format(self.val)
-
-
-def test_mergesort_stability():
+@pytest.mark.parametrize('lst', STABILITY_TEST_LISTS)
+def test_mergesort_stability(lst):
     """Test sorting lists."""
     from .mergesort import mergesort
-    lst = [
-        TaggedInt(0),
-        TaggedInt(3, 'before'),
-        TaggedInt(3, 'after'),
-        TaggedInt(9),
-        TaggedInt(-5)
-    ]
     mergesort(lst)
     lst = [t.tag for t in lst]
     assert 'after' in lst[lst.index('before'):]
