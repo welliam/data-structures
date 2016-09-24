@@ -21,6 +21,16 @@ RUN_MERGE_TABLE = [
 ]
 
 
+MERGE_LISTS = [
+    [],
+    [1],
+    [1, 2],
+    [2, 1],
+    [3, 210, 29, 284, 823, 82, 89129, 102, 2193, 91239, 123],
+    [-5, 1, 3, 0, 1, 1, 1],
+]
+
+
 @pytest.mark.parametrize('t, start, middle, end', MERGE_LIST_INDICES)
 def test_merge(t, start, middle, end):
     """Test merge."""
@@ -36,3 +46,12 @@ def test_run_merge(t, step, expect):
     from mergesort import run_merge
     run_merge(t, step)
     assert t == expect
+
+
+@pytest.mark.parametrize('t', MERGE_LISTS)
+def test_run_merge(t):
+    """Test sorting lists."""
+    from mergesort import mergesort
+    before = t[:]
+    mergesort(t)
+    assert t == sorted(before)

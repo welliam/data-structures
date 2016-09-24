@@ -26,3 +26,11 @@ def run_merge(t, step):
     while start + step < len(t):
         merge(t, start, start + step, min(len(t), start + step*2))
         start += step*2
+
+
+def mergesort(t):
+    """Sort t in place."""
+    step = 1
+    while step < len(t):
+        run_merge(t, step)
+        step *= 2
