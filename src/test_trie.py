@@ -96,3 +96,65 @@ def test_trie_contains_dollar():
     t = Trie()
     t.insert('a')
     assert not t.contains('a$ uh oh!')
+
+
+def comesbefore(t, a, b):
+    """Used in testing traversal methods."""
+    return b in t[t.index(a):]
+
+
+def test_traversal_empty():
+    """Test traversal of an empty tree returns []."""
+    from .trie import Trie
+    assert list(Trie().traverse()) == []
+
+
+def test_traversal_basic():
+    """Test traversal of a tree with an empty word."""
+    from .trie import Trie
+    t = Trie()
+    t.insert('')
+    assert list(t.traverse()) == ['']
+
+
+def test_traversal_word():
+    """Test traversal of a tree with a single-char word."""
+    from .trie import Trie
+    t = Trie()
+    t.insert('a')
+    assert list(t.traverse()) == ['a']
+
+
+def test_traversal_word_deep():
+    """Test traversal of a tree with a multi-char word."""
+    from .trie import Trie
+    t = Trie()
+    t.insert('aa')
+    assert list(t.traverse()) == ['aa']
+
+
+def test_traversal_word_deep_2():
+    """Test traversal of a tree with a multi-char word."""
+    from .trie import Trie
+    t = Trie()
+    t.insert('aaaaa')
+    assert list(t.traverse()) == ['aaaaa']
+
+
+def test_traversal_word_order():
+    """Test traversal of a tree is depth-first."""
+    from .trie import Trie
+    t = Trie()
+    t.insert('a')
+    t.insert('aa')
+    t.insert('b')
+    t.insert('bb')
+    result = list(t.traverse())
+
+    # because which branch we visit first is random, we have to figure
+    # out which branch we traversed first to determine if the search
+    # was depth-first
+    if comesbefore(result, 'a', 'b'):
+        assert comesbefore(result, 'aa', 'bb')
+    else:
+        assert comesbefore(result, 'bb', 'aa')
