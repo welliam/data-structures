@@ -1,4 +1,6 @@
 # data-structures
+[![Build Status](https://travis-ci.org/welliam/data-structures.svg?branch=bst-traversal)](https://travis-ci.org/welliam/data-structures)
+
 Data structure implementations for Code Fellows Python 401.
 
 ## Singly linked list
@@ -84,6 +86,53 @@ node's value, and the node's right child must always be greater than
 the node's value. This allows for quick searching of inserted
 values. The binary search tree is used in sorting algorithms and other
 situations where storing values with quick searching is needed.
+
+Our BST has two methods for insertion-- insert and
+asymmetrical_insert. after inserting a value, insert rebalances the
+tree like it's an AVL tree. asymmetrical_insert does no rebalancing;
+this can be useful when one requires specific results from the
+traversal methods.
+
+### Binary Search Tree Traversal
+
+The BST implementation has four types of traversal methods:
+breadth_first, and three depth first traversal methods:
+- pre_order, which orders the top node's value before iterating first upon
+  the left and then upon the right branches,
+- post_order, which orders the left node's values before the right
+  node's values before finally the top node's value,
+- in_order, which returns the binary search tree's values sorted
+
+### Binary Search Tree Deletion
+
+We implement binary search tree removal. When deleting a node with
+zero or one branch, the algorithm simply replaces the branch
+containing the deleted node with either None or the single
+branch. Otherwise, the algorithm find the maximum node that is less
+than the node to be deleted and continually move that branch downwards
+to the left. Finally, the algorithm replace the node to be deleted
+with the max node, and remove the reference to that node.
+
+## Mergesort
+
+We implement mergesort, a divide and conquer sorting algorithm. It
+uses a _merge_ algorithm that combines two sorted chunks of an
+array. This function is called on first every adjacent value, then on
+those sorted chunks, etc. until the list is sorted. This
+implementation is purely iterative, so arrays of any size will not
+cause a stack overflow. The space usage is O(n), as an auxiliary array
+is required to build sorted portions. The program clearly reveals the
+time usage, O(nlog(n)); an outer loop, mergesort, iterates with a step
+that is multiplied by two every iteration (the O(log(n)) factor) and
+an inner loop iterates a constant number of times for each value in
+the array it's sorting (the O(n) factor). The mergesort function is
+in-place and does not return a list (instead mutating the list it
+takes). It is also stable.
+
+[This Stack Overflow
+answer](http://stackoverflow.com/questions/2673651/inheritance-from-str-or-int)
+was referenced for the implementation of TaggedInt, a class used in
+the tests for stability.
 
 ## Trie
 
