@@ -29,16 +29,11 @@ class Trie(object):
         start = self.words
         stack = [start]
         word = []
-        popcount = 0
         while len(stack):
             curr = stack.pop()
             for key in curr:
                 if key != '$':
                     stack.append(curr[key])
                     word.append(key)
-                    popcount += 1
                 else:
                     print(word)
-                    for i in range(popcount):
-                        word.pop()
-                        popcount -= 1
