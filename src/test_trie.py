@@ -155,6 +155,6 @@ def test_traversal_word_order():
     # out which branch we traversed first to determine if the search
     # was depth-first
     if comesbefore(result, 'a', 'b'):
-        assert comesbefore(result, 'aa', 'bb')
+        assert comesbefore(result, 'aa', 'b')
     else:
-        assert comesbefore(result, 'bb', 'aa')
+        assert comesbefore(result, 'bb', 'a')
