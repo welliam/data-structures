@@ -2,6 +2,7 @@
 
 
 def partition(array, lo, hi):
+    """Parititon array in specified segment."""
     pivot = array[hi - 1]
     i = j = lo
     while j < hi:
@@ -13,6 +14,7 @@ def partition(array, lo, hi):
 
 
 def quicksort(array):
+    """Sort array."""
     stack = [(0, len(array))]
     while stack:
         lo, hi = stack.pop()

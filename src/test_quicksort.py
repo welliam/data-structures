@@ -14,6 +14,10 @@ TEST_LISTS = [
 
 @pytest.mark.parametrize('array', TEST_LISTS)
 def test_partition_less(array):
+    """Test partition for lower segment.
+
+    Test values lower than the index are all lower than the
+    index returned by partition."""
     from .quicksort import partition
     array = array[:]
     index = partition(array, 0, len(array))
@@ -26,6 +30,10 @@ def test_partition_less(array):
 
 @pytest.mark.parametrize('array', TEST_LISTS)
 def test_partition_greater(array):
+    """Test partition for greater segment.
+
+    Test values greater than the index are all greater than the index
+    returned by partition."""
     from .quicksort import partition
     array = array[:]
     index = partition(array, 0, len(array))
