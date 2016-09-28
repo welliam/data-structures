@@ -7,8 +7,8 @@ TEST_LISTS = [
     [2, 1],
     [0, 5, 2, 4, 3],
     [1, 0, 2],
-    #[6, 3, 2, 4, 1, 7, 9, 8, 0],
-    #list('asldkfjaskdfjalkdjflkasvanwlerru13muctp2mucmog')
+    [6, 3, 2, 4, 1, 7, 9, 8, 0],
+    list('asldkfjaskdfjalkdjflkasvanwlerru13muctp2mucmog')
 ]
 
 
