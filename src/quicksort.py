@@ -42,7 +42,7 @@ def build_lists():
 
 if __name__ == '__main__':
     if len(sys.argv) != 1:
-        print('usage: python sorting.py')
+        print('usage: python quicksort.py')
         sys.exit(1)
 
     print('Let\'s sort some lists (100 elements, 100 times each)...')
