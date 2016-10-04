@@ -13,7 +13,7 @@ class Node(object):
         self.left = left
         self.value = value
         self.right = right
-        self.depth = 0
+        self.depth = 1
 
     def __repr__(self):
         return "({} {} {})".format(repr(self.left), self.value, repr(self.right))
@@ -95,7 +95,9 @@ class BinaryTree(object):
         parent = self.root
         if parent.value == val:
             self._remove_root(self.root)
+        path = []
         while True:
+            path.append(parent)
             branch_name = 'left' if val < parent.value else 'right'
             branch = getattr(parent, branch_name)
             if not branch:
@@ -109,6 +111,12 @@ class BinaryTree(object):
                 break
             parent = branch
         self._length -= 1
+        while path:
+            n = path.pop()
+            n.depth = 1 + max(
+                0 if not n.left else n.left.depth,
+                0 if not n.right else n.right.depth
+            )
 
     def size(self):
         """Return the size of the BinaryTree."""
@@ -116,7 +124,7 @@ class BinaryTree(object):
 
     def _depth(self, node):
         """Static method to recursively compute the depth of the node."""
-        return 0 if not node else node.depth + 1
+        return 0 if not node else node.depth
 
     def depth(self):
         """Return the depth of the tree."""

@@ -441,3 +441,14 @@ def test_delete_nonexistent_node_deep():
     t.insert(0)
     t.delete(1)
     assert t.size() == 1
+
+
+def test_delete_depth():
+    """Test depth on deleting a node."""
+    from .binary_tree import BinaryTree
+    t = BinaryTree()
+    t.insert(1)
+    t.insert(2)
+    assert t.depth() == 2
+    t.delete(2)
+    assert t.depth() == 1
