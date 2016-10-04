@@ -15,6 +15,9 @@ class Node(object):
         self.right = right
         self.depth = 0
 
+    def __repr__(self):
+        return "({} {} {})".format(repr(self.left), self.value, repr(self.right))
+
     def find_max(self):
         """Find the parent of the largest node in this node's branches."""
         parent = None
@@ -22,14 +25,6 @@ class Node(object):
             parent = self
             self = self.right
         return parent, self
-
-    def swap_left(self):
-        while self.left:
-            self.value, self.left.value = self.left.value, self.value
-            parent = self
-            self = self.left
-        parent.left = None
-        return self
 
 
 class BinaryTree(object):
@@ -87,11 +82,9 @@ class BinaryTree(object):
             parent, max_node = root.left.find_max()
             root.value = max_node.value
             if parent is None:
-                root.left = None
-            elif max_node.left is None:
-                parent.right = None
+                root.left = root.left.left
             else:
-                max_node.swap_left()
+                parent.right = max_node.left
         else:
             self.root = root.left if root.left else root.right
 
