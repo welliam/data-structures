@@ -112,7 +112,74 @@ DELETE_INTEGRITY_TABLE = [
     ([0, 10, 15, 5, 2, 7, 4, 3, 2.5], 5, 7),
     ([0, 10, 15, 5, 2, 7, 4, 3, 2.5], 5, 4),
     ([0, 10, 15, 5, 2, 7, 4, 3, 2.5], 5, 3),
+    ([0, 10, 15, 5, 2, 7, 4, 3, 2.5], 5, 2.5),
+
+    ([0, 10, 15, 5, 2, 7, 4, 3, 2.5], 10, 5),
+    ([0, 10, 15, 5, 2, 7, 4, 3, 2.5], 10, 15),
+    ([0, 10, 15, 5, 2, 7, 4, 3, 2.5], 10, 2),
+    ([0, 10, 15, 5, 2, 7, 4, 3, 2.5], 10, 7),
+    ([0, 10, 15, 5, 2, 7, 4, 3, 2.5], 10, 4),
+    ([0, 10, 15, 5, 2, 7, 4, 3, 2.5], 10, 3),
+    ([0, 10, 15, 5, 2, 7, 4, 3, 2.5], 10, 2.5),
+
+    ([0, 10, 15, 5, 2, 7, 4, 3, 2.5], 15, 5),
+    ([0, 10, 15, 5, 2, 7, 4, 3, 2.5], 15, 10),
+    ([0, 10, 15, 5, 2, 7, 4, 3, 2.5], 15, 2),
+    ([0, 10, 15, 5, 2, 7, 4, 3, 2.5], 15, 7),
+    ([0, 10, 15, 5, 2, 7, 4, 3, 2.5], 15, 4),
+    ([0, 10, 15, 5, 2, 7, 4, 3, 2.5], 15, 3),
+    ([0, 10, 15, 5, 2, 7, 4, 3, 2.5], 15, 2.5),
+
+    ([0, 10, 15, 5, 2, 7, 4, 3, 2.5], 2, 5),
+    ([0, 10, 15, 5, 2, 7, 4, 3, 2.5], 2, 10),
+    ([0, 10, 15, 5, 2, 7, 4, 3, 2.5], 2, 15),
+    ([0, 10, 15, 5, 2, 7, 4, 3, 2.5], 2, 7),
+    ([0, 10, 15, 5, 2, 7, 4, 3, 2.5], 2, 4),
+    ([0, 10, 15, 5, 2, 7, 4, 3, 2.5], 2, 3),
+    ([0, 10, 15, 5, 2, 7, 4, 3, 2.5], 2, 2.5),
+
+    ([0, 10, 15, 5, 2, 7, 4, 3, 2.5], 7, 5),
+    ([0, 10, 15, 5, 2, 7, 4, 3, 2.5], 7, 10),
+    ([0, 10, 15, 5, 2, 7, 4, 3, 2.5], 7, 15),
+    ([0, 10, 15, 5, 2, 7, 4, 3, 2.5], 7, 2),
+    ([0, 10, 15, 5, 2, 7, 4, 3, 2.5], 7, 4),
+    ([0, 10, 15, 5, 2, 7, 4, 3, 2.5], 7, 3),
+    ([0, 10, 15, 5, 2, 7, 4, 3, 2.5], 7, 2.5),
+
+    ([0, 10, 15, 5, 2, 7, 4, 3, 2.5], 4, 5),
+    ([0, 10, 15, 5, 2, 7, 4, 3, 2.5], 4, 10),
+    ([0, 10, 15, 5, 2, 7, 4, 3, 2.5], 4, 15),
+    ([0, 10, 15, 5, 2, 7, 4, 3, 2.5], 4, 2),
+    ([0, 10, 15, 5, 2, 7, 4, 3, 2.5], 4, 7),
+    ([0, 10, 15, 5, 2, 7, 4, 3, 2.5], 4, 3),
+    ([0, 10, 15, 5, 2, 7, 4, 3, 2.5], 4, 2.5),
+
+    ([0, 10, 15, 5, 2, 7, 4, 3, 2.5], 3, 5),
+    ([0, 10, 15, 5, 2, 7, 4, 3, 2.5], 3, 10),
+    ([0, 10, 15, 5, 2, 7, 4, 3, 2.5], 3, 15),
+    ([0, 10, 15, 5, 2, 7, 4, 3, 2.5], 3, 2),
+    ([0, 10, 15, 5, 2, 7, 4, 3, 2.5], 3, 7),
+    ([0, 10, 15, 5, 2, 7, 4, 3, 2.5], 3, 4),
+    ([0, 10, 15, 5, 2, 7, 4, 3, 2.5], 3, 2.5),
+
+    ([0, 10, 15, 5, 2, 7, 4, 3, 2.5], 2.5, 5),
+    ([0, 10, 15, 5, 2, 7, 4, 3, 2.5], 2.5, 10),
+    ([0, 10, 15, 5, 2, 7, 4, 3, 2.5], 2.5, 15),
+    ([0, 10, 15, 5, 2, 7, 4, 3, 2.5], 2.5, 2),
+    ([0, 10, 15, 5, 2, 7, 4, 3, 2.5], 2.5, 7),
+    ([0, 10, 15, 5, 2, 7, 4, 3, 2.5], 2.5, 4),
+
+    ([2, 1, 0, 3], 2, 1),
+    ([2, 1, 0, 3], 2, 0),
+    ([2, 1, 0, 3], 2, 3),
+
+    ([4, 0, 3, 5, 1, 2], 4, 0),
+    ([4, 0, 3, 5, 1, 2], 4, 3),
+    ([4, 0, 3, 5, 1, 2], 4, 5),
+    ([4, 0, 3, 5, 1, 2], 4, 1),
+    ([4, 0, 3, 5, 1, 2], 4, 2),
     ([0, 10, 15, 5, 2, 7, 4, 3, 2.5], 5, 2.5)
+
 ]
 
 FIND_MAX_TABLE = [
@@ -395,27 +462,12 @@ def test_find_max(insert):
     assert max_node.value == max(insert)
 
 
-def test_swap_left_top():
-    """Test swapping swaps top value."""
-    from .binary_tree import Node
-    node = Node(0, Node(1))
-    node.swap_left()
-    assert node.value == 1
-
-
-def test_swap_left_top_deep():
-    """Test swapping swaps top value in deep swap."""
-    from .binary_tree import Node
-    node = Node(0, Node(1, Node(2)))
-    node.swap_left()
-    assert node.value == 1
-
-
 def test_delete_nonexistent_node():
-    """Test deleting when tree has no root"""
+    """Test deleting when tree has no root."""
     from .binary_tree import BinaryTree
-    with pytest.raises(KeyError):
-        BinaryTree().delete(0)
+    t = BinaryTree()
+    t.delete(0)
+    assert t.size() == 0
 
 
 def test_delete_nonexistent_node_deep():
@@ -423,8 +475,19 @@ def test_delete_nonexistent_node_deep():
     from .binary_tree import BinaryTree
     t = BinaryTree()
     t.asymmetrical_insert(0)
-    with pytest.raises(KeyError):
-        t.delete(1)
+    t.delete(1)
+    assert t.size() == 1
+
+
+def test_delete_depth():
+    """Test depth on deleting a node."""
+    from .binary_tree import BinaryTree
+    t = BinaryTree()
+    t.insert(1)
+    t.insert(2)
+    assert t.depth() == 2
+    t.delete(2)
+    assert t.depth() == 1
 
 
 @pytest.mark.parametrize('tree, pivot', R_ROT_TABLE)
@@ -582,7 +645,7 @@ def test_node_l_rot_root_depth():
     def setchild(to):
         t.root = to
     t.root.l_rot(setchild)
-    assert t.root.left.depth == 0
+    assert t.root.left.depth == 1
 
 
 def test_node_l_rot_pivot_depth():
@@ -595,7 +658,7 @@ def test_node_l_rot_pivot_depth():
     def setchild(to):
         t.root = to
     t.root.l_rot(setchild)
-    assert t.root.depth == 1
+    assert t.root.depth == 2
 
 
 def test_node_r_rot_root_depth():
@@ -608,7 +671,7 @@ def test_node_r_rot_root_depth():
     def setchild(to):
         t.root = to
     t.root.r_rot(setchild)
-    assert t.root.right.depth == 0
+    assert t.root.right.depth == 1
 
 
 def test_node_r_rot_pivot_depth():
@@ -621,7 +684,7 @@ def test_node_r_rot_pivot_depth():
     def setchild(to):
         t.root = to
     t.root.r_rot(setchild)
-    assert t.root.depth == 1
+    assert t.root.depth == 2
 
 
 def test_node_l_rot_complex_depth():
@@ -634,7 +697,7 @@ def test_node_l_rot_complex_depth():
     def setchild(to):
         t.root.right = to
     t.root.right.l_rot(setchild)
-    assert t.root.right.depth == 2
+    assert t.root.right.depth == 3
 
 
 def test_node_r_rot_complex_depth():
@@ -647,7 +710,7 @@ def test_node_r_rot_complex_depth():
     def setchild(to):
         t.root.left = to
     t.root.left.r_rot(setchild)
-    assert t.root.left.depth == 2
+    assert t.root.left.depth == 3
 
 
 @pytest.mark.parametrize('insert, breadth_first', REBALANCE_INSERT_TABLE)

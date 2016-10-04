@@ -13,7 +13,10 @@ class Node(object):
         self.left = left
         self.value = value
         self.right = right
-        self.depth = 0
+        self.depth = 1
+
+    def __repr__(self):
+        return "({} {} {})".format(repr(self.left), self.value, repr(self.right))
 
     def find_max(self):
         """Find the parent of the largest node in this node's branches."""
@@ -23,14 +26,6 @@ class Node(object):
             self = self.right
         return parent, self
 
-    def swap_left(self):
-        while self.left:
-            self.value, self.left.value = self.left.value, self.value
-            parent = self
-            self = self.left
-        parent.left = None
-        return self
-
     def reset_depth(self):
         """Reset depth of node according to its children."""
         if self.left or self.right:
@@ -39,7 +34,7 @@ class Node(object):
                 self.right.depth if self.right else 0
             )
         else:
-            self.depth = 0
+            self.depth = 1
 
     def r_rot(self, setchild):
         pivot = self.left
@@ -96,6 +91,7 @@ class BinaryTree(object):
                 path[i-1].left = to
             else:
                 path[i-1].right = to
+        
         step1, step2 = node.path_direction(path[i+1], path[i+2])
         if step1 == 'left' and step2 == 'left':
             node.r_rot(setchild)
@@ -119,8 +115,8 @@ class BinaryTree(object):
             node = path[i]
             node.reset_depth()
             try:
-                left_depth = node.left.depth + 1 if node.left else 0
-                right_depth = node.right.depth + 1 if node.right else 0
+                left_depth = node.left.depth if node.left else 0
+                right_depth = node.right.depth if node.right else 0
                 if abs(left_depth - right_depth) > 1:
                     self._rebalance(path, node, i)
             except AttributeError:
@@ -177,26 +173,26 @@ class BinaryTree(object):
             parent, max_node = root.left.find_max()
             root.value = max_node.value
             if parent is None:
-                root.left = None
-            elif max_node.left is None:
-                parent.right = None
+                root.left = root.left.left
             else:
-                max_node.swap_left()
+                parent.right = max_node.left
         else:
             self.root = root.left if root.left else root.right
 
     def delete(self, val):
         """Delete a node from the tree while optimizing tree balance."""
         if self.root is None:
-            raise KeyError('Value not found in tree.')
+            return
         parent = self.root
         if parent.value == val:
-            return self._remove_root(self.root)
+            self._remove_root(self.root)
+        path = []
         while True:
+            path.append(parent)
             branch_name = 'left' if val < parent.value else 'right'
             branch = getattr(parent, branch_name)
             if not branch:
-                raise KeyError('Value not found in tree.')
+                return
             if branch.value == val:
                 if branch.left and branch.right:
                     self._remove_root(branch)
@@ -205,18 +201,26 @@ class BinaryTree(object):
                     setattr(parent, branch_name, to_set)
                 break
             parent = branch
+        self._length -= 1
+        while path:
+            n = path.pop()
+            n.depth = 1 + max(
+                0 if not n.left else n.left.depth,
+                0 if not n.right else n.right.depth
+            )
 
     def size(self):
         """Return the size of the BinaryTree."""
         return self._length
 
-    def _depth(self, node):
-        """Static method to recursively compute the depth of the node."""
-        return 0 if not node else node.depth + 1
-
     def depth(self):
         """Return the depth of the tree."""
         return self._depth(self.root)
+
+    def _depth(self, node):
+        if node is None:
+            return 0
+        return node.depth
 
     def balance(self):
         """Return the balance of the tree.
@@ -231,7 +235,8 @@ class BinaryTree(object):
         """Traverse the graph depth of breadth first.
 
         Depending on the behavior of add, remove and nonempty.
-        Depth-first traversal would be pre-order."""
+        Depth-first traversal would be pre-order.
+        """
         while nonempty():
             current = remove()
             if current is not None:
