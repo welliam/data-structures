@@ -49,9 +49,9 @@ class BinaryTree(object):
 
     def insert(self, val):
         """Insert a new value into the tree."""
-        self._length += 1
         if self.root is None:
             self.root = Node(val)
+            self._length += 1
             return
         current = self.root
         path = []
@@ -63,12 +63,15 @@ class BinaryTree(object):
                     break
                 else:
                     current = current.left
-            else:
+            elif val > current.value:
                 if current.right is None:
                     current.right = Node(val)
                     break
                 else:
                     current = current.right
+            else:
+                return  # value already in tree
+        self._length += 1
         while path:
             n = path.pop()
             n.depth = 1 + max(
