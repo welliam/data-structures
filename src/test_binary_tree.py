@@ -178,6 +178,8 @@ DELETE_INTEGRITY_TABLE = [
     ([4, 0, 3, 5, 1, 2], 4, 5),
     ([4, 0, 3, 5, 1, 2], 4, 1),
     ([4, 0, 3, 5, 1, 2], 4, 2),
+    ([0, 10, 15, 5, 2, 7, 4, 3, 2.5], 5, 2.5)
+
 ]
 
 FIND_MAX_TABLE = [
@@ -197,7 +199,6 @@ BREADTH_TABLE = [
      [10, 5, 15, 3, 8, 20, 4, 7, 6.5, 7.5])
 ]
 
-
 PRE_TABLE = [
     ([], []),
     ([1], [1]),
@@ -207,7 +208,6 @@ PRE_TABLE = [
     ([10, 5, 15, 3, 8, 20, 4, 7, 6.5, 7.5],
      [10, 5, 3, 4, 8, 7, 6.5, 7.5, 15, 20])
 ]
-
 
 IN_ORDER_TABLE = [
     ([], []),
@@ -230,7 +230,6 @@ POST_ORDER_TABLE = [
      [4, 3, 6.5, 7.5, 7, 8, 5, 20, 15, 10])
 ]
 
-
 SIZE_TABLE = [
     range(10),
     [4, 9, 7, 8, 1, 6, 0, 5, 2, 3],
@@ -238,7 +237,6 @@ SIZE_TABLE = [
     [4, 9, 7, 8, 1, 6, 0, 5, 2, 3],
     [1, 6, 9, 0, -10, .000001],
 ]
-
 
 DEPTH_TABLE = [
     ([], 0),
@@ -256,7 +254,45 @@ BALANCE_TABLE = [
     (range(10), -1),
     (range(10, 0, -1), 1),
     ([5, 3, 7, 1, 6, 9], 0),
-    ([0, 2, 4, 3, 6, 8], -1)
+    ([0, 2, 4, 3, 6, 8], -1),
+]
+
+R_ROT_TABLE = [
+    ([2, 1], 1),
+    ([2, 1, 3], 1),
+    ([3, 2, 4, 1, 2.5, 3.5, 4.5], 2),
+]
+
+L_ROT_TABLE = [
+    ([2, 3], 3),
+    ([3, 3.5, 0, 3.3], 3.5),
+    ([5, 1, 8, 0, 2, 7, 9, 6.5, 7.5], 8),
+]
+
+REBALANCE_INSERT_TABLE = [
+    ([3, 2, 1], [2, 1, 3]),
+    ([1, 2, 3], [2, 1, 3]),
+    ([1, 3, 2], [2, 1, 3]),
+    ([3, 1, 2], [2, 1, 3]),
+
+    ([0, 3, 2, 1], [2, 0, 3, 1]),
+    ([0, 1, 2, 3], [1, 0, 2, 3]),
+    ([0, 1, 3, 2], [1, 0, 3, 2]),
+    ([0, 3, 1, 2], [1, 0, 3, 2]),
+
+    ([5, 3, 7, 2, 1], [5, 2, 7, 1, 3]),
+    ([5, 3, 7, 8, 9], [5, 3, 8, 7, 9]),
+
+    ([5, 3, 7, 6, 8, 9], [7, 5, 8, 3, 6, 9]),
+    ([5, 3, 7, 2, 4, 1], [3, 2, 5, 1, 4, 7]),
+    ([5, 3, 8, 7, 9, 6], [7, 5, 8, 3, 6, 9]),
+    ([5, 3, 8, 7, 9, 6], [7, 5, 8, 3, 6, 9]),
+    ([5, 1, 7, 0, 2, 3], [2, 1, 5, 0, 3, 7]),
+
+    ([50, 25, 75, 13, 32, 62, 80, 1, 0],
+     [50, 25, 75, 1, 32, 62, 80, 0, 13]),
+    ([1, 2, 3, 4, 5, 6, 7, 8, 9],
+     [4, 2, 6, 1, 3, 5, 8, 7, 9])
 ]
 
 
@@ -300,7 +336,7 @@ def test_contains_basic():
     """Test contains single inserted value."""
     from .binary_tree import BinaryTree
     t = BinaryTree()
-    t.insert(1)
+    t.asymmetrical_insert(1)
     assert t.contains(1)
 
 
@@ -308,8 +344,8 @@ def test_contains_deep():
     """Test insert stores original value when inserting new one."""
     from .binary_tree import BinaryTree
     t = BinaryTree()
-    t.insert(1)
-    t.insert(2)
+    t.asymmetrical_insert(1)
+    t.asymmetrical_insert(2)
     assert t.contains(1)
 
 
@@ -319,7 +355,7 @@ def test_contains(to_insert, looking):
     from .binary_tree import BinaryTree
     t = BinaryTree()
     for value in to_insert:
-        t.insert(value)
+        t.asymmetrical_insert(value)
     assert t.contains(looking) == (looking in to_insert)
 
 
@@ -329,7 +365,7 @@ def test_size(to_insert):
     from .binary_tree import BinaryTree
     t = BinaryTree()
     for value in to_insert:
-        t.insert(value)
+        t.asymmetrical_insert(value)
     assert t.size() == len(to_insert)
 
 
@@ -339,7 +375,7 @@ def test_depth(to_insert, depth):
     from .binary_tree import BinaryTree
     t = BinaryTree()
     for val in to_insert:
-        t.insert(val)
+        t.asymmetrical_insert(val)
     assert t.depth() == depth
 
 
@@ -349,7 +385,7 @@ def test_balance(to_insert, balance):
     from .binary_tree import BinaryTree
     t = BinaryTree()
     for val in to_insert:
-        t.insert(val)
+        t.asymmetrical_insert(val)
     assert t.balance() / (abs(t.balance()) or 1) == balance
 
 
@@ -359,7 +395,7 @@ def test_breadth_first(to_insert, equals):
     from .binary_tree import BinaryTree
     t = BinaryTree()
     for value in to_insert:
-        t.insert(value)
+        t.asymmetrical_insert(value)
     assert list(t.breadth_first()) == equals
 
 
@@ -369,7 +405,7 @@ def test_pre_order(to_insert, equals):
     from .binary_tree import BinaryTree
     t = BinaryTree()
     for value in to_insert:
-        t.insert(value)
+        t.asymmetrical_insert(value)
     assert list(t.pre_order()) == equals
 
 
@@ -379,7 +415,7 @@ def test_in_order(to_insert, equals):
     from .binary_tree import BinaryTree
     t = BinaryTree()
     for value in to_insert:
-        t.insert(value)
+        t.asymmetrical_insert(value)
     assert list(t.in_order()) == equals
 
 
@@ -389,7 +425,7 @@ def test_post_order(to_insert, equals):
     from .binary_tree import BinaryTree
     t = BinaryTree()
     for value in to_insert:
-        t.insert(value)
+        t.asymmetrical_insert(value)
     assert list(t.post_order()) == equals
 
 
@@ -399,7 +435,7 @@ def test_delete(to_insert, to_delete):
     from .binary_tree import BinaryTree
     t = BinaryTree()
     for value in to_insert:
-        t.insert(value)
+        t.asymmetrical_insert(value)
     t.delete(to_delete)
     assert not t.contains(to_delete)
 
@@ -410,7 +446,7 @@ def test_delete_integrity(insert, delete, contains):
     from .binary_tree import BinaryTree
     t = BinaryTree()
     for value in insert:
-        t.insert(value)
+        t.asymmetrical_insert(value)
     t.delete(delete)
     assert t.contains(contains)
 
@@ -421,13 +457,13 @@ def test_find_max(insert):
     from .binary_tree import BinaryTree
     t = BinaryTree()
     for value in insert:
-        t.insert(value)
+        t.asymmetrical_insert(value)
     parent, max_node = t.root.find_max()
     assert max_node.value == max(insert)
 
 
 def test_delete_nonexistent_node():
-    """Test deleting when tree has no root"""
+    """Test deleting when tree has no root."""
     from .binary_tree import BinaryTree
     t = BinaryTree()
     t.delete(0)
@@ -438,7 +474,7 @@ def test_delete_nonexistent_node_deep():
     """Test deleting when value not in tree."""
     from .binary_tree import BinaryTree
     t = BinaryTree()
-    t.insert(0)
+    t.asymmetrical_insert(0)
     t.delete(1)
     assert t.size() == 1
 
@@ -452,3 +488,236 @@ def test_delete_depth():
     assert t.depth() == 2
     t.delete(2)
     assert t.depth() == 1
+
+
+@pytest.mark.parametrize('tree, pivot', R_ROT_TABLE)
+def test_rot_right_r(tree, pivot):
+    """Test rotating right."""
+    from .binary_tree import BinaryTree
+
+    def set_child(to):
+        t.root = to
+
+    t = BinaryTree()
+    for i in tree:
+        t.insert(i)
+
+    t.root.r_rot(set_child)
+    assert t.root.value == pivot
+
+
+@pytest.mark.parametrize('tree, pivot', R_ROT_TABLE)
+def test_rot_integrity_contains_r(tree, pivot):
+    """Test rotating right contains."""
+    from .binary_tree import BinaryTree
+
+    def set_child(to):
+        t.root = to
+
+    t = BinaryTree()
+    for i in tree:
+        t.insert(i)
+    t.root.r_rot(set_child)
+
+    for i in tree:
+        assert t.contains(i)
+
+
+@pytest.mark.parametrize('tree, pivot', R_ROT_TABLE)
+def test_rot_integrity_size_r(tree, pivot):
+    """Test integrity of tree when rotating right."""
+    from .binary_tree import BinaryTree
+
+    def set_child(to):
+        t.root = to
+
+    t = BinaryTree()
+    for i in tree:
+        t.insert(i)
+    t.root.r_rot(set_child)
+
+    for i in tree:
+        assert t.size() == len(tree)
+
+
+@pytest.mark.parametrize('tree, pivot', L_ROT_TABLE)
+def test_rot_left(tree, pivot):
+    """Test rotating left."""
+    from .binary_tree import BinaryTree
+
+    def set_child(to):
+        t.root = to
+
+    t = BinaryTree()
+    for i in tree:
+        t.insert(i)
+
+    t.root.l_rot(set_child)
+    assert t.root.value == pivot
+
+
+@pytest.mark.parametrize('tree, pivot', L_ROT_TABLE)
+def test_rot_integrity_contains_l(tree, pivot):
+    """Test integrity of tree when rotating left."""
+    from .binary_tree import BinaryTree
+
+    def set_child(to):
+        t.root = to
+
+    t = BinaryTree()
+    for i in tree:
+        t.insert(i)
+    t.root.l_rot(set_child)
+
+    for i in tree:
+        assert t.contains(i)
+
+
+@pytest.mark.parametrize('tree, pivot', L_ROT_TABLE)
+def test_rot_integrity_size_l(tree, pivot):
+    """Test integrity of tree when rotating right."""
+    from .binary_tree import BinaryTree
+
+    def set_child(to):
+        t.root = to
+
+    t = BinaryTree()
+    for i in tree:
+        t.insert(i)
+    t.root.l_rot(set_child)
+
+    for i in tree:
+        assert t.size() == len(tree)
+
+
+def test_duplicate_insert():
+    """Test duplicate inserts does nothing."""
+    from .binary_tree import BinaryTree
+    t = BinaryTree()
+    t.insert(0)
+    t.insert(0)
+    assert t.size() == 1
+
+
+def test_node_direction_right():
+    """Test direction returns 'right'."""
+    from .binary_tree import Node
+    assert Node(0).direction(Node(3)) == 'right'
+
+
+def test_node_direction_left():
+    """Test direction returns 'left'."""
+    from .binary_tree import Node
+    assert Node(0).direction(Node(-3)) == 'left'
+
+
+def test_node_path_rr():
+    """Test path_direction returns 'right' 'right'."""
+    from .binary_tree import Node
+    assert Node(0).path_direction(Node(3), Node(5)) == ('right', 'right')
+
+
+def test_node_path_rl():
+    """Test path_direction returns 'right' 'left'."""
+    from .binary_tree import Node
+    assert Node(0).path_direction(Node(3), Node(1)) == ('right', 'left')
+
+
+def test_node_path_ll():
+    """Test path_direction returns 'left' 'left'."""
+    from .binary_tree import Node
+    assert Node(0).path_direction(Node(-3), Node(-5)) == ('left', 'left')
+
+
+def test_node_path_lr():
+    """Test path_direction returns 'left' 'right'."""
+    from .binary_tree import Node
+    assert Node(0).path_direction(Node(-3), Node(-1)) == ('left', 'right')
+
+
+def test_node_l_rot_root_depth():
+    """Test left pivot recalculates depth correctly for depth."""
+    from .binary_tree import BinaryTree
+    t = BinaryTree()
+    t.insert(0)
+    t.insert(2)
+
+    def setchild(to):
+        t.root = to
+    t.root.l_rot(setchild)
+    assert t.root.left.depth == 1
+
+
+def test_node_l_rot_pivot_depth():
+    """Test left pivot recalculates depth correctly for pivot."""
+    from .binary_tree import BinaryTree
+    t = BinaryTree()
+    t.insert(0)
+    t.insert(2)
+
+    def setchild(to):
+        t.root = to
+    t.root.l_rot(setchild)
+    assert t.root.depth == 2
+
+
+def test_node_r_rot_root_depth():
+    """Test right pivot recalculates depth correctly for root."""
+    from .binary_tree import BinaryTree
+    t = BinaryTree()
+    t.insert(2)
+    t.insert(0)
+
+    def setchild(to):
+        t.root = to
+    t.root.r_rot(setchild)
+    assert t.root.right.depth == 1
+
+
+def test_node_r_rot_pivot_depth():
+    """Test right pivot recalculates depth correctly for pivot."""
+    from .binary_tree import BinaryTree
+    t = BinaryTree()
+    t.insert(2)
+    t.insert(0)
+
+    def setchild(to):
+        t.root = to
+    t.root.r_rot(setchild)
+    assert t.root.depth == 2
+
+
+def test_node_l_rot_complex_depth():
+    """Test left rotation on a complex tree."""
+    from .binary_tree import BinaryTree
+    t = BinaryTree()
+    for val in [5, 3, 7, 2, 4, 6, 8]:
+        t.insert(val)
+
+    def setchild(to):
+        t.root.right = to
+    t.root.right.l_rot(setchild)
+    assert t.root.right.depth == 3
+
+
+def test_node_r_rot_complex_depth():
+    """Test left rotation on a complex tree."""
+    from .binary_tree import BinaryTree
+    t = BinaryTree()
+    for val in [5, 3, 7, 2, 4, 6, 8]:
+        t.insert(val)
+
+    def setchild(to):
+        t.root.left = to
+    t.root.left.r_rot(setchild)
+    assert t.root.left.depth == 3
+
+
+@pytest.mark.parametrize('insert, breadth_first', REBALANCE_INSERT_TABLE)
+def test_rebalance_insert(insert, breadth_first):
+    """Test rebalancing produces the list breadth_first when traversed."""
+    from .binary_tree import BinaryTree
+    t = BinaryTree()
+    for i in insert:
+        t.insert(i)
+    assert list(t.breadth_first()) == breadth_first
