@@ -91,15 +91,15 @@ class BinaryTree(object):
     def delete(self, val):
         """Delete a node from the tree while optimizing tree balance."""
         if self.root is None:
-            raise KeyError('Value not found in tree.')
+            return
         parent = self.root
         if parent.value == val:
-            return self._remove_root(self.root)
+            self._remove_root(self.root)
         while True:
             branch_name = 'left' if val < parent.value else 'right'
             branch = getattr(parent, branch_name)
             if not branch:
-                raise KeyError('Value not found in tree.')
+                return
             if branch.value == val:
                 if branch.left and branch.right:
                     self._remove_root(branch)
@@ -108,6 +108,7 @@ class BinaryTree(object):
                     setattr(parent, branch_name, to_set)
                 break
             parent = branch
+        self._length -= 1
 
     def size(self):
         """Return the size of the BinaryTree."""

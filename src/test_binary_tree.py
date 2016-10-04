@@ -429,8 +429,9 @@ def test_find_max(insert):
 def test_delete_nonexistent_node():
     """Test deleting when tree has no root"""
     from .binary_tree import BinaryTree
-    with pytest.raises(KeyError):
-        BinaryTree().delete(0)
+    t = BinaryTree()
+    t.delete(0)
+    assert t.size() == 0
 
 
 def test_delete_nonexistent_node_deep():
@@ -438,5 +439,5 @@ def test_delete_nonexistent_node_deep():
     from .binary_tree import BinaryTree
     t = BinaryTree()
     t.insert(0)
-    with pytest.raises(KeyError):
-        t.delete(1)
+    t.delete(1)
+    assert t.size() == 1
