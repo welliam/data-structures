@@ -91,7 +91,7 @@ class BinaryTree(object):
                 path[i-1].left = to
             else:
                 path[i-1].right = to
-        
+        print(path)
         step1, step2 = node.path_direction(path[i+1], path[i+2])
         if step1 == 'left' and step2 == 'left':
             node.r_rot(setchild)
@@ -201,13 +201,8 @@ class BinaryTree(object):
                     setattr(parent, branch_name, to_set)
                 break
             parent = branch
+        self._walk_path(path)
         self._length -= 1
-        while path:
-            n = path.pop()
-            n.depth = 1 + max(
-                0 if not n.left else n.left.depth,
-                0 if not n.right else n.right.depth
-            )
 
     def size(self):
         """Return the size of the BinaryTree."""
