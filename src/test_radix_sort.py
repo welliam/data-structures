@@ -3,6 +3,7 @@ import pytest
 
 RADIX_SORT_LISTS = [
     [],
+    [0],
     [1],
     [1, 2],
     [2, 1],

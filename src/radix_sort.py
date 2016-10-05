@@ -11,7 +11,6 @@ def str_to_int(s, padding):
     Represents each character as a digit of a base-128 number."""
     res = 0
     for c in s:
-        print('1')
         res *= ASCII_RADIX  # ascii
         res += ord(c)
         padding -= 1
@@ -41,7 +40,8 @@ def radix_sort(values):
         max_length = max(map(len, values))
         values = [str_to_int(value, max_length) for value in values]
     buckets = [Queue() for _ in range(10)]
-    for i in range(int(log10(max(values)) + 1)):
+    largest = max(values)
+    for i in range(not largest or int(log10(largest) + 1)):
         for value in values:
             buckets[value // 10**i % 10].enqueue(value)
         values = []
