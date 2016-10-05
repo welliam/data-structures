@@ -1,9 +1,8 @@
-
 import sys
 import random
 import timeit
 from math import log10
-from queue import Queue
+from .queue import Queue
 
 
 ASCII_RADIX = 128
