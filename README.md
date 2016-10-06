@@ -78,7 +78,7 @@ I read about breadth first searching [on
 Wikipedia](https://en.wikipedia.org/wiki/Breadth-first_search).
 
 ## Binary Search Tree
-          
+
 The binary search tree (BST) is a data structure that consists of
 nodes, which may have up to two children (left and right). For each
 node in the BST, the node's left child must always be less than the
@@ -112,6 +112,12 @@ branch. Otherwise, the algorithm find the maximum node that is less
 than the node to be deleted and continually move that branch downwards
 to the left. Finally, the algorithm replace the node to be deleted
 with the max node, and remove the reference to that node.
+
+## Insertion sorting
+
+Insertion sort is a function which takes a list of numbers and sorts
+them in ascending order.  This implementation is a python port of the
+sorting algorithm created by Jon Bentley.
 
 ## Mergesort
 
