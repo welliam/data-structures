@@ -1,5 +1,6 @@
 """Implement Trie data structure."""
 
+
 class Trie(object):
     """Trie data structure."""
     def __init__(self):
@@ -22,3 +23,14 @@ class Trie(object):
         for c in s:
             words = words.setdefault(c, {})
         words['$'] = True
+
+    def traverse(self):
+        """Traverse the trie depth-first (pre order)."""
+        stack = [(self.words, '')]
+        while len(stack):
+            d, word = stack.pop()
+            if '$' in d:
+                yield word
+            for c in d:
+                if c != '$':
+                    stack.append((d[c], word + c))
