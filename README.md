@@ -164,3 +164,21 @@ the nodes from the top of the trie to that node is a word contained in
 the trie. Although they can be generalized for other data structures,
 tries generally are used for string related applications such as
 autocomplete.
+
+## Hash Table
+
+The hash table is used for fast key-value storage. We implement four
+different hashing algorithms, including a basic additive hash
+(`additive_hash`), rotating hashing (`rot_hash`), FNV hashing
+(`fnv_hash`) and one at a time hashing (`oat_hash`). Of these, FNV and
+OAT are reasonable for actual use. Upon initialization our hash table
+requires an argument for capacity and another for the hash function to
+be used (this one is optional and defaults to `fnv_hash`). With
+resizing, our table would be O(1) on average (assuming a decent
+hashing function is used). As is, it is O(n), as collisions will
+inevitably occur as the number of inserts exceeds the initial
+capacity.
+
+We referenced [this
+article](http://www.eternallyconfuzzled.com/tuts/algorithms/jsw_tut_hashing.aspx)
+for our hashing functions.
