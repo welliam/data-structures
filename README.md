@@ -126,13 +126,28 @@ time usage, O(nlog(n)); an outer loop, mergesort, iterates with a step
 that is multiplied by two every iteration (the O(log(n)) factor) and
 an inner loop iterates a constant number of times for each value in
 the array it's sorting (the O(n) factor). The mergesort function is
-in-place and does not return a list (instead mutating the list it
-takes). It is also stable.
+does not return a list (instead mutating the list it takes). It is
+also stable.
 
 [This Stack Overflow
 answer](http://stackoverflow.com/questions/2673651/inheritance-from-str-or-int)
 was referenced for the implementation of TaggedInt, a class used in
 the tests for stability.
+
+## Quicksort
+
+Quicksort takes an array and partitions it into segments are larger
+and smaller than a given value, then recurs upon those segments. Our
+quicksort is in-place. The time complexity is O(nlog(n)). Our
+quicksort is iterative and uses a stack to keep track of what is to be
+done next; in this sense, it is not "in-place", but it is more
+efficient than a "truly" in-place algorithm which is recursive. That
+is to say, it takes the same amount of space, but does so explicitly
+rather than using the call stack.
+
+[This Wikipedia example]
+(https://en.wikipedia.org/wiki/Quicksort#Lomuto_partition_scheme)
+was referenced for the implementation of `partition`.
 
 ## Trie
 
