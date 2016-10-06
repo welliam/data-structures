@@ -37,7 +37,7 @@ def oat_hash(s):
 class HashTable(object):
     """A hash table."""
 
-    def __init__(self, capacity, hash_function):
+    def __init__(self, capacity, hash_function=fnv_hash):
         """Initialize buckets and store the hash function."""
         self._buckets = []
         for _ in range(capacity):

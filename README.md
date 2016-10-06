@@ -167,9 +167,10 @@ different hashing algorithms, including a basic additive hash
 (`fnv_hash`) and one at a time hashing (`oat_hash`). Of these, FNV and
 OAT are reasonable for actual use. Upon initialization our hash table
 requires an argument for capacity and another for the hash function to
-be used. With resizing, our table would be O(1) on average (assuming a
-decent hashing function is used). As is, it is O(n), as collisions
-will inevitably occur as the number of inserts exceeds the initial
+be used (this one is optional and defaults to `fnv_hash`). With
+resizing, our table would be O(1) on average (assuming a decent
+hashing function is used). As is, it is O(n), as collisions will
+inevitably occur as the number of inserts exceeds the initial
 capacity.
 
 We referenced [this
