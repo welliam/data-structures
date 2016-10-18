@@ -151,6 +151,18 @@ def test_traversal_word_deep_bad_start():
         list(t.traverse('b'))
 
 
+def test_starting():
+    """Test auto complete working correctly."""
+    from .trie import Trie
+    t = Trie()
+    t.insert('a')
+    t.insert('ab')
+    t.insert('ba')
+    results = ['a', 'ab']
+    for item in list(t.traverse('a')):
+        assert item in results
+
+
 def test_traversal_word_deep_2():
     """Test traversal of a tree with a multi-char word."""
     from .trie import Trie
