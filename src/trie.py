@@ -24,13 +24,20 @@ class Trie(object):
             words = words.setdefault(c, {})
         words['$'] = True
 
-    def traverse(self):
+    def traverse(self, start=None):
         """Traverse the trie depth-first (pre order)."""
-        stack = [(self.words, '')]
+        words = self.words
+        if start:
+            for c in start:
+                words = words[c]
+        else:
+            start = ''
+
+        stack = [(words, '')]
         while len(stack):
             d, word = stack.pop()
             if '$' in d:
-                yield word
+                yield start + word
             for c in d:
                 if c != '$':
                     stack.append((d[c], word + c))

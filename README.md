@@ -164,3 +164,6 @@ the nodes from the top of the trie to that node is a word contained in
 the trie. Although they can be generalized for other data structures,
 tries generally are used for string related applications such as
 autocomplete.
+
+The traversal method traverses the trie structure and takes an optional start
+word parameter.  It is the basis for how autocomplete can be implemented.
